@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Als dit Fonds een vernieuwing is van een vorif Fonds, wordt dit veld gebruikt om deze te koppelen aan het vorige record.</help>
+    <label></label>
+    <name>npsp__Previous_Grant_Opportunity__c</name>
+    <relationshipLabel></relationshipLabel>
+</CustomFieldTranslation>

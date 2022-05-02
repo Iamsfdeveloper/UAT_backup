@@ -1,0 +1,24 @@
+.THIS .contentPanel:before,
+.THIS .contentPanel:after {
+    content: " ";
+    display: table;
+}
+.THIS .contentPanel:after {
+    clear: both;
+}
+
+.THIS .left {
+    width: 50%;
+}
+.THIS .right {
+    width: 50%;
+}
+.THIS .column {
+    float: left;
+    width: 50%;
+}
+.THIS .row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

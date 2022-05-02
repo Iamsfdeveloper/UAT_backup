@@ -1,0 +1,6 @@
+<apex:page standardController="Contact" >
+    <apex:outputPanel rendered="{!IF(Contact.Orphan_Visit__c != null,true,false)}"></apex:outputPanel>
+	<sharinpix:SharinPix height="500px" parameters="{'abilities':{'album_id':{'Access':{'see':true,'image_list':true,'image_crop':false,'image_delete':false}}},'Id':'{!Contact.Orphan_Visit__c}','tag':'ProfilePhoto','path':'/single-image'}"></sharinpix:SharinPix>
+	<!-- replace {! $CurrentPage.Parameters.Id } with the Salesforce recordId you want to update -->
+	<sharinpix:ImageSync recordId="{! $CurrentPage.Parameters.Id }" />
+</apex:page>

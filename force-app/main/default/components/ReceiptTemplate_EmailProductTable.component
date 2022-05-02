@@ -1,0 +1,30 @@
+<apex:component access="global" controller="ReceiptTemplateController">
+    <apex:attribute name="opportunityId" type="Id" assignTo="{!oppId}" description="Opportunity Id"/>
+    
+    <apex:repeat value="{!Products}" var="prod">
+        <tr>
+            <td>
+                <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <th class="th-item" style="text-align: left !important; font-weight: normal !important; min-width: 100px !important; width: 160px !important; color: #7332aa;">Project:</th>
+                        <td>
+                            {!prod.npsp__General_Accounting_Unit__r.Name}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="th-item" style="text-align: left !important; font-weight: normal !important; min-width: 100px !important; width: 160px !important; color: #7332aa;">Location:</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="th-item" style="text-align: left !important; font-weight: normal !important; min-width: 100px !important; width: 160px !important; color: #7332aa;">Donation Type:</th>
+                        <td>{!prod.npsp__General_Accounting_Unit__r.Stipulation__c}</td>
+                    </tr>
+                    <tr>
+                        <th class="th-item" style="text-align: left !important; font-weight: normal !important; min-width: 100px !important; width: 160px !important; color: #7332aa;">Donation Amount:</th>
+                        <td>£{!prod.npsp__Amount__c}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </apex:repeat>
+</apex:component>

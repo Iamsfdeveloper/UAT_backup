@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Volunteer_Agreement_status_check</fullName>
+    <active>false</active>
+    <description>if Volunteer Agreement is checked then Volunteer Agreement Date will be required field.</description>
+    <errorConditionFormula>AND ( Volunteer_Agreement__c = TRUE , ISBLANK( Volunteer_Agreement_Date__c ))</errorConditionFormula>
+    <errorDisplayField>Volunteer_Agreement_Date__c</errorDisplayField>
+    <errorMessage>Please Enter Agreement Date</errorMessage>
+</ValidationRule>

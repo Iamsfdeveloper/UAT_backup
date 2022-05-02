@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help></help>
+    <label></label>
+    <name>Do_Not_Contact_Reason__c</name>
+    <picklistValues>
+        <masterLabel>Data Service Gone Away</masterLabel>
+        <translation></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Moving Abroad</masterLabel>
+        <translation></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Supporter Request</masterLabel>
+        <translation></translation>
+    </picklistValues>
+</CustomFieldTranslation>

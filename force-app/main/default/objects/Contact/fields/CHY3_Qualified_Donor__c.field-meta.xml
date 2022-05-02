@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CHY3_Qualified_Donor__c</fullName>
+    <externalId>false</externalId>
+    <formula>AND(npo02__OppAmountThisYear__c &gt; 250, ISPICKVAL(Regional_Office_Site_Code__c,&apos;IE&apos;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>CHY3 Qualified Donor</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

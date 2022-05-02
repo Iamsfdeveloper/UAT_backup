@@ -1,0 +1,194 @@
+<apex:component access="global" controller="ReceiptTemplateController">
+    <apex:attribute name="opportunityId" type="Id" assignTo="{!oppId}" description="Opportunity Id"/>
+    <apex:attribute name="opp" type="Opportunity" description="Opportunity"/>
+    <apex:attribute name="payment" type="npe01__OppPayment__c" description="Card Payment"/>
+    <apex:attribute name="theContact" type="Contact" description="Contact"/>
+    <apex:attribute name="language" type="String" default="FR" assignTo="{!lang}"  description="Language"/>
+    
+    <apex:stylesheet value="{!URLFOR($Resource.SMP_DD_Resources, 'css/ReceiptTemplate.css')}"/>
+
+    <div>
+        <div style="float:left;">
+            <apex:outputPanel rendered="{!opp.Account.RecordType.Name != 'Organization'}">
+                <apex:outputText value="{!SUBSTITUTE(opp.npsp__Primary_Contact__r.Salutation, '.', '')} " rendered="{!ISBLANK(opp.npsp__Primary_Contact__r.Salutation) == false}"/>
+                <apex:outputField value="{!opp.npsp__Primary_Contact__r.Name}"/><br/>
+                <!--<apex:outputText value="{!relatedTo.npsp__Primary_Contact__r.FirstName} {!relatedTo.npsp__Primary_Contact__r.LastName}"/><br/>-->
+                <apex:outputField value="{!opp.npsp__Primary_Contact__r.MailingStreet}"/><br/>
+                <apex:outputField value="{!opp.npsp__Primary_Contact__r.MailingCity}"/><br/>
+                <apex:outputField value="{!opp.npsp__Primary_Contact__r.MailingPostalCode}"/><br/>
+                <apex:outputField value="{!opp.npsp__Primary_Contact__r.MailingCountry}"/>
+            </apex:outputPanel>
+        </div>
+      
+        <div style = "display:flex; flex-direction:column; justify-content: space-between; float: right;">
+
+            <div style="margin-bottom: 30%;">
+
+                <apex:image id="theImage" value="{!URLFOR($Resource.SMP_DD_Resources, 'images/ha-logo-nobox.png')}" width="130px" height="130px" alt="Human Appeal logo" style="object-fit: cover;"/>
+        
+            </div>
+            
+        
+            <div style="text-align:right;">   
+                Page 1 of 1<br/><br/>
+                <apex:outputText value="ID du donateur: {!opp.npsp__Primary_Contact__r.Donor_ID__c}"/><br/><br/>
+                <apex:outputText value="{!DAY(opp.CloseDate)}/{!MONTH(opp.CloseDate)}/{!YEAR(opp.CloseDate)}"/>
+            </div>
+
+        </div>
+        
+       
+        <div style="clear:both"/>
+        
+        <h2 style="margin-top: 67px; margin-bottom: 0px;">
+            <apex:outputText value="Votre reçu de don" rendered="{!opp.Type =='Donation'}"/>
+            <apex:outputText value="Déclaration de dons réguliers" rendered="{!opp.Type =='Payment Plan - Source'}"/>
+        </h2>
+
+
+
+        <apex:outputPanel rendered="{!opp.Type =='Payment Plan - Source'}">
+            <table>
+                <tr>
+                    <!-- total 950 px -->
+                    <th style="width: 100px">Type</th>
+                    <th style="width: 200px">Projet</th>
+                    <th style="width: 100px">Date de Début</th>
+                    <th style="width: 100px">Date de fin</th>
+                    <th style="width: 100px">Description</th>
+                    <th style="text-align: right">Montant</th>
+                </tr>
+                <apex:repeat var="prod" value="{!lstProdWrap}">
+                    <tr>
+                        <td><apex:outputText value="{!prod.stipulationType}"/></td>
+                        <td><apex:outputText value="{!prod.name}"/></td>
+                        <td><apex:outputText value="{0, date, dd/MM/yyyy}"><apex:param value="{!opp.Effective_Date__c}" /> </apex:outputText></td>
+                        <td><apex:outputText value="{0, date, dd/MM/yyyy}"><apex:param value="{!opp.End_Date__c}" /> </apex:outputText></td>
+                        <td>
+                            <apex:outputText rendered="{!opp.Donation_Type__c == '30N'}" value="Paiments des 30 Nuits du Ramadan"/>
+                            <apex:outputText rendered="{!opp.Donation_Type__c == '10N'}" value="Paiments des 10 Nuits du Ramadan"/>
+                            <apex:outputPanel rendered="{!opp.Donation_Type__c == '10D'}"> Paiments des 10 Jours</apex:outputPanel>
+                        </td>  
+                        <td style="text-align:right;"><apex:outputText value="{!CASE(prod.currencyCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,0.00}"><apex:param value="{!prod.amount}" /></apex:outputText>
+
+                        </td>                    
+                    </tr>
+                </apex:repeat>
+                
+                <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                    <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="6">
+                        <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                        <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,0.00}"><apex:param value="{!opp.Amount}" /></apex:outputText><br/>
+                    </td>
+                </tr>
+            </table>       
+        </apex:outputPanel>
+
+
+
+        <apex:outputPanel rendered="{!and(opp.Type !='Payment Plan - Source', opp.Donation_Type__c !='30N', opp.Donation_Type__c !='10N', opp.Donation_Type__c !='10D')}">
+            <table>
+                <tr>
+                    <th style="width:140px;">Type</th>
+                    <th style="width:350px;">Projet</th>
+                    <th style="width:300px;">Location</th>
+                    <th style="width:150px; text-align:right;">Montant</th>
+                </tr>
+                <apex:repeat var="prod" value="{!lstProdWrap}">
+                    <tr>
+                        <td><apex:outputText value="{!prod.stipulationType}"/></td>
+                        <td><apex:outputText value="{!prod.name}"/></td>
+                        <td><apex:outputText value="{!prod.country}"></apex:outputText></td>
+                        <td style="text-align:right;"><apex:outputText value="{!CASE(prod.currencyCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!prod.amount}"/></td>                    
+                    </tr>
+                </apex:repeat>
+                <apex:repeat value="{!Breakdown}" var="type">
+                    <tr style="border: 0px;">
+                        
+                        <td style="text-align:right; border: 0px; width:100px;" colspan="4">
+                            <b>
+                            <apex:outputText value="Total Zakat" rendered="{!type == 'ZK'}"/>
+                            <apex:outputText value="Total General Charity" rendered="{!type == 'XX'}"/>
+                            <apex:outputText value="Total Sadaqah" rendered="{!type == 'SD'}"/>
+                            &nbsp;&nbsp;&nbsp;</b>
+                            <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!Breakdown[type]}"/>
+                        </td>
+                    </tr>
+                </apex:repeat>
+                <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                    <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="4">
+                        <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                        <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,00.00}">
+                            <apex:param value="{!opp.Amount}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+            </table>  
+        </apex:outputPanel>
+
+        <apex:outputPanel rendered="{!and(opp.Type !='Payment Plan - Source', Or(opp.Donation_Type__c =='30N' || opp.Donation_Type__c =='10N' || opp.Donation_Type__c =='10D'))}">
+            <table>
+                <tr>
+                    <th style="width:350px;">Type</th>
+                    <th style="width:350px;">Projet</th>
+                    <th style="width:300px;">Location</th>
+                </tr>
+                <apex:repeat var="prod" value="{!lstProdWrap}">
+                    <tr>
+                        <td><apex:outputText value="{!prod.stipulationType}"/></td>
+                        <td><apex:outputText value="{!prod.name}"/></td>
+                        <td><apex:outputText value="{!prod.country}"></apex:outputText></td>                    
+                    </tr>
+                </apex:repeat>
+                
+                <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                    <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="3">
+                        <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                        <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,00.00}">
+                            <apex:param value="{!opp.Amount}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+            </table>  
+        </apex:outputPanel>
+
+
+        
+
+        <div style="margin-top:5px;">
+            <div style="display: inline; padding-right: 15px">
+                <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/regulator.png')}" width="160px"/>
+            </div>    
+            <div style="display: inline; padding-left: 15px">
+                <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/HA30badge.png')}" width="80px" height="80px"/>   
+            </div>                     
+        </div>  
+
+        <div style="margin-top:15px; font-size:11px; color: #838383">
+            <p>
+                Les dons que vous réalisez auprés d'Human Appeal France ouvrent droit un avantage fiscal conséquent. On parle alors de déduction fiscale
+                ou détiscalisation sur les dons. Cette déduction est égale a 66% de votre don, dans la limite de 20% de votre revenu net imposable et cela
+                sans date limite. Votre requ fiscal vous est envoyé chaque année courant du mois d'avril.<br/><br/>
+                <strong>Suivez les actions de nos équipes å travers le monde entier.</strong><br/><br/>
+                En vous inscrivant notre newsletter et la réception d'SMS, vous découvrirez l'impact que les donateurs d'Human Appeal comme vous ont sur
+                la vie des personnes les plus démunis dans le monde, ainsi que des nouvelles, des informations, des événements, des concours et des mises
+                jour sur les urgences ainsi que sur la faqon dont vous pourriez apporter votre aide.
+                Visitez www.humanappeal.fr ou appelez le 01 42 46 36 36 pour vous inscrire.
+        
+            </p>
+                         
+        </div>
+
+        <div style="margin-top:15px; font-size:11px; color: #838383">
+            <div style="position: fixed;bottom: 0;">
+                <p style=" color: #662d91; font-size: 11px; display: inline;">         
+                        <strong>HUMAN APPEAL</strong>&nbsp;&nbsp;&bull;&nbsp;&nbsp;175 Boulevard Anatole France, 93200 Saint-Denis, France</p>
+                <p style="color: #662d91; font-size: 10px; display: inline;">
+                        humanappeal.fr&nbsp;&nbsp;&bull;&nbsp;&nbsp;contact@humanappeal.fr&nbsp;&nbsp;&bull;&nbsp;&nbsp;01 42 46 36 36<br/></p>
+            </div>  
+
+        </div>  
+
+
+    </div>
+</apex:component>

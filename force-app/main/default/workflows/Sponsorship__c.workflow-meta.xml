@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>FR_Orphan_Sponsorship_Orphan_Pack</fullName>
+        <description>FR Orphan Sponsorship &amp; Orphan Pack</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Donor__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>contact@humanappeal.fr</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>France_Templates/FR_Orphan_New_Supporter</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Orphan_Alert</fullName>
+        <description>Send Orphan Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Donor__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>customercare@humanappeal.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Donor_Care_UK/Orphan_New_Supporter</template>
+    </alerts>
+    <alerts>
+        <fullName>Sponsorship_Orphan_Pack_Email_ACK3</fullName>
+        <description>Sponsorship Orphan Pack Email ACK</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Donor__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>customercare@humanappeal.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Donor_Care_UK/Orphan_New_Supporter_With_Orphan_Pack</template>
+    </alerts>
+    <alerts>
+        <fullName>US_Orphan_Sponsorship_Orphan_Pack</fullName>
+        <description>US Orphan Sponsorship &amp; Orphan Pack</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Donor__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>customercare@humanappealusa.org</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>USA_Templates/US_New_Orphan_Letter_Supporter</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Sponsorship_Acknowledgment_Status_Update</fullName>
+        <field>Acknowledgment_Status__c</field>
+        <literalValue>Acknowledged</literalValue>
+        <name>Sponsorship Acknowledgment Status Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_First_Donation_Received_Date</fullName>
+        <field>First_Donation_Received_Date_copy__c</field>
+        <formula>First_Donation_Received_Date__c</formula>
+        <name>Update First Donation Received Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>FR Sponsorship Orphan Pack</fullName>
+        <actions>
+            <name>FR_Orphan_Sponsorship_Orphan_Pack</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Sponsorship__c.IsActive__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Sponsorship__c.Donor_Regional_Office_Code__c</field>
+            <operation>equals</operation>
+            <value>FR</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Send New Orphan Alert</fullName>
+        <actions>
+            <name>Send_Orphan_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Sponsorship__c.IsActive__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Department</field>
+            <operation>notEqual</operation>
+            <value>Systems &amp; Development</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Sponsorship Orphan Pack</fullName>
+        <actions>
+            <name>Sponsorship_Orphan_Pack_Email_ACK3</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Email Alert For Sponsorship with Orphan pack on Record Creation and Active</description>
+        <formula>AND(IsActive__c,Donor_Regional_Office_Code__c =&apos;UK&apos;, $User.Department &lt;&gt; &apos;Systems &amp; Development&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Sponsorship Orphan Pack Email Acknowledgment</fullName>
+        <actions>
+            <name>Sponsorship_Orphan_Pack_Email_ACK3</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Sponsorship_Acknowledgment_Status_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Workflow to automate sending Orphan Packs to Donors that begin a Sponsorship.</description>
+        <formula>Text(Acknowledgment_Status__c) = $Label.npsp__sendacknowledgmentfirestatus &amp;&amp; Donor__r.Email &lt;&gt; NULL &amp;&amp;  $User.Department &lt;&gt; &apos;Systems &amp; Development&apos;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>US Sponsorship Orphan Pack</fullName>
+        <actions>
+            <name>US_Orphan_Sponsorship_Orphan_Pack</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Sponsorship__c.IsActive__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Sponsorship__c.Donor_Regional_Office_Code__c</field>
+            <operation>equals</operation>
+            <value>US</value>
+        </criteriaItems>
+        <description>Email Alert For Sponsorship with Orphan pack on Record Creation and Active</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update First Donation Received Date</fullName>
+        <actions>
+            <name>Update_First_Donation_Received_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Sponsorship__c.First_Donation_Received_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Sponsorship__c.First_Donation_Received_Date_copy__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

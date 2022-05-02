@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Feedback_Notifications_Via_Sms_old__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Field confirms contact accepts email notifications for special request project stages and sponsorship annual reports being sent to them by SMS.
+
+Requires mobile value for it to be used.
+Removed from all Contact page layouts and FLS 27/01/2021 because not required as part of the any solution (confirmed by Majed)</description>
+    <externalId>false</externalId>
+    <label>Feedback Notifications Via Sms</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

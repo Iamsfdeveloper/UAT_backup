@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Orphan_Transport_To_School__c</fullName>
+    <externalId>false</externalId>
+    <label>Transport To School</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bicycle</fullName>
+                <default>false</default>
+                <label>Bicycle</label>
+            </value>
+            <value>
+                <fullName>Car</fullName>
+                <default>false</default>
+                <label>Car</label>
+            </value>
+            <value>
+                <fullName>Minibus</fullName>
+                <default>false</default>
+                <label>Minibus</label>
+            </value>
+            <value>
+                <fullName>Motorcycle</fullName>
+                <default>false</default>
+                <label>Motorcycle</label>
+            </value>
+            <value>
+                <fullName>Private Transport</fullName>
+                <default>false</default>
+                <label>Private Transport</label>
+            </value>
+            <value>
+                <fullName>Public Bus</fullName>
+                <default>false</default>
+                <label>Public Bus</label>
+            </value>
+            <value>
+                <fullName>Rickshaw</fullName>
+                <default>false</default>
+                <label>Rickshaw</label>
+            </value>
+            <value>
+                <fullName>School Bus</fullName>
+                <default>false</default>
+                <label>School Bus</label>
+            </value>
+            <value>
+                <fullName>Train</fullName>
+                <default>false</default>
+                <label>Train</label>
+            </value>
+            <value>
+                <fullName>Unspecified</fullName>
+                <default>false</default>
+                <label>Unspecified</label>
+            </value>
+            <value>
+                <fullName>Walks</fullName>
+                <default>false</default>
+                <label>Walks</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Department__c</fullName>
+    <description>Department</description>
+    <externalId>false</externalId>
+    <formula>IF((ISBLANK(npe03__Recurring_Donation__c)),TEXT( Campaign.Department__c),TEXT(npe03__Recurring_Donation__r.Opportunity__r.Campaign.Department__c))</formula>
+    <inlineHelpText>Department</inlineHelpText>
+    <label>Department</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

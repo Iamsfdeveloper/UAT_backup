@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Visit_Completed_Date__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(MONTH(DATEVALUE(Orphan__r.Orphan_Visit__r.Visit_Completed_Date_time__c) )&gt;6, 
+DATE( YEAR(DATEVALUE(Orphan__r.Orphan_Visit__r.Visit_Completed_Date_time__c) )+1 , 
+MOD (MONTH(DATEVALUE(Orphan__r.Orphan_Visit__r.Visit_Completed_Date_time__c) )+6,12) , DAY(DATEVALUE(Orphan__r.Orphan_Visit__r.Visit_Completed_Date_time__c) ) ) , 
+DATE( YEAR(DATEVALUE(Orphan__r.Orphan_Visit__r.Visit_Completed_Date_time__c) ) , MONTH(DATEVALUE(Orphan__r.Orphan_Visit__r.Visit_Completed_Date_time__c) )+6 , DAY(DATEVALUE(Orphan__r.Orphan_Visit__r.Visit_Completed_Date_time__c) ) )
+)</formula>
+    <label>Last Visit Completed Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

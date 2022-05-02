@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Not_Allowed_Mutual_ROC_Validation</fullName>
+    <active>true</active>
+    <description>Cross Regional office , Campaign creation is Not Allowed - Required Permission</description>
+    <errorConditionFormula>AND(Not($Permission.Allow_Creating_Mutual_Campaigns),TEXT(Regional_Office_Code__c) &lt;&gt; TEXT($User.Payment_Country_Code__c))</errorConditionFormula>
+    <errorDisplayField>Regional_Office_Code__c</errorDisplayField>
+    <errorMessage>Not Allowed to Create/Modify Other Regional Office Campaigns - Please Contact Systems Salesforce Team</errorMessage>
+</ValidationRule>

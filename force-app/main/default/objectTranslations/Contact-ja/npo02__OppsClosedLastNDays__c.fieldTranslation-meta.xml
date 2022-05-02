@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>この個人 (主支援個人の役割) に関連する、金額が 0 より大きい成立支援で、[世帯設定] に定義されている過去の日数の間に完了したものの合計回数。</help>
+    <label></label>
+    <name>npo02__OppsClosedLastNDays__c</name>
+</CustomFieldTranslation>

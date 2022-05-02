@@ -1,0 +1,140 @@
+<!--
+  @description       : 
+  @author            : Iamsfdeveloper
+  @group             : 
+  @last modified on  : 01-10-2022
+  @last modified by  : Iamsfdeveloper
+-->
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="myProfileDetails">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="close" event="c:closeEvent" action="{!c.toggleEditModal}" />
+    <aura:attribute name="donorDetails" type="Contact" />
+    <aura:attribute name="recentDonationList" type="List" />
+    <aura:attribute name="donation" type="Object" />
+    <aura:attribute name="showModal" type="Boolean" default="false" />
+    <aura:attribute name="pageSize" type="Integer" default="0" />
+
+    <div class="bg-grey">
+        <div class="template-dashboard">
+            <div class="wrap wrap-standard-content-to-large">
+                <div class="template-dashboard__heading template-dashboard__heading--reduced">
+                    <h1 class="h2">{!v.donorDetails.FirstName} thank you for supporting us for {!v.donorDetails.Current_Age__c}
+                        {!(v.donorDetails.Current_Age__c eq ' ')?'.': v.donorDetails.Current_Age__c +'year.'}</h1>
+                </div>
+            </div>
+            <div class="wrap-large">
+                <div class="template-dashboard__user-profile-recent-donations template-dashboard__flex-no-gutter">
+                    <div class="template-dashboard__user-profile">
+                        <div
+                            class="template-dashboard__user-profile__inner wrap wrap-standard-content-to-large wrap--not-large">
+                            <section class="user-profile bg-light">
+                                <div class="user-profile__top">
+                                    <div class="user-profile__inner">
+                                        <a onclick="{!c.toggleEditModal}"
+                                            class="user-profile__edit-hyperlink text-size--smaller text-color--primary text-decoration--none"
+                                            title="Edit profile">
+                                            <div class="user-profile__edit-hyperlink__icon"
+                                                style="vertical-align:sub !important;">
+                                            
+                                            <span class="user-profile__edit-hyperlink__text">Edit profile</span>
+											</div>
+                                        </a>
+                                        <div class="user-profile__picture">
+
+                                            <img src="{!$Resource.HumanAppeal+'/assets/images/Male.jpg'}" class="image"
+                                                alt="" title="" media="(min-width: 768px)" />
+
+
+                                        </div>
+                                        <div class="user-profile__heading">
+                                            <h1 class="text--center text-color--primary">{!v.donorDetails.FirstName}
+                                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="user-profile__bottom">
+                                    <div class="user-profile__inner">
+                                        <div class="user-profile__data">
+                                            <p>Donor ID:</p>
+                                            <p class="is-serif-light">{!v.donorDetails.Donor_ID__c}</p>
+                                        </div>
+                                        <div class="user-profile__data">
+                                            <p>Name:</p>
+                                            <p class="is-serif-light">{!v.donorDetails.FirstName +'
+                                                '+v.donorDetails.LastName}</p>
+                                        </div>
+                                        <div class="user-profile__data">
+                                            <p>Address:</p>
+                                            <address class="is-serif-light">
+                                                <lightning:formattedAddress street="{!v.donorDetails.Mailingstreet}"
+                                                    city="{!v.donorDetails.MailingCity}"
+                                                    country="{!v.donorDetails.MailingCountry}"
+                                                    province="{!v.donorDetails.Mailingstate}"
+                                                    postalCode="{!v.donorDetails.PostalCode}" disabled="true" />
+                                            </address>
+                                        </div>
+                                        <div class="user-profile__data">
+                                            <p>Gift Aid Status:</p>
+                                            <p class="is-serif-light">{!v.donorDetails.Gift_Aid_Status__c}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="template-dashboard__recent-donations">
+                        <section class="recent-donations bg-primary-darker">
+                            <div class="wrap wrap-standard-content-to-large wrap--not-large">
+                                <div class="recent-donations__heading">
+                                    <h1 class="h3 text-color--light">Your most recent donations</h1>
+                                </div>
+                                <aura:if isTrue="{!v.pageSize.length > 0}">
+                                    <c:RecentDonationCard donationRec="{!v.donation}" />
+                                    <aura:set attribute="else">
+                                        <div class="recent-donations__heading">
+                                            <h1 class="h4 text-color--light">{!$Label.c.No_Records_found}</h1>
+                                        </div>                                        
+                                    </aura:set>
+                                </aura:if>
+                                <br />
+                                <div class="center">
+                                    <div class="pagination">
+                                        <aura:iteration items="{!v.pageSize}" var="item">
+                                            <!--  <a href="#">&laquo;</a> -->
+                                            <a href="javascript:void(0)" onclick="{!c.changeDonation}"
+                                                class="{!v.isActive ? active : ''}" id="{!item}">{!item + 1}</a>
+
+                                            <!--   <a href="#">&raquo;</a> -->
+
+                                        </aura:iteration>
+                                    </div>
+                                </div>
+                                <div class="text--center">
+                                    <a href="" class="button button--inline-block button--secondary button--action"
+                                        title="Your donation activity" onclick="{!c.navigateToDonation}">Your donation
+                                        activity</a>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <aura:if isTrue="{!v.showModal}">
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium"
+            aria-labelledby="modal-heading-01" aria-modal="true">
+            <div class="slds-modal__container">
+                <lightning:buttonIcon iconName="utility:close" class="slds-modal__close" variant="bare"
+                    onclick="{! c.toggleEditModal }" alternativeText="Cancel and close" title="Cancel and close" />
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Edit Profile</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c:newDonor recordId="{!v.donorDetails.Id}" closeModal="true" contactDetails="{!v.donorDetails}" />
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </aura:if>
+</aura:component>

@@ -1,0 +1,235 @@
+<aura:component
+  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction"
+  access="global"
+  controller="SMPRenewWizardController"
+>
+  <aura:attribute name="paymentType" type="String" default="" />
+  <aura:attribute name="recordId" type="String" />
+  <aura:attribute
+    name="directDebit"
+    type="Income_Direct_Debit__c"
+    default="{ 'sobjectType': 'Income_Direct_Debit__c' }"
+  />
+  <aura:attribute name="completed" type="Boolean" default="false" />
+  <aura:attribute name="disabled" type="Boolean" default="True" />
+
+  <aura:attribute
+    name="recurringDonation"
+    type="npe03__Recurring_Donation__c"
+  />
+  <aura:attribute name="paymentURL" type="String" />
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <lightning:layout multipleRows="true">
+    <aura:if isTrue="{!v.paymentType == 'Direct Debit' &amp;&amp; v.completed == false}">
+      <lightning:recordEditForm
+        aura:id="directDebitRecordEdit"
+        objectApiName="Income_Direct_Debit__c"
+      >
+        <lightning:layout multipleRows="true">
+          <lightning:layoutItem size="8">
+            <lightning:inputField
+              aura:id="ddName"
+              fieldName="DD_Bank_Account_Name__c"
+              autocomplete="off"
+              value="{!v.directDebit.DD_Bank_Account_Name__c}"
+            />
+          </lightning:layoutItem>
+          <lightning:layoutItem size="4">
+            <div class="slds-form-element_stacked slds-form-element">
+              <div class="slds-form-element slds-size_1-of-1">
+                <label class="slds-form-element__label">&nbsp;</label>
+                <div class="slds-form-element__control">
+                  <aura:if isTrue="{!v.directDebit.DD_OK__c}">
+                    <lightning:icon
+                      size="x-small"
+                      iconName="action:approval"
+                      alternativeText="Approved"
+                    />
+                    <aura:set attribute="else">
+                      <lightning:icon
+                        size="x-small"
+                        iconName="action:close"
+                        alternativeText="Not Approved"
+                      />
+                    </aura:set>
+                  </aura:if>
+                </div>
+              </div>
+            </div>
+          </lightning:layoutItem>
+          <lightning:layoutItem size="8">
+            <lightning:inputField
+              aura:id="ddAccountNumber"
+              fieldName="DD_Bank_Account_Number__c"
+              autocomplete="off"
+              onchange="{!c.handleDirectDebitChanged}"
+              value="{!v.directDebit.DD_Bank_Account_Number__c}"
+            />
+          </lightning:layoutItem>
+          <lightning:layoutItem size="4">
+            <div class="slds-form-element_stacked slds-form-element">
+              <div class="slds-form-element slds-size_1-of-1">
+                <label class="slds-form-element__label">&nbsp;</label>
+                <div class="slds-form-element__control">
+                  <aura:if isTrue="{!v.directDebit.DD_Account_Number_OK__c}">
+                    <lightning:icon
+                      size="x-small"
+                      iconName="action:approval"
+                      alternativeText="Approved"
+                    />
+                    <aura:set attribute="else">
+                      <lightning:icon
+                        size="x-small"
+                        iconName="action:close"
+                        alternativeText="Not Approved"
+                      />
+                    </aura:set>
+                  </aura:if>
+                </div>
+              </div>
+            </div>
+          </lightning:layoutItem>
+          <lightning:layoutItem size="8">
+            <lightning:inputField
+              aura:id="ddSortCode"
+              fieldName="DD_Bank_Sort_Code__c"
+              autocomplete="off"
+              onchange="{!c.handleDirectDebitChanged}"
+              value="{!v.directDebit.DD_Bank_Sort_Code__c}"
+            />
+          </lightning:layoutItem>
+          <lightning:layoutItem size="4">
+            <div class="slds-form-element_stacked slds-form-element">
+              <div class="slds-form-element slds-size_1-of-1">
+                <label class="slds-form-element__label">&nbsp;</label>
+                <div class="slds-form-element__control">
+                  <aura:if isTrue="{!v.directDebit.DD_Sort_Code_OK__c}">
+                    <lightning:icon
+                      size="x-small"
+                      iconName="action:approval"
+                      alternativeText="Approved"
+                    />
+                    <aura:set attribute="else">
+                      <lightning:icon
+                        size="x-small"
+                        iconName="action:close"
+                        alternativeText="Not Approved"
+                      />
+                    </aura:set>
+                  </aura:if>
+                </div>
+              </div>
+            </div>
+          </lightning:layoutItem>
+        </lightning:layout>
+        <lightning:layout multipleRows="true" class="slds-m-top_medium">
+          <lightning:layoutItem size="6">
+            <lightning:inputField
+              aura:id="ddStartDate"
+              fieldName="DD_Start_Date__c"
+              autocomplete="off"
+              onchange="{!c.handleDirectDebitChanged}"
+              value="{!v.directDebit.DD_Start_Date__c}"
+            />
+          </lightning:layoutItem>
+          <lightning:layoutItem size="6">
+            <lightning:inputField
+              aura:id="ddEndDate"
+              fieldName="DD_End_Date__c"
+              autocomplete="off"
+              onchange="{!c.handleDirectDebitChanged}"
+              value="{!v.directDebit.DD_End_Date__c}"
+            />
+          </lightning:layoutItem>
+        </lightning:layout>
+      </lightning:recordEditForm>
+      <lightning:layoutItem size="12">
+        <hr />
+        <div class="slds-m-top_medium page-footer page-section">
+          <lightning:button
+            variant="neutral"
+            label="Create Direct Debit"
+            class="slds-float_right"
+            onclick="{!c.processDirectDebit}"
+            disabled="{!v.disabled}"
+          />
+        </div>
+      </lightning:layoutItem>
+      
+    </aura:if>
+    <aura:if isTrue="{!v.paymentType == 'Direct Debit' &amp;&amp; v.completed == true}">
+        <lightning:layout multipleRows="true">
+          <lightning:layoutItem size="12">
+            <div
+              class="slds-text-heading_medium"
+              style="font-weight: bold; text-align: center"
+            >
+              Your Direct Debit was Setup Successfully
+            </div>
+          </lightning:layoutItem>
+          <lightning:layoutItem size="12">
+            <div class="slds-m-top_medium">
+              Payments of: £{!v.directDebit.DD_First_Collection_Amount__c}
+            </div>
+          </lightning:layoutItem>
+          <lightning:layoutItem size="12">
+            <div class="slds-m-top_medium">
+              Payments on or around: Monthly on or around the 1st
+            </div>
+          </lightning:layoutItem>
+          <lightning:layoutItem size="12">
+            <div class="slds-m-top_medium">
+              Payment start date:
+              <lightning:formattedDateTime
+                value="{!v.directDebit.DD_First_Collection_Date__c}"
+                year="numeric"
+                month="numeric"
+                day="numeric"
+              />
+            </div>
+          </lightning:layoutItem>
+
+          <lightning:layoutItem size="12">
+            <div style="margin-top: 25px; margin-bottom: 25px">
+              <label style="font-weight: bold"
+                >The Direct Debit Guarantee</label
+              >
+
+              <ul style="list-style: square">
+                <li style="padding-top: 8px; padding-bottom: 8px">
+                  This Guarantee is offered by all Banks and Building Societies
+                  that take part in the Direct Debit Scheme with the efficiency
+                  and security of the scheme monitored by your own Bank.
+                </li>
+                <li style="padding-top: 8px; padding-bottom: 8px">
+                  If the amount to be paid or the payment date changes we will
+                  notify you five working days in advance of your account being
+                  debited, or as other agreed.
+                </li>
+                <li style="padding-top: 8px; padding-bottom: 8px">
+                  If an error is made by us or your Bank, you are guaranteed a
+                  full and immediate refund from your branch of the amount paid.
+                </li>
+                <li style="padding-top: 8px; padding-bottom: 8px">
+                  You can cancel a Direct Debit at any time by writing to your
+                  bank or contacting us.
+                </li>
+              </ul>
+            </div>
+          </lightning:layoutItem>
+        </lightning:layout>
+      </aura:if>
+    <aura:if isTrue="{!v.paymentType == 'Card Payment'}">
+      <iframe
+        aura:id="IFrameAuraId"
+        class="slds-align_absolute-center"
+        src="{! v.paymentURL }"
+        width="520px"
+        height="700px;"
+        frameBorder="0"
+        style="border: none"
+      />
+    </aura:if>
+  </lightning:layout>
+   
+</aura:component>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Description_detail__c</fullName>
+    <description>Describe what will happen;</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Describe what will happen;Attach itinerary if possible</inlineHelpText>
+    <label>Description</label>
+    <length>131072</length>
+    <trackHistory>false</trackHistory>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

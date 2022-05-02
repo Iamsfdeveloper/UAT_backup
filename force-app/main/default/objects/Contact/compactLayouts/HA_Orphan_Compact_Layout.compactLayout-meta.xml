@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HA_Orphan_Compact_Layout</fullName>
+    <fields>Name</fields>
+    <fields>AccountId</fields>
+    <fields>Country__c</fields>
+    <fields>Is_Active__c</fields>
+    <fields>Sponsor__c</fields>
+    <fields>Sponsorship_Status__c</fields>
+    <fields>Sponsorship_Renewal_Date__c</fields>
+    <fields>MailingAddress</fields>
+    <label>HA Orphan Compact Layout</label>
+</CompactLayout>

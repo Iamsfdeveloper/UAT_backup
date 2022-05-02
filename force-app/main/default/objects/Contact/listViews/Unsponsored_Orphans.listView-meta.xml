@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unsponsored_Orphans</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>Sponsoree_ID__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Country__c</columns>
+    <columns>Gender__c</columns>
+    <columns>CONTACT.BIRTHDATE</columns>
+    <columns>Current_Age__c</columns>
+    <columns>Sponsorship_Status__c</columns>
+    <columns>Sponsorship_Renewal_Date__c</columns>
+    <columns>Is_Active__c</columns>
+    <columns>Sponsoree_Is_Reserved__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CONTACT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Contact.Orphan</value>
+    </filters>
+    <filters>
+        <field>Is_Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Sponsorship_Status__c</field>
+        <operation>equals</operation>
+        <value>Unsponsored,Sponsored By HA</value>
+    </filters>
+    <label>Unsponsored Orphans</label>
+</ListView>

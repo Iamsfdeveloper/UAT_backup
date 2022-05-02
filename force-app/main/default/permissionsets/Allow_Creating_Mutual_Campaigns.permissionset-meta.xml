@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Allow_Creating_Mutual_Campaigns</name>
+    </customPermissions>
+    <description>This Permission allows the user to create Mutual Campaign Across Other Regional Offices</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Allow Creating Mutual Campaigns</label>
+    <license>Salesforce</license>
+</PermissionSet>

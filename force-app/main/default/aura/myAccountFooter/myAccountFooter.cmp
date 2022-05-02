@@ -1,0 +1,102 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="askSupportButton" type="Aura.Component[]" required="false" />
+    
+    <!--
+	<div class="footer__top">
+        
+    </div>
+	-->
+    <div class="footer__middle">
+        <div class="footer__middle__inner footer__wrap wrap">
+            <nav class="footer__nav">
+                <a href="#" class="footer__nav__activator expand-list-switch" data-deactivate-text="Collapse navigation" title="Toggle navigation">
+                    <span class="expand-list-text">Expand navigation</span>
+                    <lightning:icon iconName="utility:chevrondown" alternativeText="Warning!" title="Warning" class="footer__nav__icon"/>
+                </a>
+                <ul class="footer__nav__list expand-list">
+                    <li class="footer__nav__item">
+                        <a href="https://humanappeal.org.uk/contact-us" class="footer__nav__link text-color--primary" title="Contact us">Contact us</a>
+                    </li>
+                    <li class="footer__nav__item">
+                        <a href="https://humanappeal.org.uk/news" class="footer__nav__link text-color--primary" title="News">News</a>
+                    </li>
+                    <li class="footer__nav__item">
+                        <a href="https://humanappeal.org.uk/news" class="footer__nav__link text-color--primary" title="Press">Press</a>
+                    </li>
+                    <li class="footer__nav__item">
+                        <a href="https://humanappeal.org.uk/work-with-us" class="footer__nav__link text-color--primary" title="Work with us">Work with us</a>
+                    </li>
+                    <li class="footer__nav__item">
+                        <a href="https://humanappeal.org.uk/zakat-calculator" class="footer__nav__link text-color--primary" title="Zakat Calculator">Zakat Calculator</a>
+                    </li>
+                    <li class="footer__nav__item">
+                        <a href="https://humanappeal.org.uk/anti-slavery-policy" class="footer__nav__link text-color--primary" title="Anti Slavery Policy">Anti Slavery Policy</a>
+                    </li>
+                    <li class="footer__nav__item">
+                        <a href="https://humanappeal.org.uk/terms-of-use" class="footer__nav__link text-color--primary" title="Terms of Use">Terms of Use</a>
+                    </li>
+                    <li class="footer__nav__item">
+                        <a href="https://humanappeal.org.uk/privacy" class="footer__nav__link text-color--primary" title="Privacy Policy">Privacy Policy</a>
+                    </li>
+                    <li class="footer__nav__item">
+                        <a href="https://humanappeal.org.uk/cookies" class="footer__nav__link text-color--primary" title="Cookie Policy">Cookie Policy</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="footer__social">
+                <ul class="footer__social__list">
+                    <li class="footer__social__item">
+                        <a href="https://www.facebook.com/HumanAppeal.UK/" target="_blank" class="icon-facebook" title="Visit us on Facebook">
+                            <span class="visuallyhidden">Visit us on Facebook</span>
+                        </a>
+                    </li>
+                    <li class="footer__social__item">
+                        <a href="https://twitter.com/HumanAppeal" target="_blank" class="icon-twitter" title="Visit us on Twitter">
+                            <span class="visuallyhidden">Visit us on Twitter</span>
+                        </a>
+                    </li>
+                    <li class="footer__social__item">
+                        <a href="https://www.youtube.com/channel/UCfXeCq5wRsRs4a9WzwJzQJg" target="_blank" class="icon-youtube" title="Visit us on YouTube">
+                            <span class="visuallyhidden">Visit us on YouTube</span>
+                        </a>
+                    </li>
+                    <li class="footer__social__item">
+                        <a href="https://www.instagram.com/humanappeal/" target="_blank" class="icon-instagram" title="Visit us on Instagram">
+                            <span class="visuallyhidden">Visit us on Instagram</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p class="footer__notice is-serif-light text-size--sub">
+                © 2022. Human Appeal is a registered charity in England and Wales (1154288) and Scotland (SC046481). Company No. 08553893.
+            </p>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="footer__bottom__inner footer__wrap wrap">
+            <div class="footer__region">
+                <div class="select-country">
+                    <select class="footer__region__select country-select select--light" autocomplete="off">
+                        <option value="UK" selected="selected">United Kingdom</option>
+                        <option value="AR">Arabic</option>
+                        <option value="FR">France</option>
+                        <option value="IE">Ireland</option>
+                        <option value="ES">Spain</option>
+                    </select>
+                    <div class="footer__region__icon select-country__icon">
+                        <lightning:icon iconName="utility:chevrondown" alternativeText="Warning!" title="Warning" class="select-country__icon__image"/>
+                    </div>
+                    <div class="select-country__list">
+                        <img id="UK" class="is-active lazyloaded" data-src="https://humanappeal.org.uk/media/180211225519/gb.svg" alt="United Kingdom" data-url="https://humanappeal.org.uk/" width="20" height="15" src="/media/180211225519/gb.svg"/>
+                        <img id="AR" class="lazyload" data-src="https://humanappeal.org.uk/media/210915072738/gb.svg" alt="Arabic" data-url="https://ar.humanappeal.org.uk/"/>
+                        <img id="FR" class="lazyload" data-src="https://humanappeal.org.uk/media/210915072659/fr.svg" alt="France" data-url="https://humanappeal.fr/"/>
+                        <img id="IE" class="lazyload" data-src="https://humanappeal.org.uk/media/210915072714/ie.svg" alt="Ireland" data-url="https://humanappeal.ie/"/>
+                        <img id="ES" class="lazyload" data-src="https://humanappeal.org.uk/media/210915072640/es.svg" alt="Spain" data-url="https://humanappeal.es/"/>
+                        
+                    </div>
+                </div>
+            </div>
+            <img srcset="https://humanappeal.org.uk/media/180211173107/logo-fundraisingregulator-1x.png 1x, https://humanappeal.org.uk/media/180211173127/logo-fundraisingregulator-2x.png 2x" data-src="https://humanappeal.org.uk/media/180211173127/logo-fundraisingregulator-2x.png" class="footer__image ltr ls-is-cached lazyloaded" alt="Registered with Fundraising Regulator" width="0" height="0" src="https://humanappeal.org.uk/media/180211173127/logo-fundraisingregulator-2x.png"/>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Budget_Exchange_Amount__c</fullName>
+    <externalId>false</externalId>
+    <formula>Total_Budget_Amount_in_GBP__c *  Exchange_Rate_to_GBP__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Total Budget Amount absed on the Exchange rate of the exchange currency</inlineHelpText>
+    <label>Total Budget Exchange Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>6</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

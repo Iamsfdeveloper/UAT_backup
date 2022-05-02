@@ -1,0 +1,128 @@
+<apex:component access="global" controller="ReceiptTemplateController">
+    <apex:attribute name="opportunityId" type="Id" assignTo="{!oppId}" description="Opportunity Id"/>
+    <apex:attribute name="opp" type="Opportunity" description="Opportunity"/>
+    <apex:attribute name="theContact" type="Contact" description="Contact"/>
+    <apex:stylesheet value="{!URLFOR($Resource.SMP_DD_Resources, 'css/ReceiptTemplate.css')}"/>
+
+    <html>
+    <head>
+        <style>
+            @page {
+                size: portrait;
+                margin: 25mm;
+                @top-center {
+                    content: "";
+                }
+                @bottom-center {
+                    content: "Page " counter(page) " of " counter(pages);
+                }
+            }
+            .page-break {
+                display:block;
+                page-break-after:always;
+            }
+            body {
+                font-family: sans-serif;
+                font-size: 14px;
+            }
+            td{
+                border-top: 1px solid #838383;
+            }
+        </style>
+    </head>
+
+    <div style="height: 100%;min-height: 100%;">
+        <div style="float:left;">
+
+            <apex:outputText value="{!SUBSTITUTE(theContact.Salutation, '.', '')} " rendered="{!ISBLANK(theContact.Salutation) == false}"/><apex:outputField value="{!theContact.Name}"/><br/>
+            <apex:outputField value="{!theContact.MailingStreet}"/><br/>
+            <apex:outputField value="{!theContact.MailingCity}"/><br/>
+            <apex:outputField value="{!theContact.MailingPostalCode}"/>
+                  
+        </div>
+      
+        <div style = "display:flex; flex-direction:column; justify-content: space-between; float: right;">
+
+            <div style="margin-bottom: 30%;">
+
+                <apex:image id="theImage" value="{!URLFOR($Resource.SMP_DD_Resources, 'images/ha-logo-nobox.png')}" width="130px" height="130px" alt="Human Appeal logo" style="object-fit: cover;"/>
+        
+            </div>
+            
+        
+            <div style="text-align:right;">   
+                <br/>
+                <apex:outputText value="Donor ID: {!theContact.Donor_ID__c}"/><br/><br/>
+                <apex:outputText value="Event Date: {!DAY(opp.Campaign.StartDate)}/{!MONTH(opp.Campaign.StartDate)}/{!YEAR(opp.Campaign.StartDate)}"/>
+            
+            </div>
+
+        </div>
+        
+       
+        <div style="clear:both"/>
+        
+        <h2 style="margin-top: 67px; margin-bottom: 0px;">
+            
+            <apex:outputText value="Ticket Receipt "/>
+        </h2>
+
+        <table>
+            <tr>
+                <th style="width:140px;">Type</th>
+                <th style="width:350px;">Event</th>
+                <th style="width:150px; text-align:right;">Amount</th>
+            </tr>
+            <apex:repeat var="prod" value="{!Products}">
+                <tr>
+                    <td><apex:outputField value="{!prod.Item_Product_Type__c}"/></td>
+                    <td><apex:outputField value="{!opp.Campaign.Name}"/>&nbsp;-&nbsp;<apex:outputField value="{!prod.npsp__General_Accounting_Unit__r.Name}"/></td>
+                    <td style="text-align:right;"><apex:outputText value="{!CASE(prod.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!prod.npsp__Amount__c}"/></td>  
+                   
+                </tr>
+            </apex:repeat>
+
+            <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="3">
+                    <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                    <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,0.00}"><apex:param value="{!opp.Amount}" /></apex:outputText><br/>
+                </td>
+            </tr>
+
+            
+        </table>
+
+        <div style="margin-top:15px; font-size:11px; color: #838383">
+
+                    <p style="color: #7332aa;font-size: 14px">
+                    <strong>Get updates about our life-saving work around the world</strong>
+                        <br/>
+                     </p>
+
+                    <p>
+                Sign up to our email and SMS updates to find out about the impact that Human Appeal supporters like you are making to the lives of vulnerable people around the world, as well as news, information, events, competitions and emergency updates about how you can help.
+                    </p>
+                    
+                    <p>
+                    <br/>
+                Visit www.humanappealusa.org to sign up. 
+                    </p>
+
+
+
+            <div style="position: fixed;bottom: 0;">
+
+            <p style=" color: #662d91; font-size: 11px; display: inline;">         
+                    <strong>HUMAN APPEAL USA</strong>&nbsp;&nbsp;&bull;&nbsp;&nbsp;26050 Acero, Suite 415, Mission Viejo, CA 92691</p>
+            <p style="color: #662d91; font-size: 10px; display: inline;">
+                    humanappealusa.org&nbsp;&nbsp;&bull;&nbsp;&nbsp;customercare@humanappealusa.org&nbsp;&nbsp;&bull;&nbsp;&nbsp;<br/>  
+            </p>
+            
+        </div>  
+
+        </div>       
+                
+        
+    </div>
+    </html>
+</apex:component>

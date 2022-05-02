@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>npsp__RD2_PauseForm_CTRL</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Recurring_Donation_Pause</name>
+    </customPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Recurring Donation-Pause</label>
+</PermissionSet>

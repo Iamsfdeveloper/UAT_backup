@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Gift_Amount_Recurring__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>The amount of the most recent won Opportunity by Close Date and donation type Recurring which are related to this Contact by primary Opportunity Contact Role</inlineHelpText>
+    <label>Last Gift Amount (Recurring)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

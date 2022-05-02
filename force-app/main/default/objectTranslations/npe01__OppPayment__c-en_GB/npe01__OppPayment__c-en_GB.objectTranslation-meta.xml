@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Payment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Payments</value>
+    </caseValues>
+    <layouts>
+        <layout>Bank Transfer</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Payment Notes</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Card Payments</layout>
+        <sections>
+            <label></label>
+            <section>Card Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Payment Notes</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Cash Layout</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Payment Notes</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Cheque / Postal Order Layout</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Payment Notes</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Crowdfunding and Agencies</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Payment Notes</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Payment Number</nameFieldLabel>
+    <quickActions>
+        <label></label>
+        <name>Update_Payment_Stage</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

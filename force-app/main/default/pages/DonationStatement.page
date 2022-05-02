@@ -1,0 +1,84 @@
+<apex:page standardController="Contact" extensions="HA_Generate_StatmentController" docType="html-5.0" 
+           lightningStylesheets="true" showHeader="false" sidebar="false" language="{!language}">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        
+        <apex:slds />
+        <style>
+            .wrapper{
+            padding:1.5rem;
+            }
+            .header{
+            
+            }
+            .wrapperbody{
+            padding-top:1rem;
+            }
+            .slds-disabled{
+            background-color: #c9c7c5;
+            border-color: #c9c7c5;
+            color: #fff;
+            }
+            body{
+            font-weight:400;
+            }
+        </style>
+        <apex:form id="formid">
+            <apex:actionFunction name="refreshPanel" reRender="formid" status="progressbarId"/>
+            
+            <div class="slds-grid slds-wrap slds-align_absolute-center wrapper">
+                <!-- page message div -->
+                <div class="slds-col slds-size_6-of-12">
+                    <apex:outputPanel rendered="{!showEmailSent}">
+                        <apex:pageMessage summary="{!$Label.EmailSuccessMsg}" severity="confirm" strength="3" />
+                    </apex:outputPanel>
+                </div>
+                <!-- page message div -->
+                
+                <!-- Top buttons div -->
+                <div class="slds-col slds-size_8-of-12">
+                    <div class="slds-grid">
+                        <div class="slds-col">
+                            <apex:outputLabel value="{!$Label.StartDate}:" for="startD"/>
+                            <apex:input type="date"  value="{!startDate}" id="startD"  title="Start Date :"/>
+                        </div>
+                        <div class="slds-col">
+                            <apex:outputLabel value="{!$Label.EndDate} :" for="endD"/>
+                            <apex:input type="date"  value="{!endDate}" id="endD" title="End Date"/>
+                        </div>
+                        <div class="slds-col">
+                            <apex:commandButton title="{!$Label.UpdateButton}" value="{!$Label.UpdateButton}" oncomplete="refreshPanel();" action="{!show_SendEmail}"/>   
+                        </div>
+                        <div class="slds-col">
+                            <apex:commandButton title="{!$Label.SendEmailButton}" value="{!$Label.SendEmailButton}" disabled="{!showEmailSent}" action="{!sendEmail}" styleClass="slds-button_brand"/>
+                        </div>
+                        <div class="slds-col">
+                            <apex:commandButton title="{!$Label.BackButton}" value="{!$Label.BackButton}" styleClass="slds-button_destructive" action="{!back}"/>
+                        </div>
+                    </div>
+                </div>
+                <!-- Top buttons div -->
+                
+                <!-- Statement div -->
+                <div class="slds-col slds-size_12-of-12 slds-align_absolute-center slds-p-top_medium">
+                    <apex:actionRegion >
+                        <apex:outputPanel rendered="{!if(language=='en' , true ,false)}">
+                            <c:PDF_Donation_Statement eDatePDf="{!endDate}" 
+                                                      startDPDf="{!startDate}" 
+                                                      recordId="{!Contact.Id}"  
+                                                      show_Logo="false"/>
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel rendered="{!if(language=='fr' , true ,false)}">
+                            <c:PDF_FR_Tax_Statement eDatePDf="{!endDate}" 
+                                                    startDPDf="{!startDate}" 
+                                                    recordId="{!Contact.Id}"  
+                                                    show_Logo="false"/>
+                        </apex:outputPanel>
+                        
+                    </apex:actionRegion>
+                </div>
+                <!-- Statement div -->
+            </div>
+        </apex:form>
+    </html>
+</apex:page>

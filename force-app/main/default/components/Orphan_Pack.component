@@ -1,0 +1,71 @@
+<apex:component access="global" >
+    <apex:attribute name="spo" type="Sponsorship__c" description="Sponsorship"/>
+    
+     <html>
+         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Days+One" />
+            <body>
+    
+    
+    
+    <div style="font-family: Days One,sans-serif;margin-left: 30px;margin-right: 30px;">
+        <div>
+            <table border="0" cellpadding="1" cellspacing="0" style="color: #939498; width: 100%;border-collapse: collapse;">
+                <tbody>
+                <tr>
+                    <th style="padding-top: 6px">
+                        <div style="width:400;">&nbsp;</div>
+                    </th>
+                    <!--<th style="text-align: right !important; font-weight: normal !important;padding-top: 6px;">
+                        <img alt="Human Appeal" height="150" width="150" src="{!URLFOR($Resource.SMP_DD_Resources, 'images/ha-logo-nobox.png')}" />
+                    </th> -->
+                </tr>
+
+                <tr>
+                    <th style="text-align: left !important; font-weight: normal !important;" width="400px"><!--padding top 6px-->
+                        <h1 style="color: #939498;font-size: 24px"><apex:outputText value="{!spo.Orphan__r.Name}"/></h1>
+                    </th>                    
+                </tr>
+                </tbody>
+            </table>
+
+
+            <table border="0" cellpadding="1" cellspacing="0" style="color: #939498; width: 100%;border-collapse: collapse;">
+                <tbody>
+                <tr>
+                    <th style="padding-top: 6px;">
+                        <apex:image width="200" height="250"  alt="OrphanProfile" value="{!spo.Orphan__r.Orphan_Photo_URL__c}"></apex:image>
+                            
+                        
+                    </th>
+                    <th>
+                        <ul style="color: #939498;font-family: Days One,sans-serif;">
+                            <li style="font-size: 20px"><apex:outputText value="{!spo.Orphan__r.Gender__c}"/><br/></li>      
+                            <li style="font-size: 20px"><apex:outputText value="Age: {!FLOOR(spo.Orphan__r.Current_Age__c)}"/></li>
+                            <li style="font-size: 20px"><apex:outputText value="{!spo.Orphan__r.Country__c}"/></li>
+                            <li style="font-size: 20px"><apex:outputText value="{!spo.Orphan__r.School_Status__c}"/></li>
+                            <li style="font-size: 20px"><apex:outputText value="Orphan ID {!spo.Orphan__r.Sponsoree_ID__c}"/></li>  
+                            <li style="font-size: 20px"><apex:outputText value="Orphan ID {!spo.Orphan__r.Orphan_Photo_URL__c}"/></li>
+                        </ul>
+                    </th>
+                </tr>               
+                </tbody>
+            </table>       
+                       
+        </div>   
+        
+        <div>
+            <br/>   
+            <h2 style="color: #EFCC34;">T H A N K  Y O U !</h2>     
+        </div>
+
+        <div style="font-size: 16px;font-family: Days One,sans-serif;">
+            <apex:outputText value="My name is {!spo.Orphan__r.Name}. I am {!FLOOR(spo.Orphan__r.Current_Age__c)} years old and live in {!spo.Orphan__r.Country__c}."/>
+            <p>Thank you so much for sponsoring me. It makes me smile a lot! I don't have to 
+            worry about grown-up things anymore, and now I have more time to do fun things. <br/><br/>
+            I feel very lucky to have someone like you in my life. Thank you for believing in me
+            and helping me to have a happy childhood!</p>
+        </div>
+    </div>
+   </body>
+        </html>
+</apex:component>

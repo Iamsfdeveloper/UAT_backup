@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Concept Note</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Concept Notes</value>
+    </caseValues>
+    <layouts>
+        <layout>Institutional Funding Layout</layout>
+        <sections>
+            <label></label>
+            <section>Budget Summary</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Donor Submission Section</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Funding</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Project Profile</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Reporting Summary</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Standard Concept Note Layout</layout>
+        <sections>
+            <label></label>
+            <section>Budget Summary</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Funding</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Project Profile</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Reporting Summary</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label></label>
+        <name>Institutional_Concept_Note</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>Institutional_Proposal</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>Standard</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Not_allowed_stage_changed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Project_Dates_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Project_Report_Submission_Date_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Specify_Timeframe_Limit_Required</name>
+    </validationRules>
+</CustomObjectTranslation>

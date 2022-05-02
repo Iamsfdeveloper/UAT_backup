@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Update_DC_Approved</fullName>
+        <field>Stage__c</field>
+        <literalValue>Approved-DC</literalValue>
+        <name>Update DC Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Donor_Approved</fullName>
+        <field>Stage__c</field>
+        <literalValue>Approved-Donor</literalValue>
+        <name>Update Donor Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_FA_Signed</fullName>
+        <field>Stage__c</field>
+        <literalValue>FA-signed</literalValue>
+        <name>Update FA Signed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Finance_Approved</fullName>
+        <field>Stage__c</field>
+        <literalValue>Approved - Finance</literalValue>
+        <name>Update Finance Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_HoP_Approved</fullName>
+        <field>Stage__c</field>
+        <literalValue>Approved-HoP</literalValue>
+        <name>Update HoP Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Submitted</fullName>
+        <field>Stage__c</field>
+        <literalValue>Submitted</literalValue>
+        <name>Update Submitted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+</Workflow>

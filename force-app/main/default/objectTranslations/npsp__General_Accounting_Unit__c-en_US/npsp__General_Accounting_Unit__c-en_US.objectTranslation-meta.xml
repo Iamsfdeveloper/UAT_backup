@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Item</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Items</value>
+    </caseValues>
+    <layouts>
+        <layout>External Layout</layout>
+        <sections>
+            <label></label>
+            <section>Allocation Information</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Allocation Totals</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Conga Setup</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Item Setup</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HA Donation Product Layout</layout>
+        <sections>
+            <label></label>
+            <section>Allocation Information</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Allocation Totals</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Conga Setup</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Item Setup</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Item</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

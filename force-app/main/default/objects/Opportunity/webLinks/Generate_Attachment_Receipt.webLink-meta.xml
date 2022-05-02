@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Generate_Attachment_Receipt</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Generate Attachment Receipt</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/APXTConga4__Conga_Composer?SolMgr=1
+&amp;serverUrl={!API.Partner_Server_URL_370}
+&amp;Id={!Opportunity.Id}
+&amp;OFN={!Opportunity.Name&amp;&apos;-&apos;&amp;TEXT(YEAR(TODAY()))&amp;&apos;-&apos;&amp;TEXT(MONTH(TODAY()))&amp;&apos;-&apos;&amp;TEXT(DAY(TODAY()))}
+&amp;QueryId=[GRQ]a214J0000026Pu9QAE%3Fpv0%3D{!&apos;\&apos;&apos;&amp;Opportunity.Id&amp;&apos;\&apos;&apos;}
+&amp;SC0=1
+&amp;SC1=SalesforceFile
+&amp;TemplateId=a290C000000dvmGQAQ
+&amp;DS7=12
+&amp;DefaultPDF=1
+&amp;APD=1
+&amp;FP0=1</url>
+</WebLink>

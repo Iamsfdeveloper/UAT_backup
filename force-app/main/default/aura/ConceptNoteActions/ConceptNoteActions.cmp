@@ -1,0 +1,24 @@
+<aura:component controller="ConceptNoteActionController" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+         <aura:attribute name="spinner" type="boolean" default="FALSE"/>
+        <!--loading spinner start-->
+        <aura:if isTrue="{!v.spinner}">
+            <div aura:id="spinnerId" class="slds-spinner_container">
+                <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                    <span class="slds-assistive-text">Cloning...</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+        </aura:if>
+          <lightning:card iconName="standard:action_list_component" title="Actions">
+            <aura:set attribute="actions">
+              <lightning:buttonGroup>
+                  <lightning:button onclick="{!c.cloneCN}"
+                                      variant="neutral"
+                                      label="Clone with Child"
+                                      iconName="action:clone"/> 
+              </lightning:buttonGroup>
+            </aura:set>
+        </lightning:card> 
+	
+</aura:component>

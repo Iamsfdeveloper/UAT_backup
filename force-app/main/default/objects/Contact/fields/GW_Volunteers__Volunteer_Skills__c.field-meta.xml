@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GW_Volunteers__Volunteer_Skills__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates which skills this Contact has. You can filter on skills when you look for volunteers for particular Jobs.</inlineHelpText>
+    <label>Volunteer Skills</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Arts</fullName>
+                <default>false</default>
+                <label>Arts</label>
+            </value>
+            <value>
+                <fullName>Baking</fullName>
+                <default>false</default>
+                <label>Baking</label>
+            </value>
+            <value>
+                <fullName>Communication</fullName>
+                <default>false</default>
+                <label>Communication</label>
+            </value>
+            <value>
+                <fullName>Creative</fullName>
+                <default>false</default>
+                <label>Creative</label>
+            </value>
+            <value>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+                <label>Customer Service</label>
+            </value>
+            <value>
+                <fullName>DBS check</fullName>
+                <default>false</default>
+                <label>DBS check</label>
+            </value>
+            <value>
+                <fullName>Driving licence</fullName>
+                <default>false</default>
+                <label>Driving licence</label>
+            </value>
+            <value>
+                <fullName>Event planning / management</fullName>
+                <default>false</default>
+                <label>Event planning / management</label>
+            </value>
+            <value>
+                <fullName>Face painting / Mehndi</fullName>
+                <default>false</default>
+                <label>Face painting / Mehndi</label>
+            </value>
+            <value>
+                <fullName>Fundraising</fullName>
+                <default>false</default>
+                <label>Fundraising</label>
+            </value>
+            <value>
+                <fullName>IT</fullName>
+                <default>false</default>
+                <label>IT</label>
+            </value>
+            <value>
+                <fullName>Languages</fullName>
+                <default>false</default>
+                <label>Languages</label>
+            </value>
+            <value>
+                <fullName>Leadership</fullName>
+                <default>false</default>
+                <label>Leadership</label>
+            </value>
+            <value>
+                <fullName>People Management</fullName>
+                <default>false</default>
+                <label>People Management</label>
+            </value>
+            <value>
+                <fullName>Photography</fullName>
+                <default>false</default>
+                <label>Photography</label>
+            </value>
+            <value>
+                <fullName>Planning / Organizing</fullName>
+                <default>false</default>
+                <label>Planning / Organizing</label>
+            </value>
+            <value>
+                <fullName>Presentation</fullName>
+                <default>false</default>
+                <label>Presentation</label>
+            </value>
+            <value>
+                <fullName>Public speaking</fullName>
+                <default>false</default>
+                <label>Public speaking</label>
+            </value>
+            <value>
+                <fullName>Sales</fullName>
+                <default>false</default>
+                <label>Sales</label>
+            </value>
+            <value>
+                <fullName>Social Media</fullName>
+                <default>false</default>
+                <label>Social Media</label>
+            </value>
+            <value>
+                <fullName>Sports</fullName>
+                <default>false</default>
+                <label>Sports</label>
+            </value>
+            <value>
+                <fullName>Team Work</fullName>
+                <default>false</default>
+                <label>Team Work</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>8</visibleLines>
+</CustomField>

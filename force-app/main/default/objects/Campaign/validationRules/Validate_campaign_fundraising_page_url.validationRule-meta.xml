@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_campaign_fundraising_page_url</fullName>
+    <active>true</active>
+    <description>Ensures that only one accepted format for the page URL is allowed.
+Therefore, it should prevent the creation of duplicate campaigns whose URLs are slightly different but redirect to the same campaign.</description>
+    <errorConditionFormula>IF(CONTAINS(Fundraising_page_url__c, &apos;justgiving&apos;),
+			!REGEX(Fundraising_page_url__c, &apos;^(http://www\\.justgiving\\.com/)(team/)?([a-zA-Z0-9-]+)$&apos;),
+			FALSE)</errorConditionFormula>
+    <errorMessage>Incorrect format for Fundraising page URL — E.g. http://www.justgiving.com/abc-xyz123, or http://www.justgiving.com/team/abc-xyz123 if appropriate.</errorMessage>
+</ValidationRule>

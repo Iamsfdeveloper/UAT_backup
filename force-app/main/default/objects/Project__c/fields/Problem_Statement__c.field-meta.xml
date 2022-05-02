@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Problem_Statement__c</fullName>
+    <description>In brief, what is the problem that this intervention addresses? Please give a simple idea of the current situation and need</description>
+    <externalId>false</externalId>
+    <inlineHelpText>In brief, what is the problem that this intervention addresses? Please give a simple idea of the current situation and need</inlineHelpText>
+    <label>Problem Statement</label>
+    <length>131072</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

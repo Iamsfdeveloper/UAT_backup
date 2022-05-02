@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Report_Submission_Date_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISNULL(Project_Completed_Report_Submission_Date__c),NOT(ISPICKVAL( Stage__c ,&apos;Draft&apos;)))</errorConditionFormula>
+    <errorMessage>Please Enter Project Completed Report Submission Date</errorMessage>
+</ValidationRule>

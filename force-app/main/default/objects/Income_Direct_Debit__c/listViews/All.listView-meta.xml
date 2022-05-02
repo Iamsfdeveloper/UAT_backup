@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>DD_Status__c</columns>
+    <columns>DD_Collection_Day__c</columns>
+    <columns>DD_First_Collection_Amount__c</columns>
+    <columns>DD_Ongoing_Collection_Amount__c</columns>
+    <columns>DD_Next_Collection_Date__c</columns>
+    <columns>DD_First_Collection_Date__c</columns>
+    <columns>DD_Bank_Account_Number__c</columns>
+    <columns>DD_Bank_Sort_Code__c</columns>
+    <columns>DD_Account_Number_OK__c</columns>
+    <columns>DD_Sort_Code_OK__c</columns>
+    <columns>DD_OK__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>DD_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Expired,Cancelled by Payer,Cancelled by Originator,Cancelled</value>
+    </filters>
+    <label>All</label>
+</ListView>

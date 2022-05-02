@@ -1,0 +1,204 @@
+<apex:page standardController="Income_Direct_Debit__c" showHeader="false" sidebar="false" renderAs="pdf">
+    <apex:stylesheet value="{!URLFOR($Resource.SMP_DD_Resources, 'css/PrintableDDStyleSheet.css')}"/>
+    
+    <div>
+        <div class="float-left text-align-left" style="width:50%;">
+            <apex:image url="https://gallery.mailchimp.com/54e19cc3f9692dd8376b05a97/images/66a51d2a-1aeb-4858-9063-c64481c6a912.png" style="max-width:180px; width:100px; height:90px;" />
+        </div>
+            
+        <div class="float-left text-align-right" style="width:50%;">
+            <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/DD.jpg')}" width="150px"/>
+        </div>
+        <div style="clear: both">
+        </div>
+
+        <div class="float-left" style="width: 50%;">
+            <div style="margin-right:4px;">
+                
+                <p>
+                    Human Appeal,
+                    Pennine House,<br/>
+                    Carrs Road,<br/>
+                    Cheadle,<br/>
+                    SK8 2BL,<br/>
+                    UK<br/>   
+                </p>            
+
+                <p>
+                    <apex:outputLabel value="Email: "/>customercare@humanappeal.org.uk<br/>
+                </p>
+                <br/>
+
+                <div class="item">
+                    <div class="label ">
+                        <label>
+                            Account holder's name:
+                        </label>
+                    </div>
+                    <div class="textbox">
+                        <apex:outputText style="display:block; padding:5px;" value="{!Income_Direct_Debit__c.DD_Bank_Account_Name__c}"/>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="label">
+                        <label>
+                            Bank/building society Account Number:
+                        </label>
+                    </div>
+                    <div class="textbox" style="width: 75%;">
+                        <apex:outputText style="display:block; padding:5px;" value="{!Income_Direct_Debit__c.DD_Bank_Account_Number__c}"/>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="label">
+                        <label>
+                            Branch Sort code:
+                        </label>
+                    </div>
+                    <div class="textbox" style="width: 50%;">
+                        <apex:outputText style="display:block; padding:5px;" value="{!Income_Direct_Debit__c.DD_Bank_Sort_Code__c}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="float-left" style="width: 50%;">
+            <div style="margin-left:4px;">
+                <h2>
+                    Instruction to your<br/>Bank or Building Society<br/>to pay by Direct Debit
+                </h2>
+
+                <div class="item">
+                    <div class="label">
+                        <label>
+                            Service User Number:
+                        </label>
+                    </div>
+                    <div class="textbox" style="width: 50%;">
+                        <apex:outputText style="display:block; padding:5px;" value="######"/>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="label">
+                        <label>
+                            Reference:
+                        </label>
+                    </div>
+                    <div class="textbox">
+                        <apex:outputText style="display:block; padding:5px;" value="{!Income_Direct_Debit__c.Name}"/>
+                    </div>
+                </div>
+
+                <div>
+                    <b>Instruction to your Bank or Building Society</b>
+                    <br/>                    
+                    Please pay <b>Human Appeal</b> Direct Debits from the account detailed in this Instruction subjectto the safeguards assured by the Direct Debit Guarantee. I understand that this Instruction may remain with <b>Human Appeal</b> and if so, details will be passed electronically to my Bank/Building
+                    Society.
+                    <br /><br />
+                </div>    
+            </div>     
+        </div>
+
+        <div class="floatfix"></div>
+        
+        <div class="float-left" style="width: 100%;">
+            Name and address of your bank or building society
+        </div>
+        
+        <div class="float-left" style="width: 50%;">
+            <div class="border" style="margin-right:2px; height: 200px; padding:10px;">
+                <div class="item">
+                    <div class="label">
+                        <label>
+                            Bank/building society
+                        </label>
+                    </div>
+                    <div>
+                        <apex:outputField value="{!Income_Direct_Debit__c.DD_Bank_Name__c}"/>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="label">
+                        <label>
+                            Address
+                        </label>
+                    </div>
+                    <div>
+                        <apex:outputField value="{!Income_Direct_Debit__c.DD_Branch_Name__c}"/><br/>
+                        <apex:outputField value="{!Income_Direct_Debit__c.DD_Bank_Address__c}"/><br/>
+                        <apex:outputField value="{!Income_Direct_Debit__c.DD_Bank_City__c}"/><br/>
+                        <apex:outputField value="{!Income_Direct_Debit__c.DD_Bank_Postcode__c}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="float-left" style="width: 50%;">
+            <div class="border" style="margin-left:2px; height: 200px; padding:10px;">
+                <div style="width:100%; height:109px;">
+                    <div>
+                    Date:                    
+                    </div>
+                </div>
+                <div style="text-align: center; width:200px; margin-left:auto; margin-right:auto;">
+                    <div class="float-left">
+                        <div style="font-size:26px;"><apex:outputText style="text-decoration: underline;" value="{!DAY(DATEVALUE(Income_Direct_Debit__c.CreatedDate))}"/></div>
+                        <br/>
+                        Day
+                    </div>
+                    <div class="float-left" style="font-size:26px;">&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+                    <div class="float-left">
+                        <div style="font-size:26px;"><apex:outputText style="text-decoration: underline;" value="{!MONTH(DATEVALUE(Income_Direct_Debit__c.CreatedDate))}"/></div>
+                        <br/>
+                        Month
+                    </div>
+                    <div class="float-left" style="font-size:26px;">&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+                    <div class="float-left">
+                        <div style="font-size:26px;"><apex:outputText style="text-decoration: underline;" value="{!YEAR(DATEVALUE(Income_Direct_Debit__c.CreatedDate))}"/></div>
+                        <br/>
+                        Year
+                    </div>
+                    <div class="floatfix"></div>
+                </div>
+            </div>
+        </div>        
+        
+        <div class="floatfix"></div>
+        <div style="text-align:center;">
+            <p>Banks and Building Societies may not accept Direct Debit Instructions for some types of accounts.</p>
+        </div>
+    </div>
+    <div class="ddg-wrapper border">            
+        <div class="float-left" style="width:50%;">
+            <h3>
+                The Direct Debit Guarantee
+            </h3>
+        </div>
+        <div class="float-left text-align-right" style="width:50%;">
+            <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/DD.jpg')}" width="150px"/>                    
+        </div>
+        <div class="floatfix">
+        </div>
+
+        <div class="guarantee">
+            <ul>
+                <li>
+                    This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits
+                </li>
+                <li>
+                    If there are any changes to the amount, date or frequency of your Direct Debit <b>Human Appeal</b> will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request <b>Human Appeal</b> to collect a payment, confirmation of the amount and date will be given to you at the time of the request.
+                </li>
+                <li>
+                    If an error is made in the payment of your Direct Debit, by <b>Human Appeal</b> or your bank or building society, you are entitled to a full and immediate refund of the amount paid from your bank or building society.<br/>
+                    <ul>
+                        <li>
+                            If you receive a refund you are not entitled to, you must pay it back when <b>Human Appeal</b> asks you to.
+                        </li>
+                    </ul>                               
+                </li>
+                <li>
+                    You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify us.
+                </li>
+            </ul>
+        </div>
+    </div>
+</apex:page>

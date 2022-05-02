@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Online_Medium_only_for_Web_Integration</fullName>
+    <active>false</active>
+    <description>To ensure integrity of attribution, only Donations created by the Website Integration User can have Medium = Online.</description>
+    <errorConditionFormula>AND
+   (
+    !ISNEW() ,
+    ISPICKVAL(Medium__c,&apos;Online&apos;),
+    CreatedBy.FirstName  !=&quot;Website&quot;
+   )</errorConditionFormula>
+    <errorDisplayField>Medium__c</errorDisplayField>
+    <errorMessage>You cannot chose the Medium of this Donation to be Online. The online option is only used for Donations made online which are automatically created in Salesforce.</errorMessage>
+</ValidationRule>

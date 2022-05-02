@@ -1,0 +1,130 @@
+﻿@page{
+	size:portrait;
+	margin-top:3cm;
+	margin-bottom: 2.50cm;
+	font-family: sans-serif;
+}
+
+div{
+	font-family: sans-serif;
+	font-size:12px;
+}
+
+h2
+{
+	margin-top:0px;
+	font-size:26px;
+}
+
+.maincontainer
+{
+    padding:20px;
+}
+
+.border
+{
+	border: 1px solid #000;
+}
+
+.border-dashed-top
+{
+	border-top: 1px dashed #000;
+}
+
+.ddg-wrapper
+{
+    background-color: #ffffff;
+	padding: 5px 8px 5px 8px;	
+}
+
+.float-right
+{
+	float:right;
+	
+}
+
+.float-left
+{
+	float:left;	
+}
+
+.text-align-left{
+	text-align: left;
+}
+
+.text-align-right{
+	text-align: right;
+}
+
+.floatfix
+{
+	clear:both;	
+}
+
+.textbox 
+{
+	border: 1.2px solid #000;	
+	width:100%;
+	display:block;
+}
+
+.label
+{
+    margin-bottom:5px;
+}
+
+.item
+{
+	margin-top: 10px;
+}
+
+.sun {
+    background: url("../images/SortCodeEntryBox.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none !important;
+    
+    height: 34px;
+    letter-spacing: 10px;
+    padding-left: 7px;
+    width: 143px !important;
+}
+
+.sort-code {
+    background: url("../images/SortCodeEntryBox.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none !important;
+    height: 34px;
+    letter-spacing: 10px;
+    padding-left: 7px;
+    width: 143px !important;
+}
+.account-number {
+    background: url("../images/AccountNumberEntryBox.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none !important;
+    height: 34px;
+    letter-spacing: 10px;
+    padding-left: 7px;
+    width: 156px !important;
+}
+
+.account-number
+{
+    width: 200px !important;
+    height: 36px !important; 
+    letter-spacing: 12px !important; 
+    padding: 0px !important; 
+    padding-left: 8px !important; 
+    box-shadow: none !important; 
+    border: 0px !important; 
+    font-size: 13px !important; 
+}
+
+.sort-code
+{
+    width: 160px !important; 
+    height: 36px !important; 
+    letter-spacing: 12px !important; 
+    padding: 0px !important; 
+    padding-left: 8px !important; 
+    box-shadow: none !important; 
+    border: 0px !important;
+    font-size: 13px !important; 
+}

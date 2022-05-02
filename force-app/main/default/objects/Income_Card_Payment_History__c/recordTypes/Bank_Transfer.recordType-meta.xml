@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bank_Transfer</fullName>
+    <active>true</active>
+    <description>Bank Transfer Payments</description>
+    <label>Bank Transfer</label>
+    <picklistValues>
+        <picklist>Transaction_Type__c</picklist>
+        <values>
+            <fullName>Authenticate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Authorised</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deferred</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deferred Aborted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deferred Released</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Refund</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sale</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Void</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,40 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="recordId" type="String"/>
+    <section class="mid-block-flex">
+        <div class="mid-block-flex__wrap cf">
+            <div class="mid-block-flex__top" style="display: -webkit-box;">
+                <section class="image-title-top-to-bottom">
+                    <h1 class="image-title-top-to-bottom__title h2 text-color--primary">Orphan &amp; Children's Fund</h1>
+                    <div class="box box--has-tag">
+                       <img src="https://humanappeal.org.uk/media/_cache/99a052a2c3d7.jpg" class="image-title-top-to-bottom__image" alt="Orphan &amp; Children's Fund"/>
+                    </div>
+                </section>
+            </div>
+            
+            
+            <div class="toggle__row toggle__row--1-2">
+                
+                
+                
+                
+                <div class="mid-block-flex__bot mid-block-flex__bot--donate-form">
+                    <section class="text-block">
+                        <p class="text-block__text"><strong>Orphan and Children’s Fund</strong></p>
+                        <p class="text-block__text"><strong>Help give vulnerable children a brighter future</strong></p>
+                        <p class="text-block__text"><em>“Whoever does not show mercy to our young ones, or acknowledge the rights of our elders, is not one of us.” (Ahmad)</em></p>
+                        <p class="text-block__text"><strong>£35 per month sponsors an orphaned child</strong></p>
+                        <p class="text-block__text"><strong>£420 sponsors an orphaned child for one whole year</strong></p>
+                        <p class="text-block__text">Almost a quarter of all children are stunted from poor nutrition. Every month, <strong>500,000</strong> babies and young children die from preventable conditions and diseases. </p>
+                        <p class="text-block__text">With our Orphan and Children's Fund, you can support some of the most vulnerable children with food, warm clothes and school supplies. </p>
+                        <p class="text-block__text">Around the world there are currently <strong>153</strong> million orphaned children, with around <strong>10,000</strong> more children becoming orphans, every day. In any community, orphans are always one of the most vulnerable groups, often facing hunger, disease, exploitation and extreme cycles of poverty that they need help to break out of.</p>
+                        <p class="text-block__text">Your sponsorship can help a child to break that cycle, and give them the opportunity that all children deserve – a chance to be healthy, protected, and educated.</p>
+                        <p class="text-block__text">It costs <strong>£35</strong> per month – that’s <strong>£420</strong> per year – to cover all the essential needs of an orphaned child. Help us to support vulnerable children by sponsoring an orphan, or donating to our Orphan and Children's Fund today.</p>
+                        <p class="text-block__text">We’ve been helping supporters to sponsor orphans for 30 years. Currently, our supporters are sponsoring over <strong>18,100</strong> orphans across nine countries. </p>
+                        <p class="text-block__text">Help us to transform the future of a vulnerable child.</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</aura:component>

@@ -1,0 +1,199 @@
+<aura:component implements="lightning:availableForFlowScreens,force:lightningQuickActionWithoutHeader,force:hasRecordId" 
+    access="global" 
+    controller="RefundWizardController">
+    <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:attribute name="wizardStep" type="String" default="1"/>
+    <aura:attribute name="donationWrapper" type="RefundWizardController.DonationWrapper"/>
+    <aura:attribute name="refundTypeOptions" type="List"/>
+    <aura:attribute name="refundReasonOptions" type="List"/>
+    <aura:attribute name="giftAidPrecludedOptions" type="List"/>
+    <aura:attribute name="refundReason" type="String" default=""/>
+    <aura:attribute name="giftAidPrecludedValue" type="String" default=""/>
+    <aura:attribute name="refundAmount" type="currency" default="0.00"/>
+    <aura:attribute name="transactionId" type="String" default=""/>
+    <aura:attribute name="AllocationAmount" type="currency" default="0.00"/>
+    <aura:attribute name="refundAmountDisabled" type="Boolean" default="false"/>
+    <aura:attribute name="refundButtonDisabled" type="Boolean" default="true"/>
+    <aura:attribute name="refundPaidDisabled" type="Boolean" default="false"/>
+    <aura:attribute name="results" type="Object"/>
+    <aura:attribute name="resultsColumns" type="Object"/>
+    <aura:html tag="style">
+        .slds-modal__container {
+            margin: 0 auto;
+            width: 60%;
+            max-width: 90rem;
+            min-width: 30rem;
+            }
+    </aura:html>
+   <lightning:card variant="narrow" >
+       <aura:set attribute="title">
+            <lightning:icon iconName="utility:connected_apps" size="small"/>
+            Refund Wizard
+        </aura:set>
+        <lightning:spinner aura:id="loadingSpinner" alternativeText="Loading" size="large" />    
+        <div class="slds-m-vertical_small">
+            <lightning:progressIndicator currentStep="{!v.wizardStep}" type="path" variant="base">
+                <lightning:progressStep label="Refund" value="1"/>
+                <lightning:progressStep label="GAU Allocation" value="2"/>
+                <lightning:progressStep label="Confirmation" value="3"/>
+            </lightning:progressIndicator>
+        </div>
+        <!-- <aura:if isTrue="{!v.donationWrapper != null &amp;&amp; v.wizardStep == '1'}"> -->
+        <aura:if isTrue="{!v.wizardStep == '1'}">
+<!--             <aura:if isTrue="{!v.donationWrapper.refunds.length > 0}"> -->
+                <lightning:layout multipleRows="true">
+                    <lightning:layoutItem padding="around-small" size="3">
+                        <lightning:combobox aura:id="refundMethodSelection" name="refundMethodSelection" label="Refund Method" value="{!v.donationWrapper.refundType}" required="true" onchange="{!c.refundMethodChanged}" options="{!v.refundTypeOptions}" variant="label-stacked"/>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem padding="around-small" size="2">
+                        <div class="slds-form-element_stacked slds-form-element">
+                            <div class="slds-form-element slds-size_1-of-1">
+                                <label class="slds-form-element__label">Total to Refund</label>
+                                <div class="slds-form-element__control">
+                                    <lightning:formattedNumber value="{!v.refundAmount}" format-style="currency"/> ({!v.donationWrapper.donation.CurrencyIsoCode})
+                                </div>
+                            </div>
+                        </div>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem padding="around-small" size="2">
+                       <lightning:input aura:id="TransactionId" name="TransactionId" label="Transaction Id" value="{!v.transactionId}" onchange="{!c.transactionChanged}"/> 
+                    </lightning:layoutItem>  
+                    <lightning:layoutItem padding="around-small" size="3">
+                       <lightning:combobox aura:id="refundReasonSelection" name="refundReasonSelection" label="Reason for Refund" value="{!v.refundReason}" required="true" onchange="{!c.refundReasonChanged}"  options="{!v.refundReasonOptions}" variant="label-stacked"/>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem padding="around-small" size="2">
+                       <lightning:combobox aura:id="giftAidPrecluded" name="giftAidPrecluded" label="Gift Aid Precluded" value="{!v.giftAidPrecludedValue}" required="true" onchange="{!c.giftAidPrecludedChanged}"  options="{!v.giftAidPrecludedOptions}" variant="label-stacked"/>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem padding="around-small" size="12"> 
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead>
+                                <tr>
+                                    <th class="" scope="col"></th>
+                                    <th class="" scope="col">Name</th>
+                                    <th class="" scope="col">Date</th>
+                                    <th class="" scope="col">Method</th>
+                                    <th class="" scope="col">Donation</th>
+                                    <th class="" scope="col">Refund Paid</th>
+                                    <th class="" scope="col">Refund Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <aura:iteration items="{!v.donationWrapper.refunds}" var="item">
+                                    <tr>
+                                        <td>
+                                            <lightning:input type="checkbox" checked="{!item.checked}" variant="label-hidden" onchange="{!c.paymentSelected}" disabled="{!item.disabled == true}"/>
+                                        </td>
+                                        <td>
+                                            {!item.payment.Name}
+                                        </td>
+                                        <td>
+                                            <!-- <lightning:formattedDateTime value="{!item.payment.npe01__Payment_Date__c}" year="numeric" month="numeric" day="numeric"/> -->
+                                            <ui:inputDate aura:id="date" class="field" value="{!item.refundDate}" displayDatePicker="true" />  
+                                        </td>
+                                        <td>
+                                            <aura:if isTrue="{!item.disabled == false}">
+                                                {!item.payment.npe01__Payment_Method__c}
+                                            </aura:if>
+                                            <aura:if isTrue="{!item.disabled == true}">
+                                                <b style="color:red;">Fully refunded</b>
+                                            </aura:if>
+                                        </td>
+                                        <td>
+                                            <lightning:formattedNumber value="{!item.payment.npe01__Opportunity__r.Total_Donation_Amount__c}" format-style="currency" variant="label-hidden"/> ({!v.donationWrapper.donation.CurrencyIsoCode})
+                                        </td>
+                                        <td>
+                                            <lightning:input type="checkbox" checked="{!item.refundPaid}" onchange="{!c.refundPaidChanged}"  variant="label-hidden" disabled="{!v.refundPaidDisabled}" />
+                                        </td>
+                                        <td>
+                                            <lightning:input aura:id="refundField" type="number"  value="{!item.refundAmount}" step="0.01" max="{!item.payment.npe01__Payment_Amount__c}" min="0.01" variant="label-hidden" onchange="{!c.refundAmountChanged}"/>
+                                        </td>
+                                    </tr>
+                                </aura:iteration>
+                             </tbody>
+                        </table>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem padding="around-small" size="12">
+                        <br/>
+                        <lightning:button aura:id="nextButton" label="Next" class="slds-float_right" variant="brand" title="Next" onclick="{!c.nextStep}" disabled="{!v.refundButtonDisabled}" />
+                    </lightning:layoutItem>            
+                </lightning:layout> 
+
+                <!-- <aura:set attribute="else">
+                    <lightning:layout multipleRows="true">
+                        <lightning:layoutItem size="12">
+                            <div style="text-align:center; padding-top:20px;" class="slds-text-heading_medium">There are no payments to refund.</div>
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                </aura:set>
+            </aura:if> -->
+        </aura:if>
+        <!-- <aura:if isTrue="{!v.donationWrapper != null &amp;&amp; v.wizardStep == '2'}"> -->
+        <aura:if isTrue="{!v.wizardStep == '2'}">
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem padding="around-small" size="6">
+                        <lightning:combobox aura:id="refundMethodSelection1" name="refundMethodSelection1" label="Refund Method" disabled="true" value="{!v.donationWrapper.refundType}" required="true" onchange="{!c.refundMethodChanged}" options="{!v.refundTypeOptions}" variant="label-stacked"/>
+                    </lightning:layoutItem>   
+                    <lightning:layoutItem padding="around-small" size="6">
+                        <div class="slds-form-element_stacked slds-form-element">
+                            <div class="slds-form-element slds-size_1-of-1">
+                                <label class="slds-form-element__label">Total to Refund</label>
+                                <div class="slds-form-element__control">
+                                    <lightning:formattedNumber value="{!v.refundAmount}" format-style="currency"/> ({!v.donationWrapper.donation.CurrencyIsoCode})
+                                </div>
+                            </div>
+                        </div>
+                    </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small" size="12">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>General Accounting Unit</th>
+                                <th>Amount</th>
+                                <th>Refund Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.donationWrapper.allocations}" var="item">
+                                <tr>
+                                    <td>
+                                        {!item.objAllocation.Name}
+                                    </td>
+                                    <td>
+                                        {!item.objAllocation.npsp__General_Accounting_Unit__r.Name}
+                                    </td>
+                                    <td>
+                                        {!item.objAllocation.npsp__Amount__c}
+                                    </td>
+                                    <td>
+                                        <lightning:input aura:id="allocateRefundField" type="number"  value="{!item.refundAmount}" step="0.01" max="{!item.objAllocation.npsp__Amount__c}"  variant="label-hidden" onchange="{!c.allocateRefundAmountChanged}"/>
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" padding="around-small">
+                    	<lightning:button aura:id="backButton" label="Back" class="slds-float_left" variant="brand" title="Back" onclick="{!c.backStep}" />
+                        <lightning:button aura:id="refundButton" label="Refund" class="slds-float_right" variant="brand" title="Refund" onclick="{!c.onRefundClick}" disabled="{!v.refundButtonDisabled}"/>
+                    </lightning:layoutItem>  
+            </lightning:layout>
+        </aura:if>
+        <aura:if isTrue="{!v.wizardStep == '3'}">
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem padding="around-small" size="12">
+                    <lightning:datatable keyField="id"
+                    data="{!v.results}"
+                    columns="{!v.resultsColumns}"
+                    hideCheckboxColumn="true"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small" size="12">
+                    <lightning:button aura:id="refundButton" label="View Refund" class="slds-float_right" variant="brand" title="Refund" onclick="{!c.navigateToPaymentRecord}" />
+
+                </lightning:layoutItem>
+            </lightning:layout>
+        </aura:if>
+    </lightning:card>
+</aura:component>

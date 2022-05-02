@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>SD</fullName>
+        <default>true</default>
+        <label>Sadaqah</label>
+    </customValue>
+    <customValue>
+        <fullName>ZK</fullName>
+        <default>false</default>
+        <label>Zakat</label>
+    </customValue>
+    <customValue>
+        <fullName>XX</fullName>
+        <default>false</default>
+        <label>General Charity</label>
+    </customValue>
+    <description>Stipulations</description>
+    <masterLabel>Stipulation</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Badges__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(AND(Is_Donor__c=True,npo02__OppAmountThisYear__c&gt;250,ISPICKVAL(Regional_Office_Code__c,&apos;IE&apos;)),IMAGE(&quot;/resource/1626954523000/CHY3Donor?&quot;,&quot;CHY3DonorBadge&quot;, 30, 100),IF( Is_Donor__c  = True,  IMAGE(&quot;/resource/1596807778000/BadgeDonor?&quot;,&quot;DonorBadge&quot;, 30, 100),&apos;&apos; ))&amp;&apos; &apos;&amp; IF( Is_Volunteer__c = True, IMAGE(&quot;/resource/1596807899000/BadgeVolunteer?&quot;, &quot;BadgeVolunteer&quot;, 30, 100),&apos;&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Badges</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

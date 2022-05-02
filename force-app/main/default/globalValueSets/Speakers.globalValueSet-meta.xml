@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Bryant_Preacher_Moss</fullName>
+        <default>false</default>
+        <label>Bryant Preacher Moss</label>
+    </customValue>
+    <customValue>
+        <fullName>Colin Nell</fullName>
+        <default>false</default>
+        <label>Colin Nell</label>
+    </customValue>
+    <customValue>
+        <fullName>Common Souls</fullName>
+        <default>false</default>
+        <label>Common Souls</label>
+    </customValue>
+    <customValue>
+        <fullName>Dr. Reda Bedeir</fullName>
+        <default>false</default>
+        <label>Dr. Reda Bedeir</label>
+    </customValue>
+    <customValue>
+        <fullName>Guzzy Bear Entertainment Limited</fullName>
+        <default>false</default>
+        <label>Guzzy Bear Entertainment Limited</label>
+    </customValue>
+    <customValue>
+        <fullName>Omar Esa</fullName>
+        <default>false</default>
+        <label>Omar Esa</label>
+    </customValue>
+    <customValue>
+        <fullName>Navaid Aziz Consulting INC</fullName>
+        <default>false</default>
+        <label>Navaid Aziz Consulting INC</label>
+    </customValue>
+    <customValue>
+        <fullName>Fatiha El-Ghorri</fullName>
+        <default>false</default>
+        <label>Fatiha El-Ghorri</label>
+    </customValue>
+    <customValue>
+        <fullName>Sukh Ojla</fullName>
+        <default>false</default>
+        <label>Sukh Ojla</label>
+    </customValue>
+    <customValue>
+        <fullName>JEREMY MCLELLAN</fullName>
+        <default>false</default>
+        <label>JEREMY MCLELLAN</label>
+    </customValue>
+    <customValue>
+        <fullName>Khalid Belrhouzi</fullName>
+        <default>false</default>
+        <label>Khalid Belrhouzi</label>
+    </customValue>
+    <customValue>
+        <fullName>Khaled Siddique</fullName>
+        <default>false</default>
+        <label>Khaled Siddique</label>
+    </customValue>
+    <customValue>
+        <fullName>Mikhaael Mala</fullName>
+        <default>false</default>
+        <label>Mikhaael Mala</label>
+    </customValue>
+    <customValue>
+        <fullName>Aatif Nawaz</fullName>
+        <default>false</default>
+        <label>Aatif Nawaz</label>
+    </customValue>
+    <customValue>
+        <fullName>Ajmal Masroor</fullName>
+        <default>false</default>
+        <label>Ajmal Masroor</label>
+    </customValue>
+    <customValue>
+        <fullName>Ali Official Productions Ltd</fullName>
+        <default>false</default>
+        <label>Ali Official Productions Ltd</label>
+    </customValue>
+    <customValue>
+        <fullName>Atif Aslam</fullName>
+        <default>false</default>
+        <label>Atif Aslam</label>
+    </customValue>
+    <customValue>
+        <fullName>Shaykh AbdulJabbar</fullName>
+        <default>false</default>
+        <label>Shaykh AbdulJabbar</label>
+    </customValue>
+    <customValue>
+        <fullName>Sheikh AbdulMajid Iltaf</fullName>
+        <default>false</default>
+        <label>Sheikh AbdulMajid Iltaf</label>
+    </customValue>
+    <customValue>
+        <fullName>Sheikh Issa Mahmoud Salem Hayajneh</fullName>
+        <default>false</default>
+        <label>Sheikh Issa Mahmoud Salem Hayajneh</label>
+    </customValue>
+    <customValue>
+        <fullName>Sheikh Oussama Idrissi</fullName>
+        <default>false</default>
+        <label>Sheikh Oussama Idrissi</label>
+    </customValue>
+    <customValue>
+        <fullName>Mufti Liaquat Zaman</fullName>
+        <default>false</default>
+        <label>Mufti Liaquat Zaman</label>
+    </customValue>
+    <customValue>
+        <fullName>Kamal Uddin</fullName>
+        <default>false</default>
+        <label>Kamal Uddin</label>
+    </customValue>
+    <customValue>
+        <fullName>Modest Street Fashion - Aisha Rahman</fullName>
+        <default>false</default>
+        <label>Modest Street Fashion - Aisha Rahman</label>
+    </customValue>
+    <customValue>
+        <fullName>Faraz Yousufzai</fullName>
+        <default>false</default>
+        <label>Faraz Yousufzai</label>
+    </customValue>
+    <description>List of all speakers and artist for campaign or fundraising events</description>
+    <masterLabel>Speakers</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

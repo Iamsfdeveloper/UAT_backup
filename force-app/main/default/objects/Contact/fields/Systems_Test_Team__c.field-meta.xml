@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Systems_Test_Team__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This is used as part of Pardot Testing and is only visible via a permission set and is not on any page layouts</description>
+    <externalId>false</externalId>
+    <label>Systems Test Team</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

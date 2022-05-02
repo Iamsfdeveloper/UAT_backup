@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>この団体が「個人」(true) であるか「団体」(false) であるかを示します。</help>
+    <label></label>
+    <name>npe01__SYSTEMIsIndividual__c</name>
+</CustomFieldTranslation>

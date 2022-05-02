@@ -1,0 +1,19 @@
+<aura:component implements="flexipage:availableForRecordHome,force:lightningQuickActionWithoutHeader,force:hasRecordId" 
+                access="global" >
+	
+    <div class="slds-align--absolute-center">
+    	<lightning:layout multipleRows="true">
+            <lightning:layoutItem size="4" padding="around-small">
+                <lightning:input type="date" name="startDate" label="Start Date:" />
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem size="4" padding="around-small">
+                <lightning:input type="date" name="endDate" label="End Date:" />
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem size="4" padding="around-small">
+            	<lightning:button class="slds-m-top--large" label="Update" title="Update" onclick="{! c.handleClick }"/>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+</aura:component>

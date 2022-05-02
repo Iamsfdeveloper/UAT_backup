@@ -1,0 +1,29 @@
+<!--
+  @File Name          : donorSearch.html
+  @Description        : 
+  @Author             : agentgill
+  @Group              : 
+  @Last Modified By   : Iamsfdeveloper
+  @Last Modified On   : 02-02-2022
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    17/03/2020   agentgill     Initial Version
+-->
+<template>
+  <lightning-card title="Donor Search" icon-name="custom:custom57">
+    <div class="slds-m-around_medium">
+      <lightning-input
+        type="search"
+        onchange={handleKeyChange}
+        class="slds-m-bottom_small"
+        label="Search" placeholder="Search By Name/Postal Code/Email"
+      ></lightning-input>
+      <template if:true={contacts}>
+        <template for:each={contacts} for:item="contact">
+          <c-donor-tile key={contact.Id} contact={contact}></c-donor-tile>
+        </template>
+      </template>
+    </div>
+    <template if:true={error}> </template>
+  </lightning-card>
+</template>

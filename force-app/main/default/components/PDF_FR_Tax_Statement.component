@@ -1,0 +1,127 @@
+<apex:component controller="HA_Donation_Statement_Cmp_Ctrl" access="global" >
+    <apex:attribute name="recordId" description="Contact Id to fetch Donations" type="String" assignTo="{!contactId}" />
+    <apex:attribute name="startDPDf" description="Start date of donation" type="Date" assignTo="{!sDate}" />
+    <apex:attribute name="eDatePDf" description="End date of donation" type="Date" assignTo="{!eDate}" />
+    <apex:attribute name="show_Logo" description="Show Logo" type="Boolean" assignTo="{!showLogo}" />
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="author" content="Human Appeal" />
+        <meta name="date" content="@DateTime.Now" />
+        <meta name="generator" content="Human Appeal" />
+        <title>2020 Tax Statement</title>
+        <style type="text/css" media="print">
+            @page {
+            @top-center {
+            content: element(header);
+            }
+            @bottom-left {
+            content: element(footer);
+            }
+            }
+            div.header {
+            padding: 10px;
+            position: running(header);
+            }
+            div.footer {
+            display: block;
+            padding: 5px;
+            position: running(footer);
+            }
+            .pagenumber:before {
+            content: counter(page);
+            }
+            .pagecount:before {
+            content: counter(pages);
+            }
+        </style>
+    </head>
+    
+    <div class="page">    
+        
+        <apex:outputPanel rendered="{!showLogo}"> 
+            
+            <div class="header">
+                <img alt="Human Appeal" src="{!URLFOR($Resource.SMP_DD_Resources, 'images/ha-logo-nobox.png')}" width="100" height="100" />
+                
+                
+            </div>
+            
+            
+            <div class="footer"> 
+                <b>HUMAN APPEAL </b>• Cheadle Point, Carrs Road, Cheadle, SK8 2BL, UK
+                humanappeal.org.uk • info@humanappeal.org.uk • 0161 225 0225
+                Charity Reg No. 1154288 • Company Reg No. 8553893 • Scottish Reg No. SC056481
+            </div>
+            
+            <title>2020 Tax Statement</title>
+            
+        </apex:outputPanel>
+        <div style ="display:flex; flex-direction:column; justify-content: space-between; float: right;">
+            <div style="text-align:right;" colspan="6"> 
+                <apex:outputText value="Donor ID: {! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.Donor_Id__c,'')}"/><br/><br/>
+                <apex:outputText value="{0, date, dd/MM/yyyy}">
+                    <apex:param value="{!NOW()}" />
+                </apex:outputText>
+            </div>
+            
+        </div>
+        
+        <div style="clear:both"/>
+        <div style="float:left;">
+            <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.Name,'')}"/><br/>
+            <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.MailingStreet,'')}"/><br/>
+            <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.MailingCity,'')}"/><br/>
+            <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.MailingCountry,'')}"/>                
+        </div>
+        <br/>
+        <br/>
+        
+        <h3 style="font-size: 20px; margin-top: 50px; margin-bottom: 0px; color: purple;">            
+            <apex:outputText value="La somme de :	  {!totalAmount}€"/>
+        </h3>
+        
+        <h3 style="margin-top: 20px; margin-bottom: 0px;">            
+            <apex:outputText value="Dons effectués en EUR (€) entre le {!sDate} et le {!eDate}" rendered="{! NOT(ISNULL(sDate))}"/>
+        </h3>
+        <table style = "border: rgb(255,255,255);margin-top: 30%;">
+            <!--<tr style="font-weight: bold; text-align: left;  background-color: purple; color: #fff; border: 1px solid rgb(255, 255, 255);">
+                <th style = "padding: 3px; border: 3px solid rgb(255, 255, 255);">Date</th>
+                <th style ="border: 3px solid rgb(255, 255, 255);">Ponctuel/Régulier</th>
+                <th style ="border: 3px solid rgb(255, 255, 255); text-align:right;">Somme</th>
+            </tr>
+            <apex:variable value="{!1}" var="rowCounter"/>
+            
+            <apex:repeat var="prod" value="{!donationList}">
+                <tr >
+                    <td style="padding-right: 15px"><apex:outputField value="{!prod.npsp__Opportunity__r.CloseDate}"/></td>
+                    <td style="padding-right: 15px">
+                        <apex:outputPanel rendered="{!OR(prod.npsp__Opportunity__r.Donation_Type__c == 'SD',prod.npsp__Opportunity__r.Donation_Type__c =='RD')}">
+                        	{!IF(prod.npsp__Opportunity__r.Donation_Type__c == 'SD', 'Ponctuel', 'Mensuel')}
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!AND(prod.npsp__Opportunity__r.Donation_Type__c != 'SD',prod.npsp__Opportunity__r.Donation_Type__c !='RD')}">
+                        	<apex:outputField value="{!prod.npsp__Opportunity__r.Donation_Type__c}"/>
+                        </apex:outputPanel>
+					</td>
+                    <td style="text-align:right;"><apex:outputText value="{!CASE(prod.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!prod.npsp__Amount__c}"/></td>                    
+                </tr>
+                <apex:variable var="rowNum" value="{!rowCounter + 1}"/>
+            </apex:repeat>
+            <apex:repeat value="{!Breakdown}" var="type">
+                
+            </apex:repeat>
+            <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                <td style="text-align:right; border-bottom: none; border-top: 0px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="7">
+                    <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                    <apex:outputText value="€{!totalAmount}" rendered="{!emptyList == False}"></apex:outputText><br/>
+                </td>          
+            </tr>-->
+            
+            <tr>
+                <td rowspan="{!BreakdownSize + 1}" style="border: 0px;">
+                    <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/regulator.png')}" width="160px"/>
+                </td>   
+                
+            </tr>
+        </table>
+    </div>
+</apex:component>

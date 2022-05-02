@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <decisions>
+        <description>Has Payment Details</description>
+        <name>Has_Payment_Details</name>
+        <label>Has Payment Details</label>
+        <locationX>384</locationX>
+        <locationY>49</locationY>
+        <defaultConnector>
+            <targetReference>Warning_Message</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>out_Payment_Details</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Income_Card_Payment</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Payment_Details</targetReference>
+            </connector>
+            <label>Payment Details</label>
+        </rules>
+    </decisions>
+    <description>Display Payment Details on Opportunity</description>
+    <interviewLabel>Payment Details View {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>Payment Details View</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>Get Income Card Payment</description>
+        <name>Get_Income_Card_Payment</name>
+        <label>Get Income Card Payment</label>
+        <locationX>199</locationX>
+        <locationY>48</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Has_Payment_Details</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Warning_Message</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Opportunity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Payment_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Created</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Income_Card_Payment__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <description>Payment Details</description>
+        <name>Payment_Details</name>
+        <label>Payment Details</label>
+        <locationX>605</locationX>
+        <locationY>46</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>paymentDetailsView</name>
+            <extensionName>c:recordDetailFlowScreenComponent</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>mode</name>
+                <value>
+                    <stringValue>view</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>Income_Card_Payment__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>Get_Income_Card_Payment.Id</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>fields</name>
+                <value>
+                    <stringValue>Name, RP_Start_Date__c, RP_Next_Payment_Date__c, RP_End_Date__c, RP_Amount__c, Total_Amount_Taken__c</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Warning_Message</name>
+        <label>Warning Message</label>
+        <locationX>385</locationX>
+        <locationY>262</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>showWarning</name>
+            <fieldText>&lt;p&gt;No payment details&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>17</locationX>
+        <locationY>49</locationY>
+        <connector>
+            <targetReference>Get_Income_Card_Payment</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>record Id</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Due_in_next_6_months__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( ISNULL(Last_Visit_Completed_Date__c),true,IF(TODAY()&gt; Last_Visit_Completed_Date__c,true,false))</formula>
+    <label>Due in next 6 months</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

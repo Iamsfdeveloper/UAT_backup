@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Concept_Note_Queue_Concept_Note</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Concept Note Queue</label>
+    <queue>Concept_Note_Queue</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

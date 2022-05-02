@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Annual_Report__c</fullName>
+    <externalId>false</externalId>
+    <formula>&quot;&amp;id=&quot; +  Id  + 
+&quot;&amp;TemplateId=a290C000000xN42&quot; + 
+&quot;&amp;FP0=1&quot; + 
+&quot;&amp;AC0=1&quot; + 
+&quot;&amp;AC1=Invoice+for+&quot; +  Name  + 
+&quot;&amp;QMode=SendEmail&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Email Annual Report</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reserves_Deduction__c</fullName>
+    <description>A specific deduction percentage for administration applied on donations from the specific contact this value is assigned to.</description>
+    <externalId>false</externalId>
+    <label>Reserves Deduction</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Percent</type>
+</CustomField>

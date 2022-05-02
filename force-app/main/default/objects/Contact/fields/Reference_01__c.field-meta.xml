@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reference_01__c</fullName>
+    <description>First Reference Status</description>
+    <externalId>false</externalId>
+    <label>Reference 01</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Requested</fullName>
+                <default>false</default>
+                <label>Requested</label>
+            </value>
+            <value>
+                <fullName>Received</fullName>
+                <default>false</default>
+                <label>Received</label>
+            </value>
+            <value>
+                <fullName>Chased</fullName>
+                <default>false</default>
+                <label>Chased</label>
+            </value>
+            <value>
+                <fullName>New referee details requested</fullName>
+                <default>false</default>
+                <label>New referee details requested</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

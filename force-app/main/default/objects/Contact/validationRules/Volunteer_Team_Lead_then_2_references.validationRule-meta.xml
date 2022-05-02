@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Volunteer_Team_Lead_then_2_references</fullName>
+    <active>false</active>
+    <description>When the volunteer is type of team lead then 2 reference checks will be required</description>
+    <errorConditionFormula>AND( TEXT(Volunteer_Type__c) = &apos;Team Leader&apos;,ISBLANK( TEXT(Reference_01__c)), ISBLANK(TEXT(Reference_02__c)) )</errorConditionFormula>
+    <errorMessage>For Team Leader both references are required</errorMessage>
+</ValidationRule>

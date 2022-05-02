@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Volunteer_Leaving_Reason_check</fullName>
+    <active>false</active>
+    <description>Check of the status of volunteer is Leaver then Reason is required field.</description>
+    <errorConditionFormula>AND ( TEXT(GW_Volunteers__Volunteer_Status__c) = &apos;Leaver&apos; , ISBLANK( TEXT(Reason_for_leaving__c) ))</errorConditionFormula>
+    <errorDisplayField>Reason_for_leaving__c</errorDisplayField>
+    <errorMessage>Please enter Reason of leaving</errorMessage>
+</ValidationRule>

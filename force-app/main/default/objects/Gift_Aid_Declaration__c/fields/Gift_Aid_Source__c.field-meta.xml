@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Gift_Aid_Source__c</fullName>
+    <externalId>false</externalId>
+    <label>Gift Aid Source</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Website</fullName>
+                <default>false</default>
+                <label>Website</label>
+            </value>
+            <value>
+                <fullName>Verbal</fullName>
+                <default>false</default>
+                <label>Verbal</label>
+            </value>
+            <value>
+                <fullName>Donor Portal</fullName>
+                <default>false</default>
+                <label>Donor Portal</label>
+            </value>
+            <value>
+                <fullName>Written</fullName>
+                <default>false</default>
+                <label>Written</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,277 @@
+<apex:component access="global" controller="ReceiptTemplateController">
+
+    <apex:attribute name="opportunityId" type="Id" assignTo="{!oppId}" description="Opportunity Id"/>
+    <apex:attribute name="opp" type="Opportunity" description="Opportunity"/>
+  <apex:attribute name="payment" type="npe01__OppPayment__c" description="Card Payment"/>
+    <apex:attribute name="theContact" type="Contact" description="Contact"/>
+    
+    <apex:stylesheet value="{!URLFOR($Resource.SMP_DD_Resources, 'css/ReceiptTemplate.css')}"/>
+
+   <html>
+    <head>
+        <style>
+            @page {
+                size: letter;
+                margin: 25mm;
+                @top-center {
+                    content: "Sample";
+                }
+                @bottom-center {
+                    content: "Page " counter(page) " of " counter(pages);
+                }
+            }
+            .page-break {
+                display:block;
+                page-break-after:always;
+            }
+            body {
+                font-family: Arial Unicode MS;
+            }
+        </style>
+    </head>
+    
+
+    <div style="height: 100%;min-height: 100%;">
+        <div style="float:left;">
+           
+               <apex:outputPanel rendered="{!opp.Account.RecordType.DeveloperName == 'Organization'}">
+                    <apex:outputText value="{!opp.Account.Name}"/><br/>
+                    <apex:outputField value="{!opp.Account.BillingStreet}"/><br/>
+                    <apex:outputField value="{!opp.Account.BillingCity}"/><br/>
+                    <apex:outputField value="{!opp.Account.BillingPostalCode}"/><br/>
+                    <apex:outputField value="{!opp.Account.BillingCountry}"/>
+                </apex:outputPanel>   
+                <apex:outputPanel rendered="{!opp.Account.RecordType.Name != 'Organization'}">
+                    <apex:outputText value="{!SUBSTITUTE(opp.npsp__Primary_Contact__r.Salutation, '.', '')} " rendered="{!ISBLANK(opp.npsp__Primary_Contact__r.Salutation) == false}"/><apex:outputField value="{!opp.npsp__Primary_Contact__r.Name}"/><br/><!--<apex:outputText value="{!relatedTo.npsp__Primary_Contact__r.FirstName} {!relatedTo.npsp__Primary_Contact__r.LastName}"/><br/>-->
+                    <apex:outputField value="{!opp.npsp__Primary_Contact__r.MailingStreet}"/><br/>
+                    <apex:outputField value="{!opp.npsp__Primary_Contact__r.MailingCity}"/><br/>
+                    <apex:outputField value="{!opp.npsp__Primary_Contact__r.MailingPostalCode}"/><br/>
+                    <apex:outputField value="{!opp.npsp__Primary_Contact__r.MailingCountry}"/>
+                </apex:outputPanel>
+        </div>
+      
+        <div style = "display:flex; flex-direction:column; justify-content: space-between; float: right;">
+
+            <div style="margin-bottom: 30%;">
+
+                <apex:image id="theImage" value="{!URLFOR($Resource.SMP_DD_Resources, 'images/ha-logo-nobox.png')}" width="130px" height="130px" alt="Human Appeal logo" style="object-fit: cover;"/>
+        
+            </div>
+            
+        
+            <div style="text-align:right;">   
+                Page 1 of 1<br/><br/>
+                <apex:outputPanel rendered="{!opp.Account.RecordType.DeveloperName != 'Organization'}">
+                    <apex:outputText value="Donor ID: {!opp.npsp__Primary_Contact__r.Donor_ID__c}"/><br/><br/>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!opp.Account.RecordType.DeveloperName == 'Organization'}">
+                    <apex:outputText value="Donor ID: {!opp.Account.AccountNumber}"/><br/><br/>
+                </apex:outputPanel>
+                <apex:outputText value="{!DAY(opp.CloseDate)}/{!MONTH(opp.CloseDate)}/{!YEAR(opp.CloseDate)}"/>
+            </div>
+
+        </div>
+        
+       
+        <div style="clear:both"/>
+        
+        <h2 style="margin-top: 67px; margin-bottom: 0px;">
+            
+            <apex:outputText value="Donation Receipt" rendered="{!opp.Type =='Donation'}"/>
+            <apex:outputText value="Regular Giving Statement" rendered="{!opp.Type =='Payment Plan - Source'}"/>
+        </h2>
+        <apex:outputPanel rendered="{!opp.Type =='Payment Plan - Source'}">
+          <table>
+            <tr>
+                <!-- total 950 px -->
+                <th style="width: 100px">Type</th>
+                <th style="width: 150px">Project</th>
+                <th style="width: 100px">Start Date</th>
+                <th style="width: 100px">End Date</th>
+                <th style="width: 150px">Description/Note</th>
+                <th style="text-align: right">Amount</th>
+            </tr>
+            <apex:repeat var="prod" value="{!Products}">
+                <tr>
+                    <td><apex:outputField value="{!prod.Stipulation_Type__c}"/></td>
+                    <td><apex:outputField value="{!prod.npsp__General_Accounting_Unit__r.Name}"/></td>
+                    <td><apex:outputField value="{!opp.Effective_Date__c}"/></td>
+                    <td><apex:outputText value="{0, date, dd/MM/yyyy}"><apex:param value="{!opp.End_Date__c}" /> </apex:outputText></td>
+                    <td>
+                        <apex:outputText rendered="{!opp.Donation_Type__c == '30N'}">Ramadan 30 nights payments</apex:outputText>
+                        <apex:outputPanel rendered="{!opp.Donation_Type__c == '10N'}">Ramadan 10 nights payments</apex:outputPanel>
+                        <apex:outputPanel rendered="{!opp.Donation_Type__c == '10D'}"> My Best 10 Days payment</apex:outputPanel>
+                        <apex:outputPanel rendered="{!opp.Donation_Type__c !='30N' && opp.Donation_Type__c !='10N' && opp.Donation_Type__c != '10D'}">
+                        <apex:outputField value="{!prod.Receipt_Note__c}"/></apex:outputPanel>
+                    </td>                    
+                    <td style="text-align:right;"><apex:outputText value="{!CASE(prod.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!prod.npsp__Amount__c}"/></td>                  
+                </tr>
+            </apex:repeat>
+            
+            <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">  
+                <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="6">
+                    <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                    <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,0.00}"><apex:param value="{!opp.Amount}" /></apex:outputText><br/>
+                </td>
+            </tr>
+              
+        </table>
+        <div style="margin-top:5px;">
+            <div style="display: inline; padding-right: 15px">
+                <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/regulator.png')}" width="160px"/>
+            </div>    
+            <div style="display: inline; padding-left: 15px">
+                <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/HA30badge.png')}" width="80px" height="80px"/>   
+            </div>                     
+        </div>         
+        </apex:outputPanel>
+
+
+        <apex:outputPanel rendered="{!and(opp.Type !='Payment Plan - Source', opp.Donation_Type__c !='30N', opp.Donation_Type__c !='10N', opp.Donation_Type__c !='10D')}">
+        <table>
+            <tr>
+                <th style="width:140px;">Type</th>
+                <th style="width:200px;">Location</th>
+                <th style="width:250px;">Project</th>
+                <th style="width:200px;">Description/Note</th>
+                <th style="width:150px; text-align:right;">Amount</th>
+            </tr>
+            <apex:repeat var="prod" value="{!Products}">
+                <tr>
+                    <td><apex:outputField value="{!prod.Stipulation_Type__c}"/></td>
+                    <td><apex:outputText value="{!prod.npsp__General_Accounting_Unit__r.Country__c}"></apex:outputText></td>
+                    <td><apex:outputField value="{!prod.npsp__General_Accounting_Unit__r.Name}"/></td>
+                    <td><apex:outputText value="{!prod.Receipt_Note__c}"/></td>
+                    <td style="text-align:right;"><apex:outputText value="{!CASE(prod.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!prod.npsp__Amount__c}"/></td>                    
+                </tr>
+            </apex:repeat>
+            <apex:repeat value="{!Breakdown}" var="type">
+                <tr style="border: 0px;">
+                    
+                    <td style="text-align:right; border: 0px; width:100px;" colspan="5">
+                        <b>
+                        <apex:outputText value="Total Zakat" rendered="{!type == 'ZK'}"/>
+                        <apex:outputText value="Total General Charity" rendered="{!type == 'XX'}"/>
+                        <apex:outputText value="Total Sadaqah" rendered="{!type == 'SD'}"/>
+                        &nbsp;&nbsp;&nbsp;</b>
+                        <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!Breakdown[type]}"/>
+                    </td>
+                </tr>
+            </apex:repeat>
+            <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="5">
+                    <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                    <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,0.00}"><apex:param value="{!opp.Amount}" /></apex:outputText><br/>
+                    <!--
+                    <apex:outputText value="Per Year" rendered="{!opp.Payment_Schedule__r.Frequency__c == 'Annually'}"/>
+                    <apex:outputText value="Per Month" rendered="{!opp.Payment_Schedule__r.Frequency__c == 'Monthly'}"/>
+                    <apex:outputText value="Per Week" rendered="{!opp.Payment_Schedule__r.Frequency__c == 'Weekly'}"/>
+                    <apex:outputText value="Per Day" rendered="{!opp.Payment_Schedule__r.Frequency__c == 'Daily'}"/> -->
+                </td>
+            </tr>
+
+            <tr>
+                <td rowspan="{!BreakdownSize + 1}" style="border: 0px;">
+                        <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/regulator.png')}" width="160px"/>
+                </td>
+
+                <td rowspan="{!BreakdownSize + 1}" style="border: 0px;padding-left: 40px">
+                        <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/HA30badge.png')}" width="80px" height="80px"/>
+                </td>
+            </tr>
+        </table>
+         </apex:outputPanel>
+
+         <apex:outputPanel rendered="{!and(opp.Type !='Payment Plan - Source', Or(opp.Donation_Type__c =='30N' || opp.Donation_Type__c =='10N' || opp.Donation_Type__c =='10D'))}">
+        <table>
+            <tr>
+                <th style="width:250px;">Type</th>
+                <th style="width:250px;">Location</th>
+                <th style="width:250px;">Project</th>
+            </tr>
+            <apex:repeat var="prod" value="{!Products}">
+                <tr>
+                    <td><apex:outputField value="{!prod.Stipulation_Type__c}"/></td>
+                    <td><apex:outputText value="{!prod.npsp__General_Accounting_Unit__r.Country__c}"></apex:outputText></td>
+                    <td><apex:outputField value="{!prod.npsp__General_Accounting_Unit__r.Name}"/></td>                    
+                </tr>
+            </apex:repeat>
+            <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="3">
+                    <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                    <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,0.00}"><apex:param value="{!opp.Amount}" /></apex:outputText><br/>
+                    <!--
+                    <apex:outputText value="Per Year" rendered="{!opp.Payment_Schedule__r.Frequency__c == 'Annually'}"/>
+                    <apex:outputText value="Per Month" rendered="{!opp.Payment_Schedule__r.Frequency__c == 'Monthly'}"/>
+                    <apex:outputText value="Per Week" rendered="{!opp.Payment_Schedule__r.Frequency__c == 'Weekly'}"/>
+                    <apex:outputText value="Per Day" rendered="{!opp.Payment_Schedule__r.Frequency__c == 'Daily'}"/> -->
+                </td>
+            </tr>
+
+            <tr>
+                <td rowspan="{!BreakdownSize + 1}" style="border: 0px;">
+                        <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/regulator.png')}" width="160px"/>
+                </td>
+
+                <td rowspan="{!BreakdownSize + 1}" style="border: 0px;padding-left: 40px">
+                        <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/HA30badge.png')}" width="80px" height="80px"/>
+                </td>
+            </tr>
+        </table>
+         </apex:outputPanel>
+
+
+
+        <div style="margin-top:15px; font-size:11px; color: #838383">
+            <!-- Monthly-->
+            <apex:outputText value="Please make a note of your Agreement No. {!opp.Name} should you need to contact us about your regular donation. 
+                                    Your {!opp.Payment_Schedule__r.Frequency__c} donation of £{!opp.Amount} will be taken on or around the {!DAY(opp.Effective_date__c)} of each month."
+                             rendered="{!opp.Donation_Type__c == 'RD' && opp.Payment_Schedule__r.Frequency__c == 'Monthly'}"/>
+            <!--EMI-->
+            <apex:outputText value="Please make a note of your Agreement No. {!opp.Name} should you need to contact us about your regular donation. 
+                                    Your {!opp.Payment_Schedule__r.Frequency__c} donation of £{!opp.EMIAmount__c} will be taken on or around the {!DAY(opp.Effective_date__c)} of each month."
+                             rendered="{!opp.Donation_Type__c == 'EMI' && opp.Payment_Schedule__r.Frequency__c == 'Monthly'}"/>
+        </div>
+
+        <div style="margin-top:15px; font-size:11px; color: #838383">
+            <apex:outputPanel rendered="{!opp.npsp__Primary_Contact__r.MailingCountry == 'United Kingdom' || opp.npsp__Primary_Contact__r.MailingCountry == 'UK' || opp.npsp__Primary_Contact__r.MailingCountry == 'uk'}">
+                <apex:outputPanel rendered="{!opp.Gift_Aid_Eligible_Status__c == 'No'}">
+                    <p>
+                        Did you know you can make your donations 25% bigger with Gift Aid if you are a UK taxpayer? This government scheme raises the value of donations from UK taxpayers, claiming back the basic rate tax paid at no extra cost to you. So, if you were to donate £100 and allow us to Gift Aid it, your donation would increase to £125, enabling us to use the funds towards core funding costs of the charity and our Where Most Needed programmes to save and transform more lives. All it takes is a tick. To find out more, please visit www.humanappeal.org.uk or call 0161 225 0225.
+                    </p>
+                </apex:outputPanel>
+
+
+                <apex:outputPanel rendered="{!opp.Gift_Aid_Eligible_Status__c == 'Yes'}">
+                    <p>
+                        <apex:outputText value="Thank you for allowing us to claim Gift Aid on your donations. Please be aware we can only claim Gift Aid if you have paid or will pay an amount of tax at least equal to the amount of Gift Aid that all the charities you donate to will reclaim on your gifts for that tax year. Note that that other taxes such as VAT and Council Tax do not qualify. Human Appeal will reclaim 25p of tax on every £1 that you give which will be used to cover the costs of the charity's work."/>
+                        <br/><br/>
+                        <apex:outputText style="font-weight: bold;" value="Get updates about our life-saving work around the world. "/>
+                        <br/><br/>
+                        <apex:outputText value="Sign up to our email and SMS updates to find out about the impact that Human Appeal supporters like you are making to the lives of vulnerable people around the world, as well as news, information, events, competitions and emergency updates about how you can help. Visit www.humanappeal.org.uk or call 0161 225 0225 to sign up." />
+                    </p>
+
+                </apex:outputPanel>
+
+
+            </apex:outputPanel>  
+
+           <div style="width: 100%;height: 65px;display: block;"></div>
+            <div style="position: absolute;bottom: 0; height: 65px;width: 100%;">
+                
+                <p style=" color: #662d91; font-size: 11px; display: inline;">         
+                    <strong>HUMAN APPEAL</strong>&nbsp;&nbsp;&bull;&nbsp;&nbsp;Pennine House, Carrs Road, SK8 2BL, United Kingdom</p>
+                <p style="color: #662d91; font-size: 10px; display: inline;">
+                    humanappeal.org.uk&nbsp;&nbsp;&bull;&nbsp;&nbsp;customercare@humanappeal.org.uk&nbsp;&nbsp;&bull;&nbsp;&nbsp;0161 225 0225<br/>  
+                </p>
+                <p style="color: #662d91; font-size: 9px; display: inline;">
+                    Charity Reg No. 1154288&nbsp;&nbsp;&bull;&nbsp;&nbsp;Company Reg No. 8553893&nbsp;&nbsp;&bull;&nbsp;&nbsp;Scottish Reg No. SC056481
+                </p>
+            </div> 
+
+        </div>       
+                
+        
+    </div>
+    </html>
+</apex:component>

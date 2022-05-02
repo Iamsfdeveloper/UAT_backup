@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Volunteer_Agreement__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Volunteer Agreement sent or not</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Volunteer Agreement sent to volunteer</inlineHelpText>
+    <label>Volunteer Agreement</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

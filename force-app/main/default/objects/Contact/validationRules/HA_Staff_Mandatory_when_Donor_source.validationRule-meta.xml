@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HA_Staff_Mandatory_when_Donor_source</fullName>
+    <active>false</active>
+    <description>Make the Field HA Staff Mandatory when Donor Source is Employee Referral</description>
+    <errorConditionFormula>AND (  TEXT(LeadSource)  = &apos;Employee Referral&apos; , ISBLANK(  HA_Staff__c ))</errorConditionFormula>
+    <errorDisplayField>HA_Staff__c</errorDisplayField>
+    <errorMessage>Please Select HA Staff</errorMessage>
+</ValidationRule>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Allow_Close_Date_change_on_DD</name>
+    </customPermissions>
+    <description>Allow_Close_Date_change_on_Direct Debit Donation</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Allow Close Date change on DD</label>
+</PermissionSet>

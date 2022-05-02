@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Check_if_Gift_Aid_Validation_is_correct</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISPICKVAL(Gift_Aid_Status__c, &apos;Unspecified&apos;),OR(ISPICKVAL(PRIORVALUE(Gift_Aid_Status__c) , &apos;Yes&apos;),ISPICKVAL(PRIORVALUE(Gift_Aid_Status__c),&apos;No&apos;)))</errorConditionFormula>
+    <errorMessage>Gift Aid Status can only be set to Yes or No</errorMessage>
+</ValidationRule>

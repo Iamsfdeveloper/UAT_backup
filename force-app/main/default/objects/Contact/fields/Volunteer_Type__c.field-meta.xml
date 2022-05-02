@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Volunteer_Type__c</fullName>
+    <description>This field is only for Volunteer contact</description>
+    <externalId>false</externalId>
+    <label>Volunteer Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Challenges</fullName>
+                <default>false</default>
+                <label>Challenges</label>
+            </value>
+            <value>
+                <fullName>Corporate</fullName>
+                <default>false</default>
+                <label>Corporate</label>
+            </value>
+            <value>
+                <fullName>Intern</fullName>
+                <default>false</default>
+                <label>Intern</label>
+            </value>
+            <value>
+                <fullName>Mosque volunteer</fullName>
+                <default>false</default>
+                <label>Mosque volunteer</label>
+            </value>
+            <value>
+                <fullName>Team Leader</fullName>
+                <default>false</default>
+                <label>Team Leader</label>
+            </value>
+            <value>
+                <fullName>Work experience</fullName>
+                <default>false</default>
+                <label>Work experience</label>
+            </value>
+            <value>
+                <fullName>Campaign Volunteer</fullName>
+                <default>false</default>
+                <label>Campaign Volunteer</label>
+            </value>
+            <value>
+                <fullName>Staff Volunteer</fullName>
+                <default>false</default>
+                <label>Staff Volunteer</label>
+            </value>
+            <value>
+                <fullName>HLP Volunteer</fullName>
+                <default>false</default>
+                <label>HLP Volunteer</label>
+            </value>
+            <value>
+                <fullName>Fundraising</fullName>
+                <default>false</default>
+                <label>Fundraising</label>
+            </value>
+            <value>
+                <fullName>UK Programmes</fullName>
+                <default>false</default>
+                <label>UK Programmes</label>
+            </value>
+            <value>
+                <fullName>General Volunteer</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>General Volunteer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

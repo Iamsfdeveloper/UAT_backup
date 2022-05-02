@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Allowed_Email__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>True: Email Communication Is Allowed 
+False: No Email Communication Is Allowed</description>
+    <externalId>false</externalId>
+    <inlineHelpText>True: Email Communication Is Allowed 
+False: No Email Communication Is Allowed</inlineHelpText>
+    <label>Allowed Email</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

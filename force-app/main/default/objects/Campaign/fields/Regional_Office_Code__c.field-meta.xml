@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Regional_Office_Code__c</fullName>
+    <defaultValue>$User.Regional_Office_Code__c</defaultValue>
+    <externalId>false</externalId>
+    <label>Regional Office Code</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Regional_Office_Code</valueSetName>
+    </valueSet>
+</CustomField>

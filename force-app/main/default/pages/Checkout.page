@@ -1,0 +1,562 @@
+<apex:page controller="CheckoutController" standardstylesheets="false" showHeader="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" language="{!$CurrentPage.parameters.language}">
+
+    <html>
+        <head>
+            <title> {!$Label.Payment_Setup&' | '&'Human Appeal'}</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="shortcut icon" type="image/jpg" href="{!URLFOR($Resource.SMP_DD_Resources, 'images/favicon.ico')}"/>
+
+            <apex:stylesheet value="{!URLFOR($Resource.SMP_DD_Resources, 'css/checkout.css')}" />
+            
+             <!-- Google Tag Manager -->
+            <script>(function (w, d, s, l, i) {
+                    w[l] = w[l] || []; w[l].push({
+                        'gtm.start':
+                            new Date().getTime(), event: 'gtm.js'
+                    }); var f = d.getElementsByTagName(s)[0],
+                        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+                })(window, document, 'script', 'dataLayer', '{!CASE(RIGHT($Site.BaseUrl,2),"fr","GTM-M5BHQW","ie","GTM-TV9348B","es","GTM-T9RNZ67","GTM-W8K46D")}');</script>
+
+           
+           
+            <!--meta Tag ES-->
+            <apex:outputPanel rendered="{!$Site.BaseUrl = 'https://checkout.humanappeal.es'}">
+                <meta name="google-site-verification" content="WKtuA5-qvzAMrBdFrpgyLR9uK26WNk-QxQaO02Vfe2c" />
+            </apex:outputPanel>
+
+            <style>
+                .errorMsg {
+                    position: relative;
+                    display: block;
+                    color: #ed1846;
+                    font-size: .8125rem;
+                    line-height: 1;
+                    margin-top: 5px;
+                }
+
+                .errorMsg strong {
+                    display: none;
+                }
+
+                .form input.error {
+                    border-color: #ed1846;
+                }
+
+                .form .errorMsg:after {
+                    content: '';
+                    background-image: url('{!URLFOR($Resource.SMP_DD_Resources, 'img/icons-s0b96259908.png')}');
+                    background-position: 0 -768px;
+                    background-repeat: no-repeat;
+                    overflow: hidden;
+                    display: block;
+                    height: 19px;
+                    width: 19px;
+                    position: absolute;
+                    top: -28px;
+                    right: -21px;
+                    -moz-transform: translateY(-9px);
+                    -ms-transform: translateY(-9px);
+                    -webkit-transform: translateY(-9px);
+                    transform: translateY(-9px);
+                    right: -32px;
+                }
+
+                .form .modSuccess:after {
+                    content: '';
+                    background-image: url('{!URLFOR($Resource.SMP_DD_Resources, 'img/icons-s0b96259908.png')}');
+                    background-position: 0 -95px;
+                    background-repeat: no-repeat;
+                    overflow: hidden;
+                    display: block;
+                    height: 21px;
+                    width: 21px;
+                    position: absolute;
+                    top: 52px;
+                    right: -21px;
+                    -moz-transform: translateY(-9px);
+                    -ms-transform: translateY(-9px);
+                    -webkit-transform: translateY(-9px);
+                    transform: translateY(-9px);
+                    right: -32px;
+                }
+
+                .form .modError:after {
+                    content: '';
+                    background-image: url('{!URLFOR($Resource.SMP_DD_Resources, 'img/icons-s0b96259908.png')}');
+                    background-position: 0 -768px;
+                    background-repeat: no-repeat;
+                    overflow: hidden;
+                    display: block;
+                    height: 19px;
+                    width: 19px;
+                    position: absolute;
+                    top: 52px;
+                    right: -21px;
+                    -moz-transform: translateY(-9px);
+                    -ms-transform: translateY(-9px);
+                    -webkit-transform: translateY(-9px);
+                    transform: translateY(-9px);
+                    right: -32px;
+                }
+
+                .ddconfirmation {
+                    float: left;
+                }
+
+                .paymentTypeSelection label {
+                    color: #662d91;
+                    text-align: center;
+                    padding: 30px;
+                    font-size: 1.6rem;
+                    line-height: 1.375;
+                    background: #fff;
+                    box-shadow: 0 2px 2px rgba(0, 0, 0, .05);
+                    border: 1px solid #dddbda;
+                    border-radius: .25rem;
+                    margin-bottom: 10px;
+                }
+
+                .paymentTypeSelection input:checked~label {
+                    border: 1px solid #662d91;
+                    box-shadow: inset 0 0 0 1px #662d91;
+                }
+            </style>
+        </head>
+        <body>
+        <apex:outputPanel rendered="{!$Site.BaseUrl = 'https://checkout.humanappeal.org.uk'}">
+            <!-- Google Tag Manager (noscript) -->
+            <noscript>
+                <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8K46D" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+            </noscript>
+            <!-- End Google Tag Manager (noscript) -->
+        </apex:outputPanel>
+        
+        <apex:outputPanel rendered="{!$Site.BaseUrl = 'https://checkout.humanappeal.fr'}">
+            <!-- Google Tag Manager (noscript) -->
+            
+            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5BHQW"
+            
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            
+            <!-- End Google Tag Manager (noscript) -->
+            
+        </apex:outputPanel>
+        
+        <apex:outputPanel rendered="{!$Site.BaseUrl = 'https://checkout.humanappeal.es'}">
+            <!-- Google Tag Manager (noscript) -->
+            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9RNZ67"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <!-- End Google Tag Manager (noscript) -->
+            
+            <!-- Start of HubSpot Embed Code -->
+            <script type="text/javascript" id="hs-script-loader" async="async" defer="defer" src="//js.hs-scripts.com/20176995.js"></script>
+            <!-- End of HubSpot Embed Code -->
+        </apex:outputPanel>
+        
+        <apex:outputPanel rendered="{!$Site.BaseUrl = 'https://checkout.humanappeal.ie'}">
+            <!-- Google Tag Manager (noscript) -->
+            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TV9348B"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <!-- End Google Tag Manager (noscript) -->
+        </apex:outputPanel>
+        
+            <div xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <header class="header">
+                    <div class="header__inner">
+                        <div class="header__masthead">
+                            <a href="{!SUBSTITUTE($Site.baseURL,'checkout.','')}" class="header__logo" title="Human Appeal">
+                                <img src="{!URLFOR($Resource.SMP_DD_Resources,'images/logo-header-small.png')}" class="header__image header__image--ltr"
+                                    alt="Human Appeal" />
+                                <h1 class="visuallyhidden">Human Appeal</h1>
+                            </a>
+                            <div class="header__checkout">
+                                <div class="header__masthead__divide"></div>
+                                <img src="{!URLFOR($Resource.SMP_DD_Resources,'images/powered-by-stripe.png')}" class="header__checkout__image ltr" alt="Powered by Stripe"
+                                />
+                            </div>
+                            <h1 class="visuallyhidden">Human Appeal</h1>
+                        </div>
+                    </div>
+                </header>
+
+                <section class="checkout-progress text-color--light">
+                    <apex:form id="header">
+                        <div class="wrap" id="headerWrapper">
+                            <div class="checkout-progress__content">
+                                <h1 class="checkout-progress__title is-serif">{!$Label.Checkout}</h1>
+                                <ul class="is-serif checkout-progress__steps checkout-steps cf">
+
+                                    <li class="checkout-steps__item {!currentHeaderStyle1}">
+                                        <span class="checkout-steps__number is-serif-bold">1</span>
+                                        <span>{!$Label.Payment_Setup}</span>
+                                    </li>
+                                    <apex:outputPanel rendered="{!isDirectDebit == true}">
+                                        <li class="checkout-steps__item {!currentHeaderStyle2}">
+                                            <span class="checkout-steps__number is-serif-bold">2</span>
+                                            <span>Direct Debit</span>
+                                        </li>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!isCardPayment == true}">
+                                        <li class="checkout-steps__item {!currentHeaderStyle3}">
+                                            <span class="checkout-steps__number is-serif-bold">{!cardStage}</span>
+                                            <span>{!$Label.Card_Payment}</span>
+                                        </li>
+                                    </apex:outputPanel>
+                                </ul>
+                                <a href="https://humanappeal.org.uk/donate/search" class="checkout-progress__link">{!$Label.Make_another_donation}</a>
+                            </div>
+                        </div>
+                    </apex:form>
+                </section>
+
+                <section class="panel panel--no-pad-top panel--grey-bg">
+                    <div class="box box--white box--wrap">
+                        <div class="wrap">
+                            <apex:form id="ddForm" styleClass="form form--checkout is-serif __checkout-form">
+                                <apex:outputPanel rendered="{!stepNo == 0}">
+                                    <div class="slds-container--small slds-container--center" style="max-width:540px; margin-top:20px;">
+                                        <br/>
+                                        <br/>
+                                        <h1 style="text-align: center;">There was an error loading and processing payment details. Please try again.</h1>
+                                    </div>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!stepNo != 0}">
+                                    <apex:outputPanel rendered="{!stepNo == 1}">
+                                        <!-- <apex:inputField value="{!opp.Name}" required="true" html-autocomplete="off" /> -->
+                                        <apex:repeat value="{!wrapperList}" var="wrapper">
+                                            <div style="border-style: solid; border-width: 2px; border-radius: 5px; padding: 10px;">
+
+                                                <div align="left">
+
+                                                    <apex:outputText styleClass="slds-input" style="font-weight: bold;" value="{!wrapper.name}" />
+                                                    <apex:outputText styleClass="slds-input" style="float:right; font-weight: bold;" value="£{!wrapper.amount}" />
+
+                                                </div>
+                                                <div align="left">
+
+                                                    <apex:selectRadio style="width:100%;" value="{!wrapper.FinalPaymenttype}" layout="pageDirection" styleClass="radio">
+                                                        <apex:selectOptions value="{!wrapper.staticPaymentTypes}" />
+                                                    </apex:selectRadio>
+                                                    <div style='border-style: solid; border-top: 1px solid; margin-top: 10px;'>
+                                                        <apex:repeat value="{!wrapper.productNames}" var="productName">
+                                                            •&nbsp;
+                                                            <apex:outputText styleClass="slds-input" value="{!productName}" />
+                                                        </apex:repeat>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <apex:outputPanel rendered="{!$Label.Additional_Monthly_Description != '.' && wrapper.opp.Payment_Schedule__r.Frequency__c == 'Monthly'}">
+                                                <apex:outputText value="{!$Label.Additional_Monthly_Description}"/>
+                                                <br/><br/>
+                                            </apex:outputPanel>                                            
+                                        </apex:repeat>
+                                        <div align="center">
+
+                                            <apex:actionStatus id="paymentselectionprocessing">
+                                                <apex:facet name="start">
+                                                    <div class="button button--primary" style="display:inline-block;">PLEASE WAIT...</div>
+                                                </apex:facet>
+                                                <apex:facet name="stop">
+                                                    <apex:commandButton action="{!nextAction}" status="paymentselectionprocessing" reRender="ddForm,header" styleClass="button button--primary"
+                                                        value="{!$Label.Confirm_Payment_Button}" />
+                                                </apex:facet>
+                                            </apex:actionStatus>
+                                        </div>
+
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!stepNo == 2}">
+                                        <apex:actionRegion >
+                                            <apex:outputPanel id="ddDetailsPanel">
+                                                <!-- <h1 class="h2 m-bot--title">Regular Giving</h1> -->
+
+                                                <apex:repeat value="{!directDebitsopps}" var="wrapper">
+                                                    <div style="border-style: solid; border-width: 2px; border-radius: 5px; padding: 10px;">
+                                                        <div align="left">
+
+                                                            <apex:outputText styleClass="slds-input" style="font-weight: bold;" value="{!wrapper.name}" />
+                                                            <apex:outputText styleClass="slds-input" style="float:right; font-weight: bold;" value="£{!wrapper.amount}" />
+
+                                                        </div>
+                                                        <div align="left" style='border-style: solid; border-top: 1px solid; margin-top: 10px;'>
+                                                            <apex:repeat value="{!wrapper.productNames}" var="productName">
+                                                                •&nbsp;
+                                                                <apex:outputText styleClass="slds-input" value="{!productName}" />
+                                                            </apex:repeat>
+
+                                                        </div>
+                                                        <label style="font-weight:bold;">
+                                                            A payment of £{!wrapper.amount} will be taken {!wrapper.opp.Payment_Schedule__r.Frequency__c} on or around the 1st
+                                                        </label>
+
+                                                    </div>
+                                                    <apex:outputPanel rendered="{!$Label.Additional_Monthly_Description != '.' && wrapper.opp.Payment_Schedule__r.Frequency__c == 'Monthly'}">
+                                                        <apex:outputText value="{!$Label.Additional_Monthly_Description}"/>
+                                                        <br/><br/>
+                                                    </apex:outputPanel> 
+                                                </apex:repeat>
+
+                                                <div align="left">
+                                                    <div class="form__field form__field--width-a" style="position:relative;">
+                                                        <label>Account holder's name
+                                                            <span class="required">*</span>
+                                                        </label>
+                                                        <apex:inputField value="{!directDebit.DD_Bank_Account_Name__c}" required="true" html-autocomplete="off" />
+                                                    </div>
+
+                                                    <div class="form__field form__field--width-a {!IF(ddValidated == true, IF(directDebit.DD_Account_Number_OK__c == true, 'modSuccess', 'modError'), '')}"
+                                                        style="position:relative;">
+                                                        <label>Account number
+                                                            <span class="required">*</span>
+                                                        </label>
+                                                        <apex:inputField value="{!directDebit.DD_Bank_Account_Number__c}" required="true" html-autocomplete="off" />
+                                                    </div>
+
+                                                    <div class="form__field form__field--width-g {!IF(ddValidated == true, IF(directDebit.DD_Sort_Code_OK__c == true, 'modSuccess', 'modError'), '')}"
+                                                        style="position:relative;">
+                                                        <label>Sort code
+                                                            <span class="required">*</span>
+                                                        </label>
+                                                        <apex:inputField value="{!directDebit.DD_Bank_Sort_Code__c}" required="true" html-autocomplete="off" />
+                                                    </div>
+
+                                                    <!-- <label style="font-weight:bold;">
+                                                        A payment of £ / month will be taken {!directDebit.DD_Collection_Period__c} on or around the {!directDebit.DD_Collection_Day__c}{!CASE(directDebit.DD_Collection_Day__c,
+                                                        '1', 'st', '2', 'nd', '3', 'rd', '4', 'th', '5', 'th', '6', 'th', '7', 'th',
+                                                        '8', 'th', '9', 'th', '10', 'th', '11', 'th', '12', 'th', '13', 'th', '14',
+                                                        'th', '15', 'th', '16', 'th', '17', 'th', '18', 'th', '19', 'th', '20', 'th',
+                                                        '21', 'st', '22', 'nd', '23', 'rd', '24', 'th', '25', 'th', '26', 'th', '27',
+                                                        'th', '28', 'th', '29', 'th', '30', 'th', '31', 'st', '')}
+                                                    </label> -->
+
+                                                    <div style="margin-top:25px; margin-bottom:25px;">
+                                                        <div style="margin-bottom:20px;">
+                                                            <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/DD.jpg')}" width="110" />
+                                                        </div>
+
+                                                        <label style="font-weight:bold;">The Direct Debit Guarantee</label>
+
+                                                        <ul style="list-style: square;">
+                                                            <li style="padding-top:8px; padding-bottom:8px;">
+                                                                This Guarantee is offered by all Banks and Building Societies that take part in the Direct Debit Scheme with the efficiency
+                                                                and security of the scheme monitored by your own Bank.
+                                                            </li>
+                                                            <li style="padding-top:8px; padding-bottom:8px;">
+                                                                If the amount to be paid or the payment date changes we will notify you five working days in advance of your account being
+                                                                debited, or as other agreed.
+                                                            </li>
+                                                            <li style="padding-top:8px; padding-bottom:8px;">
+                                                                If an error is made by us or your Bank, you are guaranteed a full and immediate refund from your branch of the amount paid.
+                                                            </li>
+                                                            <li style="padding-top:8px; padding-bottom:8px;">
+                                                                You can cancel a Direct Debit at any time by writing to your bank or contacting us.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="form__field">
+                                                        <div class="form__input checkbox">
+                                                            <apex:inputCheckbox id="ddcheck" value="{!ddCheck}" />
+                                                            <label for="{!$Component.ddcheck}" class="is-sans">I have read and accept the Direct Debit Guarantee
+                                                                <span class="required">*</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <apex:outputText rendered="{!ddValidated == true && ddCheck != true}" style="color:Red; font-weight:bold;" value="You must be confirm you have read the Direct Debit Guarantee"
+                                                    />
+
+                                                    <apex:actionRegion >                                                    
+                                                        <apex:commandButton styleClass="button button--primary" style="min-width: 100px;" action="{!back}" status="checkingAccDetailsStatus" reRender="ddForm,header"
+                                                                value="BACK"/> &nbsp; &nbsp; &nbsp;
+                                                    </apex:actionRegion>
+                                                    <apex:actionStatus id="checkingAccDetailsStatus">
+                                                        <apex:facet name="start">
+                                                            <div class="button button--primary" style="display:inline-block;">PLEASE WAIT...</div>
+                                                        </apex:facet>
+                                                        <apex:facet name="stop">                                                            
+                                                            <apex:commandButton styleClass="button button--primary" action="{!nextAction}" status="checkingAccDetailsStatus" reRender="ddForm,header"
+                                                                value="NEXT STEP" />
+                                                        </apex:facet>
+                                                    </apex:actionStatus>
+                                                </div>
+                                            </apex:outputPanel>
+                                        </apex:actionRegion>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!stepNo == 3}">
+                                        <h1 class="h2 m-bot--title">Regular Giving</h1>
+
+                                        <label style="font-weight:bold;">Please confirm your details</label>
+
+                                        <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                            Account holder's name:
+                                        </div>
+                                        <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                            <div class="signupInput">
+                                                <apex:outputField styleClass="slds-input" value="{!directDebit.DD_Bank_Account_Name__c}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                            Sort code:
+                                        </div>
+                                        <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                            <div class="signupInput">
+                                                <apex:outputField styleClass="slds-input" value="{!directDebit.DD_Bank_Sort_Code__c}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                            Account number:
+                                        </div>
+                                        <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                            <div class="signupInput">
+                                                <apex:outputField styleClass="slds-input" value="{!directDebit.DD_Bank_Account_Number__c}" />
+                                            </div>
+                                        </div>
+
+                                        <apex:repeat value="{!ddToCreate}" var="dd">
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <div style="padding: 10px;">
+
+                                                <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                                    Payments of:
+                                                </div>
+                                                <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                                    <div class="signupInput">
+                                                        <apex:outputField styleClass="slds-input" value="{!dd.DD_First_Collection_Amount__c}" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                                    Payments on or around:
+                                                </div>
+                                                <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                                    <div class="signupInput">
+                                                        <apex:outputText value="{!dd.DD_Collection_Period__c} on or around the {!dd.DD_Collection_Day__c}{!CASE(dd.DD_Collection_Day__c, '1', 'st', '2', 'nd', '3', 'rd', '4', 'th', '5', 'th', '6', 'th', '7', 'th', '8', 'th', '9', 'th', '10', 'th', '11', 'th', '12', 'th', '13', 'th', '14', 'th', '15', 'th', '16', 'th', '17', 'th', '18', 'th', '19', 'th', '20', 'th', '21', 'st', '22', 'nd', '23', 'rd', '24', 'th', '25', 'th', '26', 'th', '27', 'th', '28', 'th', '29', 'th', '30', 'th', '31', 'st', '')}"
+                                                            rendered="{!$ObjectType.Income_Direct_Debit__c.fields.DD_Collection_Period__c.Accessible && $ObjectType.Income_Direct_Debit__c.fields.DD_Collection_Day__c.Accessible}"
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                                    Payment start date:
+                                                </div>
+                                                <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                                    <div class="signupInput">
+                                                        <apex:outputField styleClass="slds-input" value="{!dd.DD_Start_Date__c}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </apex:repeat>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                            DD submit date:
+                                        </div>
+                                        <div class="form__inline--large-1-2 ddconfirmation" style="margin-bottom:15px;">
+                                            {!todaysDateFormatted}
+                                        </div>
+
+                                        <div style="margin-top:15px; margin-bottom:15px;">
+                                            <p>Debits will appear on bank statement as from
+                                                <b>Human Appeal</b>
+                                            </p>
+                                            <br/>
+                                            <p>Please confirm your details and finalise the Direct Debit, if you wish to change your
+                                                details click Back</p>
+                                        </div>
+
+                                        <div>
+                                            <apex:actionStatus id="finaliseDDStatus">
+                                                <apex:facet name="start">
+                                                </apex:facet>
+                                                <apex:facet name="stop">
+                                                    <apex:outputPanel >
+                                                        <apex:commandButton action="{!back}" status="checkingAccDetailsStatus" style="min-width: 100px;" reRender="ddForm,header"
+                                                            styleClass="button button--primary" value="BACK" /> &nbsp; &nbsp; &nbsp;
+
+                                                        <apex:actionStatus id="processingstatus">
+                                                            <apex:facet name="start">
+                                                                <div class="button button--primary" style="display:inline-block;">PLEASE WAIT...</div>
+                                                            </apex:facet>
+                                                            <apex:facet name="stop">
+                                                                <apex:commandButton action="{!nextAction}" status="processingstatus" reRender="ddForm,header" styleClass="button button--primary"
+                                                                    value="FINALISE YOUR DIRECT DEBIT" />
+                                                            </apex:facet>
+                                                        </apex:actionStatus>
+                                                    </apex:outputPanel>
+                                                </apex:facet>
+                                            </apex:actionStatus>
+                                        </div>
+                                        <div style="clear:both" />
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!stepNo == 4}">
+                                        <div style="margin-left: 25px;">
+                                            <h1 class="h2 m-bot--title">
+                                                {!if(isRecurringPayment, $Label.Donation_Card_Setup, $Label.Donation_Card_Setup_Single)}
+                                            </h1>
+
+                                            <apex:repeat value="{!oppsToDisplay}" var="wrapper">
+                                                <div style="border-style: solid; border-width: 2px; border-radius: 5px; padding: 10px;">
+
+                                                    <div align="left">
+
+                                                        <apex:outputText styleClass="slds-input" style="font-weight: bold;" value="{!wrapper.name}" />
+                                                        <apex:outputText styleClass="slds-input" style="float:right; font-weight: bold;" value="{!CASE(wrapper.opp.CurrencyIsoCode,'GBP','£','USD','$', 'EUR', '€' ,'')}{!wrapper.amount}" />
+
+                                                    </div>
+                                                    <div align="left" style='border-style: solid; border-top: 1px solid; margin-top: 10px;'>
+                                                        <apex:repeat value="{!wrapper.productNames}" var="productName">
+                                                            •&nbsp;
+                                                            <apex:outputText styleClass="slds-input" value="{!productName}" />
+                                                        </apex:repeat>
+
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <apex:outputPanel rendered="{!$Label.Additional_Monthly_Description != '.' && wrapper.opp.Payment_Schedule__r.Frequency__c == 'Monthly'}">
+                                                    <apex:outputText value="{!$Label.Additional_Monthly_Description}"/>
+                                                    <br/><br/>
+                                                </apex:outputPanel> 
+                                            </apex:repeat>
+                                            <label style="font-weight:bold;">
+                                                <!-- <apex:outputText value="Your card will be charged a total of {!CASE(opp.CurrencyIsoCode,'GBP','£','USD','$', 'EUR', '€' ,'')}{!amountToTake}." rendered="{!isRecurringPayment == false}"/> -->
+                                                <apex:outputText value="{!$Label.Enable_recurring_donations&'.'}" rendered="{!isRecurringPayment == true}"
+                                                />
+                                            </label>
+                                            <div style="position:relative;">
+                                                
+                                                <div id="spinner" style="position:absolute; z-index: 9998; height: 100%; width:100%;">
+                                                    <div align="center" style="z-index: 9999; left: 50%; padding:10px; position: absolute; width: 600px; margin-left: -300px; height:100%;">
+                                                         <div><img src="{!URLFOR($Resource.SMP_DD_Resources, 'img/spinner_purple.gif')}"  /></div>
+                                                         <div>Please Wait</div>
+                                                    </div>
+                                                </div>
+
+                                                <iframe width="100%" height="600px" src="{!cardPaymentUrl}" scrolling="true" id="theIframe" onload="document.getElementById('spinner').style.display='none';"/>
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </body>
+    </html>
+</apex:page>

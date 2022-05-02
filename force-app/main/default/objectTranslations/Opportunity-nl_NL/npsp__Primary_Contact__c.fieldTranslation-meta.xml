@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>De Primaire Contactpersoon voor deze Opportunity. De Primaire Contactpersoon Rol wordt gesynchroniseerd met dit veld. Voor individuele donaties, duidt dit op de bijdrage aan deze Opportunity.</help>
+    <label></label>
+    <name>npsp__Primary_Contact__c</name>
+    <relationshipLabel></relationshipLabel>
+</CustomFieldTranslation>

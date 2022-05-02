@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Repeat_Payments</fullName>
+    <columns>NAME</columns>
+    <columns>Card_Number_Ending__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Payment_Status__c</columns>
+    <columns>RP_Next_Payment_Date__c</columns>
+    <columns>RP_Amount__c</columns>
+    <columns>RP_Description__c</columns>
+    <columns>RP_Enabled__c</columns>
+    <columns>RP_Frequency__c</columns>
+    <columns>RP_Stretch__c</columns>
+    <columns>RP_Start_Date__c</columns>
+    <columns>Total_Amount_Taken__c</columns>
+    <columns>RP_End_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RP_Enabled__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>All Repeat Payments</label>
+</ListView>

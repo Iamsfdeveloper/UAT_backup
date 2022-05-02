@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fundraiser__c</fullName>
+    <externalId>false</externalId>
+    <label>Fundraiser</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Aamilah Begum</fullName>
+                <default>false</default>
+                <label>Aamilah Begum</label>
+            </value>
+            <value>
+                <fullName>Abdullah Saheb​</fullName>
+                <default>false</default>
+                <label>Abdullah Saheb​</label>
+            </value>
+            <value>
+                <fullName>Abdul Malik</fullName>
+                <default>false</default>
+                <label>Abdul Malik</label>
+            </value>
+            <value>
+                <fullName>Adnan Iqbal</fullName>
+                <default>false</default>
+                <label>Adnan Iqbal</label>
+            </value>
+            <value>
+                <fullName>Ahmed Osman</fullName>
+                <default>false</default>
+                <label>Ahmed Osman</label>
+            </value>
+            <value>
+                <fullName>Alina Ali</fullName>
+                <default>false</default>
+                <label>Alina Ali</label>
+            </value>
+            <value>
+                <fullName>Ausba Zanib</fullName>
+                <default>false</default>
+                <label>Ausba Zanib</label>
+            </value>
+            <value>
+                <fullName>Ebrahem Ettoubi</fullName>
+                <default>false</default>
+                <label>Ebrahem Ettoubi</label>
+            </value>
+            <value>
+                <fullName>Fahad Khan</fullName>
+                <default>false</default>
+                <label>Fahad Khan</label>
+            </value>
+            <value>
+                <fullName>FR LEAVER</fullName>
+                <default>false</default>
+                <label>FR LEAVER</label>
+            </value>
+            <value>
+                <fullName>Haitham Aboshady</fullName>
+                <default>false</default>
+                <label>Haitham Aboshady</label>
+            </value>
+            <value>
+                <fullName>Heshmatullah Tajik​</fullName>
+                <default>false</default>
+                <label>Heshmatullah Tajik​</label>
+            </value>
+            <value>
+                <fullName>Inam Malik</fullName>
+                <default>false</default>
+                <label>Inam Malik</label>
+            </value>
+            <value>
+                <fullName>Junaid Afzal</fullName>
+                <default>false</default>
+                <label>Junaid Afzal</label>
+            </value>
+            <value>
+                <fullName>Khaled Gamal</fullName>
+                <default>false</default>
+                <label>Khaled Gamal</label>
+            </value>
+            <value>
+                <fullName>Khalil Benkhalil</fullName>
+                <default>false</default>
+                <label>Khalil Benkhalil</label>
+            </value>
+            <value>
+                <fullName>Mahmoud Yousif​</fullName>
+                <default>false</default>
+                <label>Mahmoud Yousif​</label>
+            </value>
+            <value>
+                <fullName>Mohammed Abid Shah</fullName>
+                <default>false</default>
+                <label>Mohammed Abid Shah</label>
+            </value>
+            <value>
+                <fullName>Mohammed Kalam</fullName>
+                <default>false</default>
+                <label>Mohammed Kalam</label>
+            </value>
+            <value>
+                <fullName>Sefyan Abdulmula</fullName>
+                <default>false</default>
+                <label>Sefyan Abdulmula</label>
+            </value>
+            <value>
+                <fullName>Sibbat Noor</fullName>
+                <default>false</default>
+                <label>Sibbat Noor</label>
+            </value>
+            <value>
+                <fullName>Ubaidah Omar</fullName>
+                <default>false</default>
+                <label>Ubaidah Omar</label>
+            </value>
+            <value>
+                <fullName>Zainab Siddiqui​</fullName>
+                <default>false</default>
+                <label>Zainab Siddiqui​</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

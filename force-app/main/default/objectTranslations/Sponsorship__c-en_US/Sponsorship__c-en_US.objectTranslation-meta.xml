@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Sponsorship</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Sponsorships</value>
+    </caseValues>
+    <layouts>
+        <layout>Sponsorship Layout</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label></label>
+        <name>Conga_Composer_Orphan_Packs</name>
+    </webLinks>
+    <webLinks>
+        <label></label>
+        <name>Conga_Composer_Postal_Annual_Orphan_Report</name>
+    </webLinks>
+</CustomObjectTranslation>

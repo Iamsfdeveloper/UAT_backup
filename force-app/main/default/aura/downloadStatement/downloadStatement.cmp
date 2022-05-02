@@ -1,0 +1,54 @@
+<aura:component controller="P2P_downloadStatement">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="showsideBar" type="Boolean" default="false"/>
+     <aura:attribute name="today" type="String" />
+    <aura:attribute name="startDate" type="Date"/>
+    <aura:attribute name="endDate" type="Date"/>
+    <aura:attribute name="isDisabled" type="Boolean" default="false"/>
+    <aura:attribute name="contactId" type="String" />
+    
+    <a onclick="{!c.toggleSideBar}" class="button button--inline-block button--transparent-hover-primary button--download overlay-activator off-canvas-activator datepicker-init" title="Download statement">Download statement</a>
+    
+	<aside id="download-statement" class="{!(v.showsideBar)?'off-canvas off-canvas--side is-active':'off-canvas off-canvas--side'}">
+    <div class="{!(v.showsideBar)?'off-canvas__side is-active':'off-canvas__side'}">
+        <div class="off-canvas__side__header">
+            <h1 class="off-canvas__side__header__text text-color--primary">{!$Label.c.Download_statement}</h1>
+            <a onclick="{!c.toggleSideBar}" class="off-canvas__close off-canvas-deactivator" title="{!$Label.c.Close}">
+                <span class="visuallyhidden">{!$Label.c.Close}&nbsp;{!$Label.c.Download_statement}</span>
+                <lightning:icon size="x-small" iconName="utility:close" alternativeText="{!$Label.c.Close}" title="{!$Label.c.Close}" />
+
+            </a>
+        </div>
+        <p class="off-canvas__side__intro">{!$Label.c.Download_DateMessage}</p>
+        <div class="download-statement">
+    <form class="form">
+        <div class="form__field form__field--width-b">
+            
+            <div class="calendar-input">
+                <!--<svg class="calendar-input__icon calendar-input__icon__translate-self">
+                    <use xlink:href="/img/svg-sprites.svg#calendar"></use>
+                </svg>-->
+                <lightning:input class="datepicker-activator hasDatepicker" value="{!v.startDate}" type="date" name="startDate" label="{!$Label.c.Start_Date}" placeholder="dd/mm/yyyy" min="2020-01-01" max="{!v.Today}" required="true" messageWhenValueMissing="Enter Start date" aura:id="field" />
+                <!--<input id="download-statement-date-from" type="text" value="" placeholder="dd/mm/yyyy" class="datepicker-activator hasDatepicker"/>-->
+            </div>
+        </div>
+        <div class="form__field form__field--width-b">
+           
+            <div class="calendar-input">
+                <!--<svg class="calendar-input__icon calendar-input__icon__translate-self">
+                    <use xlink:href="/img/svg-sprites.svg#calendar"></use>
+                </svg>-->
+                <!--<input id="download-statement-date-to" type="text" value="" placeholder="dd/mm/yyyy" class="datepicker-activator hasDatepicker"/>-->
+				<lightning:input class="datepicker-activator hasDatepicker" type="date" value="{!v.endDate}" name="endDate" label="{!$Label.c.End_Date}" placeholder="dd/mm/yyyy" min="{!v.startDate}" max="{!v.Today}" required="true" messageWhenValueMissing="Enter End date"  aura:id="field" />
+            </div>
+        </div>
+        <div class="form__field form__field--width-b">
+            <div class="form__input">
+                <lightning:button variant="brand" disabled="{!v.isDisabled}" label="{!$Label.c.Download}" class="button button--block button--secondary input-fill-width" title="Download As Pdf" onclick="{! c.downloadStatement }"  />
+            </div>
+        </div>
+    </form>
+</div>    </div>
+</aside>
+    <div  class="{!(v.showsideBar)?'overlay is-active':'overlay'}"></div>
+</aura:component>

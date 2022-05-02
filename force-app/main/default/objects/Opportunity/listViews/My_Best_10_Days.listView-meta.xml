@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Best_10_Days</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>Website_Code__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>OPPORTUNITY.TYPE</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Donation_Type__c</field>
+        <operation>equals</operation>
+        <value>10D</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.TYPE</field>
+        <operation>equals</operation>
+        <value>Payment Plan - Source</value>
+    </filters>
+    <filters>
+        <field>Website_Code__c</field>
+        <operation>equals</operation>
+        <value>UK</value>
+    </filters>
+    <label>My Best 10 Days - UK</label>
+    <sharedTo>
+        <role>CEO_UK</role>
+        <role>Global_IT_Admin</role>
+    </sharedTo>
+</ListView>

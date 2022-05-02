@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>AR_Donors</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>AR Donors</label>
+        <sharedTo>
+            <roleAndSubordinates>CEO_AR</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Regional_Office_Code__c</field>
+            <operation>equals</operation>
+            <value>AR</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>All_Users</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>All Users</label>
+        <sharedTo>
+            <roleAndSubordinates>Global</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Regional_Office_Code__c</field>
+            <operation>equals</operation>
+            <value>All</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ES_Donors</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ES Donors</label>
+        <sharedTo>
+            <roleAndSubordinates>CEO_ES</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Regional_Office_Code__c</field>
+            <operation>equals</operation>
+            <value>ES</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FR_Donors</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FR Donors</label>
+        <sharedTo>
+            <roleAndSubordinates>CEO_France</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Regional_Office_Code__c</field>
+            <operation>equals</operation>
+            <value>FR</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IE_Donors</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>IE Donors</label>
+        <sharedTo>
+            <roleAndSubordinates>CEO_Ireland</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Regional_Office_Code__c</field>
+            <operation>equals</operation>
+            <value>IE</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UK_Donors</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>UK Donors</label>
+        <sharedTo>
+            <roleAndSubordinates>CEO_UK</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Regional_Office_Code__c</field>
+            <operation>equals</operation>
+            <value>UK</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>US_Donors</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>US Donors</label>
+        <sharedTo>
+            <group>US_Donor_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Regional_Office_Code__c</field>
+            <operation>equals</operation>
+            <value>US</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>

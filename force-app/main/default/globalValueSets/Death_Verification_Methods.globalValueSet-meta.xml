@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Death Certificate</fullName>
+        <default>false</default>
+        <label>Death Certificate</label>
+    </customValue>
+    <customValue>
+        <fullName>Field Office</fullName>
+        <default>false</default>
+        <label>Field Office</label>
+    </customValue>
+    <customValue>
+        <fullName>Witness</fullName>
+        <default>false</default>
+        <label>Witness</label>
+    </customValue>
+    <description>Orphan deceased relatives death verification methods</description>
+    <masterLabel>Death Verification Methods</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

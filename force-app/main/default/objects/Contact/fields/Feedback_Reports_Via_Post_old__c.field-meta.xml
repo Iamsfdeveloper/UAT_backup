@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Feedback_Reports_Via_Post_old__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Field confirms contact accepts postal communication for special request, project and sponsorship reports being sent to them.</description>
+    <externalId>false</externalId>
+    <label>Feedback Reports Via Post</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

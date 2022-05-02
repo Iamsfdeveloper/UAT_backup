@@ -1,0 +1,21 @@
+<aura:component implements="forceCommunity:themeLayout" access="global" description="Human Appeal Theme">
+    <!--<ltng:require styles="{!$Resource.myTheme + '/theme.css'}"  />--><!--scripts="{!$Resource.myTheme + '/theme.js'}"-->
+    <aura:attribute name="navBar" type="Aura.Component[]" required="false" />
+    <aura:attribute name="profileMenu" type="Aura.Component[]" required="false" />
+    <div>
+        
+       	<div class="siteHeader">
+			{!v.profileMenu}
+        </div>
+        <div class="navigation">
+            {!v.navBar}
+        </div>
+        <div class="mainContentArea">
+            {!v.body}
+        </div>
+        <!--<footer class="footer">
+            <c:myAccountFooter/>
+        </footer>-->
+    </div>
+    
+</aura:component>

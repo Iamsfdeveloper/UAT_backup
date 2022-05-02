@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restrict_user_change_active_field</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISCHANGED(IsActive), Call_List_Clearing_In_Progress__c = true)</errorConditionFormula>
+    <errorMessage>Queue Clearing Process is currently In Progress, Active field can be changed only after the process is completed</errorMessage>
+</ValidationRule>

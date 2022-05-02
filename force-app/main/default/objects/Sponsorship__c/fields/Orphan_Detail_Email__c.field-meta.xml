@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Orphan_Detail_Email__c</fullName>
+    <externalId>false</externalId>
+    <formula>&quot;&amp;Id=&quot;+Id+
+&quot;&amp;QueryId=[OD]a210C000000rWGY&quot;+
+&quot;&amp;TemplateId=a290C000000xN42&quot;+
+&quot;&amp;CongaEmailTemplateId=a200C000000nSto&quot;+
+&quot;&amp;SC0=1&quot;+
+&quot;&amp;SC1=Attachments&quot; +
+&quot;&amp;AC0=1&quot;+
+&quot;&amp;AC1=Annual+report+for+&quot; + Orphan_First_Name__c + Orphan_Last_Name__c +
+&quot;&amp;EmailToId=&quot; + Donor_Record_Id__c +
+&quot;&amp;FP0=1&quot; +
+&quot;&amp;EmailFromId=0D20C00000001sW&quot; +
+&quot;&amp;QMode=SendEmail&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Orphan Detail Email</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

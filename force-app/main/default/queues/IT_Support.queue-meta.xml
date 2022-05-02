@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>IT Support</name>
+    <queueMembers>
+        <users>
+            <user>ibrahim.sani@humanappeal.org.uk</user>
+            <user>ihsan.aljafri@humanappeal.org.uk</user>
+            <user>jahed.mubin@humanappeal.org.uk</user>
+            <user>mohammed.alqaisia@humanappeal.org.uk</user>
+            <user>shagufta.humayun@humanappeal.org.uk</user>
+            <user>sondos.ahmed@humanappeal.org.uk</user>
+            <user>zameer.ejaz@humanappeal.org.uk</user>
+        </users>
+    </queueMembers>
+    <queueRoutingConfig>Rule_1</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

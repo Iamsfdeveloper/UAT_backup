@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inactive_Reason__c</fullName>
+    <description>Used to specify the reason a contact is inactive.</description>
+    <externalId>false</externalId>
+    <label>Inactive Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Moving Abroad</fullName>
+                <default>false</default>
+                <label>Moving Abroad</label>
+            </value>
+            <value>
+                <fullName>Deceased</fullName>
+                <default>false</default>
+                <label>Deceased</label>
+            </value>
+            <value>
+                <fullName>Supporter Request</fullName>
+                <default>false</default>
+                <label>Supporter Request</label>
+            </value>
+            <value>
+                <fullName>Data Service Gone Away</fullName>
+                <default>false</default>
+                <label>Data Service Gone Away</label>
+            </value>
+            <value>
+                <fullName>Duplicate Record</fullName>
+                <default>false</default>
+                <label>Duplicate Record</label>
+            </value>
+            <value>
+                <fullName>Earning</fullName>
+                <default>false</default>
+                <label>Earning</label>
+            </value>
+            <value>
+                <fullName>Entered By Mistake</fullName>
+                <default>false</default>
+                <label>Entered By Mistake</label>
+            </value>
+            <value>
+                <fullName>Lack of Feedback</fullName>
+                <default>false</default>
+                <label>Lack of Feedback</label>
+            </value>
+            <value>
+                <fullName>Left Education</fullName>
+                <default>false</default>
+                <label>Left Education</label>
+            </value>
+            <value>
+                <fullName>Mother Remarried</fullName>
+                <default>false</default>
+                <label>Mother Remarried</label>
+            </value>
+            <value>
+                <fullName>Moved Away</fullName>
+                <default>false</default>
+                <label>Moved Away</label>
+            </value>
+            <value>
+                <fullName>Supported from Other Sources</fullName>
+                <default>false</default>
+                <label>Supported from Other Sources</label>
+            </value>
+            <value>
+                <fullName>Field Office No Longer Works in Region</fullName>
+                <default>false</default>
+                <label>Field Office No Longer Works in Region</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Over Age</fullName>
+                <default>false</default>
+                <label>Over Age</label>
+            </value>
+            <value>
+                <fullName>System Transfer</fullName>
+                <default>false</default>
+                <label>System Transfer</label>
+            </value>
+            <value>
+                <fullName>Died</fullName>
+                <default>false</default>
+                <label>Died</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Orphan_Accommodation_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Accommodation Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Flat (Owned)</fullName>
+                <default>false</default>
+                <label>Flat (Owned)</label>
+            </value>
+            <value>
+                <fullName>Flat (Rented)</fullName>
+                <default>false</default>
+                <label>Flat (Rented)</label>
+            </value>
+            <value>
+                <fullName>House (Rented)</fullName>
+                <default>false</default>
+                <label>House (Rented)</label>
+            </value>
+            <value>
+                <fullName>House (Owned)</fullName>
+                <default>false</default>
+                <label>House (Owned)</label>
+            </value>
+            <value>
+                <fullName>Orphanage</fullName>
+                <default>false</default>
+                <label>Orphanage</label>
+            </value>
+            <value>
+                <fullName>Refugee Camp</fullName>
+                <default>false</default>
+                <label>Refugee Camp</label>
+            </value>
+            <value>
+                <fullName>Unspecified</fullName>
+                <default>false</default>
+                <label>Unspecified</label>
+            </value>
+            <value>
+                <fullName>With Relatives</fullName>
+                <default>false</default>
+                <label>With Relatives</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

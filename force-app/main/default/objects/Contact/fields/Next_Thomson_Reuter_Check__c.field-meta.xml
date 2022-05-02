@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Next_Thomson_Reuter_Check__c</fullName>
+    <description>Calculate next Thomson Reuter&apos;s Reference Check field</description>
+    <externalId>false</externalId>
+    <formula>DATE(YEAR( Thomson_Reuter_Check__c )+1, MONTH(Thomson_Reuter_Check__c), DAY(Thomson_Reuter_Check__c))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Next Thomson Reuter Check</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

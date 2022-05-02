@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Het Bedrag van de meest recente (Sluitingsdatum) Gewonnen Opportunity met een Bedrag groter dan nul gerelateerd aan dit Account.</help>
+    <label></label>
+    <name>npo02__LastOppAmount__c</name>
+</CustomFieldTranslation>

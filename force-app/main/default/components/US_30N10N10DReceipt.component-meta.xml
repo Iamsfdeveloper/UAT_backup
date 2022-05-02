@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <label>US 30N10N10D Receipt</label>
+    <packageVersions>
+        <majorNumber>3</majorNumber>
+        <minorNumber>213</minorNumber>
+        <namespace>npsp</namespace>
+    </packageVersions>
+</ApexComponent>

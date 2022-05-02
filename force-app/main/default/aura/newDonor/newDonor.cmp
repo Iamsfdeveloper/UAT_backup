@@ -1,0 +1,47 @@
+<!--
+  @description       : 
+  @author            : Iamsfdeveloper
+  @group             : 
+  @last modified on  : 01-10-2022
+  @last modified by  : Iamsfdeveloper
+-->
+<aura:component implements="force:lightningQuickAction" >
+
+    <aura:registerEvent name="close" type="c:closeEvent"/>
+    <aura:attribute name="selectedAddressObject" type="Map"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="contactDetails" type="Contact"/>
+    <aura:attribute name="closeModal" type="Boolean" default="false" />
+    <lightning:recordEditForm aura:id="newDonor" recordId="{!v.recordId}" objectApiName="Contact" onsubmit="{!c.handleSubmit}"  onsuccess="{!c.handleSuccess}">
+        <lightning:messages />
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem size="12">
+                <lightning:outputField fieldName="AccountId" />
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12">
+                <lightning:inputField fieldName="FirstName" required="true"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12">
+                <lightning:inputField fieldName="LastName" required="true"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12">
+                <lightning:inputField fieldName="Email" required="true"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12">
+                <lightning:inputField fieldName="MobilePhone" required="true"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12">
+                <lightning:inputField fieldName="Gift_Aid_Status__c" required="true"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12">
+                <c:findAddressByPostalCode selectedAddressObject="{!v.selectedAddressObject}" />
+            </lightning:layoutItem>
+        </lightning:layout>
+        <div class="slds-modal__footer">
+        <lightning:buttonGroup>
+            <lightning:button class="slds-m-top_small" variant="neutral"  onclick="{!c.close}" name="cancel" label="Cancel" />
+        <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update" />
+        </lightning:buttonGroup>
+        </div>
+    </lightning:recordEditForm>
+</aura:component>

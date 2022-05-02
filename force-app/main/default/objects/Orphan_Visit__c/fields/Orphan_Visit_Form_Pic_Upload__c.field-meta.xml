@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Orphan_Visit_Form_Pic_Upload__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( ISPICKVAL( Status__c , &quot;Completed&quot;),&quot;Orphan Visit form already completed&quot;, HYPERLINK(&quot;/flow/Orphan_Photo_Upload?recordId=&quot;&amp;CASESAFEID(Id), &quot;Orphan Visit&quot;, &quot;_self&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Orphan Visit Form Pic Upload</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

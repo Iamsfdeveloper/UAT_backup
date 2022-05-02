@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>De Gehonoreerde Naam gegeven door de donateur. Als dit veld leeg is en de Gehonoreerde Contactpersoon heeft een waarde, wordt dit veld automatisch daarmee gevuld.</help>
+    <label></label>
+    <name>npsp__Honoree_Name__c</name>
+</CustomFieldTranslation>

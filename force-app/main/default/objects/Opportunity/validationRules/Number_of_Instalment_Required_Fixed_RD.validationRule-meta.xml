@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Instalment_Required_Fixed_RD</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Not(CONTAINS($User.Alias, &apos;inte&apos;)),ISPICKVAL(Recurring_Type__c, &apos;Fixed&apos;), IF(ISNULL(Number_of_Installments__c) || Number_of_Installments__c &lt; 1, true, false) )</errorConditionFormula>
+    <errorDisplayField>Number_of_Installments__c</errorDisplayField>
+    <errorMessage>Number of  Installment is Required for Fixed Recurring Donation</errorMessage>
+</ValidationRule>

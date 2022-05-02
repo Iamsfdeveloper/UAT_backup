@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Class_Until_Finance_Approved</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ISCHANGED(StageName),  ISPICKVAL(StageName,&apos;Refunded&apos;), NOT(ISPICKVAL(PRIORVALUE(StageName),&apos;Finance Approval&apos;)),  RecordType.DeveloperName == &apos;Refund&apos; 
+)</errorConditionFormula>
+    <errorDisplayField>StageName</errorDisplayField>
+    <errorMessage>Record cannot be closed before Finance Approval.</errorMessage>
+</ValidationRule>

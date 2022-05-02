@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="recordId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <sharinpix:SharinPix aura:id="sharinpix-cmp" AlbumId="{! v.recordId }" height="500px" />
+    <aura:handler event="sharinpix:Event" action="{!c.handleEvent}" />
+</aura:component>

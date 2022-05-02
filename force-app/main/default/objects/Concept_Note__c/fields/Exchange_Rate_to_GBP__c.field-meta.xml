@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exchange_Rate_to_GBP__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Exchange Rate Based on the Exchange currency selected</inlineHelpText>
+    <label>Exchange Rate to GBP</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>6</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

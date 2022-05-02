@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Donations_This_Month</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>npe03__Recurring_Donation__c</columns>
+    <columns>Transaction_Id__c</columns>
+    <columns>Donation_Type__c</columns>
+    <columns>Source__c</columns>
+    <columns>Medium__c</columns>
+    <columns>Department__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Donation_Type__c</field>
+        <operation>equals</operation>
+        <value>SD</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Paid</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.CLOSE_DATE</field>
+        <operation>equals</operation>
+        <value>THIS_MONTH</value>
+    </filters>
+    <label>All Donations This Month</label>
+    <language>en_US</language>
+</ListView>

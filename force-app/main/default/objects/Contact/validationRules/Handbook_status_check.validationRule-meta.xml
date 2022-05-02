@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Handbook_status_check</fullName>
+    <active>false</active>
+    <description>If Handbook sent is checked then Date will be required field.</description>
+    <errorConditionFormula>AND( Handbook_Sent__c = TRUE ,ISBLANK(Handbook_Sent_Date__c) )</errorConditionFormula>
+    <errorDisplayField>Handbook_Sent_Date__c</errorDisplayField>
+    <errorMessage>Please Enter the Handbook sent Date</errorMessage>
+</ValidationRule>

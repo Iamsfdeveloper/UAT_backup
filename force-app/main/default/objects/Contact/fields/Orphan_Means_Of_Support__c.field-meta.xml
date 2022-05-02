@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Orphan_Means_Of_Support__c</fullName>
+    <externalId>false</externalId>
+    <label>Means Of Support</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Charitable Donations</fullName>
+                <default>false</default>
+                <label>Charitable Donations</label>
+            </value>
+            <value>
+                <fullName>Community Support</fullName>
+                <default>false</default>
+                <label>Community Support</label>
+            </value>
+            <value>
+                <fullName>Family Support</fullName>
+                <default>false</default>
+                <label>Family Support</label>
+            </value>
+            <value>
+                <fullName>Friends Support</fullName>
+                <default>false</default>
+                <label>Friends Support</label>
+            </value>
+            <value>
+                <fullName>Handouts</fullName>
+                <default>false</default>
+                <label>Handouts</label>
+            </value>
+            <value>
+                <fullName>Loans</fullName>
+                <default>false</default>
+                <label>Loans</label>
+            </value>
+            <value>
+                <fullName>Neighbours Support</fullName>
+                <default>false</default>
+                <label>Neighbours Support</label>
+            </value>
+            <value>
+                <fullName>Pension</fullName>
+                <default>false</default>
+                <label>Pension</label>
+            </value>
+            <value>
+                <fullName>Savings</fullName>
+                <default>false</default>
+                <label>Savings</label>
+            </value>
+            <value>
+                <fullName>Temporary Work</fullName>
+                <default>false</default>
+                <label>Temporary Work</label>
+            </value>
+            <value>
+                <fullName>Unspecified</fullName>
+                <default>false</default>
+                <label>Unspecified</label>
+            </value>
+            <value>
+                <fullName>Work</fullName>
+                <default>false</default>
+                <label>Work</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

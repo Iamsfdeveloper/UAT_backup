@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Not_allowed_stage_changed</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISCHANGED(Stage__c),OR(ISPICKVAL(Stage__c,&apos;Approved-DC&apos;),ISPICKVAL(Stage__c,&apos;Approved-HoP&apos;),ISPICKVAL(Stage__c,&apos;Approved - Finance&apos;),
+ISPICKVAL(Stage__c,&apos;Approved-Donor&apos;)))</errorConditionFormula>
+    <errorMessage>The stage cannot be manually changed , Please submit for approval</errorMessage>
+</ValidationRule>

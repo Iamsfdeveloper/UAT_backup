@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_System_Supporter__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Defines a user used for System purposes, like the anonymous contact, the orphan pool sponsor, the importer of automated web imports, etc...</description>
+    <externalId>false</externalId>
+    <label>Is System Supporter</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

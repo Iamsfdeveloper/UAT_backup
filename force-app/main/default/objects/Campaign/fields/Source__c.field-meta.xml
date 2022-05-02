@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source__c</fullName>
+    <description>This can sometimes be known as &quot;Event Type&quot;</description>
+    <externalId>false</externalId>
+    <label>Source</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Department__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>Source</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <valueName>Affiliate / partner marketing (including sponsorship)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <valueName>Display Direct</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <valueName>Email marketing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Donor Care</controllingFieldValue>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <valueName>Leaflets / posters</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <valueName>Organic search</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <valueName>Paid search</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <valueName>Peer to Peer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Donor Care</controllingFieldValue>
+            <valueName>Post – direct mail, door drops</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <valueName>PPC</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Donor Care</controllingFieldValue>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <valueName>Radio Appeal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <valueName>Referral</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <valueName>SMS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <valueName>Social media marketing – Facebook</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <valueName>Social media marketing – Instagram</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <valueName>Social media marketing –  Twitter</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Benevity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Everyday hero</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Facebook Giving</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Go Fund Me</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Just Giving</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>LaunchGood</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <valueName>Third party giving - Muslim Giving</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Ramadhan Giving</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Virgin Money</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <controllingFieldValue>Donor Care</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <valueName>TV Live Appeal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comms</controllingFieldValue>
+            <valueName>Website (appeal / product landing page)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Donor Care</controllingFieldValue>
+            <valueName>Call Centre</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Donor Care</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <valueName>In Kind Donations</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Donor Care</controllingFieldValue>
+            <valueName>Pledges</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Donor Care</controllingFieldValue>
+            <valueName>Word Of Mouth</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <valueName>Challenge</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <valueName>Collection – street, mosques</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <valueName>Community Fundraising</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <valueName>Events – Tours, Dinners, Challenges, Stalls</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <valueName>High Network Donor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <valueName>Influencer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <valueName>Partnerships</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <valueName>Retail Shops</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <valueName>Speaker</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <valueName>Tour</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Unspecified Agency</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Unspecified Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <valueName>Volunteer Fundraising Event</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundraising</controllingFieldValue>
+            <controllingFieldValue>Emerging Market</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Third Party giving - Givebrite</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Emerging Market</controllingFieldValue>
+            <valueName>International Offices</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Emerging Market</controllingFieldValue>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <controllingFieldValue>Institutional Funding</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Unspecified Bank Transfer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ME Fund Development</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Charities Trust</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Institutional Funding</controllingFieldValue>
+            <valueName>Institutional Funds</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

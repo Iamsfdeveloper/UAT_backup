@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Feedback_Notifications_Via_Sms__c</fullName>
+    <description>Removed from all Contact page layouts and FLS 27/01/2021 because not required as part of the any solution</description>
+    <externalId>false</externalId>
+    <label>Feedback Notifications Via Sms</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>GDPR</valueSetName>
+    </valueSet>
+</CustomField>

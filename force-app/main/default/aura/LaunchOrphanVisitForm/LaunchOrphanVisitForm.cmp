@@ -1,0 +1,78 @@
+<aura:component controller = "LaunchOrphanVisitForm" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute type="Orphan_Visit__c[]" name="OrphanVisitList"/>
+    <aura:attribute name="recordIdOV" type="String"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    <aura:attribute type="Boolean" name="ismodalClicked"/>
+    <aura:attribute name="SearchKeyword" type="String" />  
+    <aura:attribute name="countOV" type = "Integer"/>
+    <aura:handler name="init" value="{!this}" action="{!c.fetchOrphanVisit}"/>
+    <aura:attribute name="showSearch" type = "boolean"/>
+    
+    <div class="slds-scrollable">
+        <aura:if isTrue="{!v.showSearch}">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_2-of-3">
+                    <ui:inputText aura:id="searchInput" 
+                                  
+                                  placeholder = "Search..."
+                                  keyup="{!c.doSearch}" 
+                                  updateOn="keyup" />
+                </div>
+                <div class="slds-col slds-size_1-of-3 slds-box slds-box_xx-small" style="width: fit-content;">
+                    Total Visit Due: {!v.countOV}
+                </div>
+            </div>
+            <br/>
+        </aura:if>
+    <div>            
+    <table class="slds-table slds-table_bordered slds-table--striped slds-table_resizable-cols slds-table_col-bordered">
+        <thead>
+            <tr>
+                <th scope="col"><span class="slds-truncate"> Orphan Visit Form </span></th>
+                <th scope="col"><span class="slds-truncate"> Orphan Name</span></th>
+                <th scope="col"><span class="slds-truncate"> Status</span></th>
+                <th scope="col"><span class="slds-truncate"> Due Date</span></th>
+                <th scope="col"><span class="slds-truncate"> Orphan Sponsoree Id</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:if isTrue="{!v.OrphanVisitList.length ==0}">
+            	<tr colspan="5">
+                    <td style="textAlign:center;">No Visit Due This Year</td>
+                </tr>
+            </aura:if>
+            <aura:iteration items="{!v.OrphanVisitList}" var="ov">
+                <tr>
+                    <td><button type="button" onclick="{!c.openmodal}" id="{!ov.Id}">Start</button></td>
+                    <td>{!ov.Orphan__r.Name}</td>
+                    <td>{!ov.Status__c}</td>
+                    <td>{!ov.Due_Date__c}</td>
+                    <td>{!ov.Orphan__r.Sponsoree_ID__c}</td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+        </table></div></div>
+    <aura:if isTrue="{!v.ismodalClicked}">
+    					<div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal">
+        					<div class="slds-modal__container">
+            					<div class="slds-modal__header">
+                                        <lightning:buttonIcon iconName="utility:close" class="slds-modal__close" variant="bare-inverse" onclick="{! c.closeModal }" alternativeText="Close" title="Close" />
+								<!--
+                					<button class="slds-button slds-modal__close slds-button__icon-inverse" title="Close" onclick="{!c.closeModal}">
+                    					<span class="slds-assistive-text">Close</span>
+                					</button>-->
+                					<h2 id="header43" class="slds-text-heading--medium">Orphan Visit Form</h2>
+            					</div>
+            					<div class="slds-modal__content slds-p-around--medium">
+                				<div>
+                    			<c:OrphanVisitModal recordId="{!v.recordIdOV}"/>
+                				</div>
+            					</div>
+            					<div class="slds-modal__footer">
+            					</div>
+        					</div>
+    					</div>
+					</aura:if>
+					<div class="slds-backdrop " aura:id="Modalbackdrop"></div>
+</aura:component>

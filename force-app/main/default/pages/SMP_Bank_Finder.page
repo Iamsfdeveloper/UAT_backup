@@ -1,0 +1,23 @@
+<apex:page standardController="Income_Direct_Debit__c" extensions="SMP_BankFinderController" showHeader="false"  action="{!start}">
+
+
+<apex:form >
+<apex:pageBlock >
+<apex:pageBlockSection columns="2">
+
+
+<apex:outputField value="{!Income_Direct_Debit__c.DD_Bank_Name__c}" />
+<apex:outputField value="{!Income_Direct_Debit__c.DD_Sort_Code_OK__c}" />
+<apex:outputField value="{!Income_Direct_Debit__c.DD_Branch_Name__c}"/>
+<apex:outputField value="{!Income_Direct_Debit__c.DD_Account_Number_OK__c}"/>
+<apex:outputText ></apex:outputText>
+<apex:outputField value="{!Income_Direct_Debit__c.DD_OK__c}"/>
+<apex:inputHidden value="{!Income_Direct_Debit__c.DD_Bank_Sort_Code__c}"/>
+<apex:inputHidden value="{!Income_Direct_Debit__c.DD_Bank_Account_Number__c}"/>
+<apex:inputHidden value="{!Income_Direct_Debit__c.LastModifiedDate}"/>
+
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

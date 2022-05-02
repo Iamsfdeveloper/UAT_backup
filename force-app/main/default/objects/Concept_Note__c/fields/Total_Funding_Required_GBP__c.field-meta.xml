@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Funding_Required_GBP__c</fullName>
+    <externalId>false</externalId>
+    <formula>Total_Budget_Amount_in_GBP__c + ( FO_Support__c *  Total_Budget_Amount_in_GBP__c ) + ( HQ_Support__c *  Total_Budget_Amount_in_GBP__c )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Secondary themes for the Concept Notes</inlineHelpText>
+    <label>Total Funding Required (GBP)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,174 @@
+<apex:component access="global" controller="ReceiptTemplateController">
+    <apex:attribute name="opportunityId" type="Id" assignTo="{!oppId}" description="Opportunity Id"/>
+    <apex:attribute name="opp" type="Opportunity" description="Opportunity"/>
+    <apex:attribute name="payment" type="npe01__OppPayment__c" description="Card Payment"/>
+    <apex:attribute name="theContact" type="Contact" description="Contact"/>
+    <apex:attribute name="language" type="String" default="ES" assignTo="{!lang}"  description="Language"/>
+
+    <apex:stylesheet value="{!URLFOR($Resource.SMP_DD_Resources, 'css/ReceiptTemplate.css')}"/>
+
+    <div>
+        <div style="float:left;">
+            <apex:outputText value="{!SUBSTITUTE(theContact.Salutation, '.', '')} " rendered="{!ISBLANK(theContact.Salutation) == false}"/><apex:outputField value="{!theContact.Name}"/><br/>
+            <apex:outputField value="{!theContact.MailingStreet}"/><br/>
+            <apex:outputField value="{!theContact.MailingCity}"/><br/>
+            <apex:outputField value="{!theContact.MailingPostalCode}"/>
+        </div>
+      
+        <div style = "display:flex; flex-direction:column; justify-content: space-between; float: right;">
+
+            <div style="margin-bottom: 30%;">
+
+                <apex:image id="theImage" value="{!URLFOR($Resource.SMP_DD_Resources, 'images/ha-logo-nobox.png')}" width="130px" height="130px" alt="Human Appeal logo" style="object-fit: cover;"/>
+        
+            </div>
+            
+        
+            <div style="text-align:right;">   
+                Página 1 de 1<br/><br/>
+                <apex:outputText value="ID del donante: {!theContact.Donor_ID__c}"/><br/><br/>
+                <apex:outputText value="{!DAY(opp.CloseDate)}/{!MONTH(opp.CloseDate)}/{!YEAR(opp.CloseDate)}"/>
+            </div>
+
+        </div>
+        
+       
+        <div style="clear:both"/>
+        
+        <h2 style="margin-top: 67px; margin-bottom: 0px;">
+            <apex:outputText value="Recibo de tu donación" rendered="{!opp.Type =='Donation'}"/>
+            <apex:outputText value="Recibo de Donación Regular" rendered="{!opp.Type =='Payment Plan - Source'}"/>
+        </h2>
+
+
+        <apex:outputPanel rendered="{!and(opp.Type !='Payment Plan - Source', Or(opp.Donation_Type__c =='30N' || opp.Donation_Type__c =='10N' || opp.Donation_Type__c =='10D'))}">
+            <table>
+                <tr>
+                    <th style="width:350px;">Tipo</th>
+                    <th style="width:350px;">Proyecto</th>
+                    <th style="width:300px;">Localización</th>
+                    
+                </tr>
+                <apex:repeat var="prod" value="{!lstProdWrap}">
+                    <tr>
+                        <td><apex:outputText value="{!prod.stipulationType}"/></td>
+                        <td><apex:outputText value="{!prod.name}"/></td>
+                        <td><apex:outputText value="{!prod.country}"></apex:outputText></td>
+                        
+                    </tr>
+                </apex:repeat>
+                
+                <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                    <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="4">
+                        <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                        <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,00.00}">
+                            <apex:param value="{!opp.Amount}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+            </table>  
+        </apex:outputPanel>
+
+        <apex:outputPanel rendered="{!and(opp.Type !='Payment Plan - Source', opp.Donation_Type__c !='30N', opp.Donation_Type__c !='10N', opp.Donation_Type__c !='10D')}">
+            <table>
+                <tr>
+                    <th style="width:140px;">Tipo</th>
+                    <th style="width:350px;">Proyecto</th>
+                    <th style="width:300px;">Localización</th>
+                    <th style="width:150px; text-align:right;">Cantidad</th>
+                </tr>
+                <apex:repeat var="prod" value="{!lstProdWrap}">
+                    <tr>
+                        <td><apex:outputText value="{!prod.stipulationType}"/></td>
+                        <td><apex:outputText value="{!prod.name}"/></td>
+                        <td><apex:outputText value="{!prod.country}"></apex:outputText></td>
+                        <td style="text-align:right;"><apex:outputText value="{!CASE(prod.currencyCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!prod.amount}"/></td>                    
+                    </tr>
+                </apex:repeat>
+                <apex:repeat value="{!Breakdown}" var="type">
+                    <tr style="border: 0px;">
+                        
+                        <td style="text-align:right; border: 0px; width:100px;" colspan="4">
+                            <b>
+                            <apex:outputText value="Total Zakat" rendered="{!type == 'ZK'}"/>
+                            <apex:outputText value="Total General Charity" rendered="{!type == 'XX'}"/>
+                            <apex:outputText value="Total Sadaqah" rendered="{!type == 'SD'}"/>
+                            &nbsp;&nbsp;&nbsp;</b>
+                            <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!Breakdown[type]}"/>
+                        </td>
+                    </tr>
+                </apex:repeat>
+                <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                    <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="4">
+                        <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                        <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,00.00}">
+                            <apex:param value="{!opp.Amount}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+            </table>  
+        </apex:outputPanel>
+
+
+        <apex:outputPanel rendered="{!opp.Type =='Payment Plan - Source'}">
+            <table>
+                <tr>
+                    <!-- total 950 px -->
+                    <th style="width: 100px">Tipo</th>
+                    <th style="width: 200px">Proyecto</th>
+                    <th style="width: 100px">Fecha inicial</th>
+                    <th style="width: 100px">Fecha final</th>
+                    <th style="width: 100px">Descripción</th>
+                    <th style="text-align: right">Cantidad</th>
+                </tr>
+                <apex:repeat var="prod" value="{!lstProdWrap}">
+                    <tr>
+                        <td><apex:outputText value="{!prod.stipulationType}"/></td>
+                        <td><apex:outputText value="{!prod.name}"/></td>
+                        <td><apex:outputField value="{!opp.Effective_Date__c}"/></td>
+                        <td><apex:outputText value="{0, date, dd/MM/yyyy}"><apex:param value="{!opp.End_Date__c}" /> </apex:outputText></td>
+                        <td>
+                            <apex:outputText rendered="{!opp.Donation_Type__c == '30N'}">Proyecto 30 Noches de Ramadán</apex:outputText>
+                            <apex:outputText rendered="{!opp.Donation_Type__c == '10N'}">Proyecto 10 Noches de Ramadán</apex:outputText>
+                            <apex:outputText rendered="{!opp.Donation_Type__c == '10D'}">Proyecto mis 10 mejores días</apex:outputText>
+                        </td>
+                        <td style="text-align:right;"><apex:outputText value="{!CASE(prod.currencyCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!prod.amount}"/></td>                    
+                    </tr>
+                </apex:repeat>
+                
+                <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">  
+                    <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="6">
+                        <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                        <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,0.00}"><apex:param value="{!opp.Amount}" /></apex:outputText><br/>
+                    </td>
+                </tr>
+            </table>       
+        </apex:outputPanel>
+
+        <div style="margin-top:5px;">
+            <div style="display: inline; padding-right: 15px">
+                <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/regulator.png')}" width="160px"/>
+            </div>    
+            <div style="display: inline; padding-left: 15px">
+                <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/HA30badge.png')}" width="80px" height="80px"/>   
+            </div>                     
+        </div>  
+
+
+        <div style="margin-top:15px; font-size:11px; color: #838383">
+            <div style="position: fixed;bottom: 0;">
+                <p style=" color: #662d91; font-size: 11px; display: inline;">         
+                        <strong>HUMAN APPEAL ESPAÑA</strong>&nbsp;&nbsp;&bull;&nbsp;&nbsp;Calle Arquitecto Rodríguez 8, bajo. 46019 Valencia</p>
+                <p style="color: #662d91; font-size: 10px; display: inline;">
+                        <br/>humanappeal.es&nbsp;&nbsp;&bull;&nbsp;&nbsp;info@humanappeal.es&nbsp;&nbsp;&bull;&nbsp;&nbsp;+34 961 156 245<br/>  
+                </p>
+                <p style="color: #662d91; font-size: 10px; display: inline;">
+                        CIF: G98673866&nbsp;&nbsp;&bull;&nbsp;&nbsp;Fundación nº 46-0211<br/>  
+                </p>
+            </div>  
+
+        </div>  
+
+
+    </div>
+</apex:component>

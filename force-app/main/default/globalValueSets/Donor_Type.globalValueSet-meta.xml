@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Corporate</fullName>
+        <default>false</default>
+        <label>Corporate</label>
+    </customValue>
+    <customValue>
+        <fullName>Government</fullName>
+        <default>false</default>
+        <label>Government</label>
+    </customValue>
+    <customValue>
+        <fullName>HA Partner</fullName>
+        <default>false</default>
+        <label>HA Partner</label>
+    </customValue>
+    <customValue>
+        <fullName>International NGO</fullName>
+        <default>false</default>
+        <label>International NGO</label>
+    </customValue>
+    <customValue>
+        <fullName>Private Individual</fullName>
+        <default>false</default>
+        <label>Private Individual</label>
+    </customValue>
+    <customValue>
+        <fullName>Public</fullName>
+        <default>false</default>
+        <label>Public</label>
+    </customValue>
+    <customValue>
+        <fullName>Strategic Partners</fullName>
+        <default>false</default>
+        <label>Strategic Partners</label>
+    </customValue>
+    <customValue>
+        <fullName>Trust &amp; Foundation</fullName>
+        <default>false</default>
+        <label>Trust &amp; Foundation</label>
+    </customValue>
+    <customValue>
+        <fullName>UN agency</fullName>
+        <default>false</default>
+        <label>UN agency</label>
+    </customValue>
+    <description>Types of Donors</description>
+    <masterLabel>Donor Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

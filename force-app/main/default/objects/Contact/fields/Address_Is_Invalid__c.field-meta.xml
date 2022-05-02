@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Address_Is_Invalid__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This property is used to distinguish contacts whose addresses have been verified as incorrect, but have not been updated by the contact, for example, this could happen by returned mail.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Tick this if contact address is incorrect and contact is active.</inlineHelpText>
+    <label>Address Is Invalid</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

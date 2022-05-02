@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dialer_Queue_UK_3_Call_List</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Dialer Queue-UK-3</label>
+    <queue>Dialer_Queue_UK_3</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,16 @@
+<!--
+  @description       : 
+  @author            : Iamsfdeveloper
+  @group             : 
+  @last modified on  : 04-27-2022
+  @last modified by  : Iamsfdeveloper
+-->
+<template>
+  <template if:true={showSpinner}>
+    <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
+</template>
+  <div if:true={recordId} style="padding-top: 2rem;">
+   <iframe src={sourceurl} allowpaymentrequest="true" width="100%" height="480px;" frameborder="0"></iframe>
+  </div>
+  
+</template>

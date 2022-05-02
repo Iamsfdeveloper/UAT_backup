@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <name>Donation Support</name>
+    <queueMembers>
+        <users>
+            <user>arshad.shariff@humanappeal.org.uk</user>
+            <user>ateek.mahmood@humanappeal.org.uk</user>
+            <user>jahed.mubin@humanappeal.org.uk</user>
+            <user>kanwal.singh@humanappeal.org.uk</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>Task</sobjectType>
+    </queueSobject>
+</Queue>

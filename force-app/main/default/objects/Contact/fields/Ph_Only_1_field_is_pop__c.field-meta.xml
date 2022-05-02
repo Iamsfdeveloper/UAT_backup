@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ph_Only_1_field_is_pop__c</fullName>
+    <externalId>false</externalId>
+    <formula>AND (NOT (Phones_are_different__c = True),
+     OR ( 
+     AND (
+          !ISBLANK(Phone),
+          Phone != MobilePhone,
+          Phone != npe01__WorkPhone__c,
+          Phone != HomePhone
+         ),
+
+    AND (
+          !ISBLANK(MobilePhone),
+          MobilePhone != Phone,
+          MobilePhone != npe01__WorkPhone__c,
+          MobilePhone != HomePhone
+         ),
+
+    AND (
+           !ISBLANK(npe01__WorkPhone__c),
+           npe01__WorkPhone__c != MobilePhone,
+           npe01__WorkPhone__c != Phone,
+           npe01__WorkPhone__c != HomePhone
+     ),
+
+    AND (
+          !ISBLANK(HomePhone),
+          HomePhone != MobilePhone,
+          HomePhone != npe01__WorkPhone__c,
+          HomePhone != Phone
+         )
+    )
+   )</formula>
+    <label>Ph Only 1 field is pop</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

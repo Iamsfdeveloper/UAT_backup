@@ -1,0 +1,4 @@
+.orphanSelector>.slds-table_cell-buffer tr>th:first-child, .slds-table_cell-buffer tr>td:first-child, .slds-table--cell-buffer tr>th:first-child, .slds-table--cell-buffer tr>td:first-child {
+    padding-left: var(--lwc-spacingLarge,1.5rem);
+    padding-right: var(--lwc-spacingLarge,1.5rem) !important;
+}

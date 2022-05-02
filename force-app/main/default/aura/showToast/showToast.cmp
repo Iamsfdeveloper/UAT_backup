@@ -1,0 +1,15 @@
+<!--
+  @File Name          : showToast.cmp
+  @Description        : 
+  @Author             : agentgill
+  @Group              : 
+  @Last Modified By   : agentgill
+  @Last Modified On   : 3/12/2020, 9:18:25 PM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    3/12/2020   agentgill     Initial Version
+-->
+<aura:component implements="lightning:availableForFlowActions">
+  <aura:attribute name="type" type="string" default="success" />
+  <aura:attribute name="messageText" type="string" />
+</aura:component>

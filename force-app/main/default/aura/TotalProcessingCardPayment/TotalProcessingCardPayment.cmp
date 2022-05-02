@@ -1,0 +1,7 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="HA_TotalProcessingPaymentController">
+	 <aura:attribute name="paymentURL" type="String" /> 
+    <ltng:require scripts='{! v.paymentURL }'/>
+    <div align="center" >
+		<form action="https://totalprocessing.docs.oppwa.com/tutorials/integration-guide" class="paymentWidgets" data-brands="VISA MASTER AMEX"></form>
+    </div>
+</aura:component>

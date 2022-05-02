@@ -1,0 +1,393 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="myDonationController">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler  name="change" value="{!v.selectedType}" action="{!c.typeChange}"/>
+    <aura:attribute type="List" name="donationList" default="[]" />
+    <aura:attribute type="Boolean" name="paymentPlan" default="false" />
+    <aura:attribute type="Boolean" name="showFilter" default="false" />
+    <aura:attribute name="today" type="String" />
+    <aura:attribute name="startDate" type="Date" />
+    <aura:attribute name="endDate" type="Date" />
+    <aura:attribute name="options" type="List" default="[
+                                                        {'label': 'Zakat', 'value': 'ZK'},
+                                                        {'label': 'Sadaqh', 'value': 'SD'},
+                                                        {'label': 'General', 'value': 'XX'}                                                  
+    													]" />
+    <aura:attribute name="selectedType" type="List" />
+    <aura:attribute type="Boolean" name="showRow" default="true" />
+    <aura:attribute type="Boolean" name="showSpinner" default="true" />
+    <aura:attribute type="String" name="typeString" default="" />
+    <aura:attribute type="Integer" name="totalSadaqh" default="0.00" />
+    <aura:attribute type="Integer" name="totalZakat" default="0.00" />
+    <aura:attribute type="Integer" name="totalGeneral" default="0.00" />
+    <aura:attribute type="Integer" name="grandTotal" default="0.00" />
+    <aura:attribute type="Integer" name="totalGiftAid" default="0.00" />
+    <aura:attribute name="contactId" type="String" />
+
+    <div class="bg-grey">
+        <aura:if isTrue="{!v.showSpinner}">
+            <div class="exampleHolder">
+                <lightning:spinner alternativeText="Loading" size="large" />
+            </div>
+            <aura:set attribute="else">
+                <div class="wrap wrap-standard-content-to-large">
+                    <section class="template-donations">
+                        <div class="template-donations__navigation">
+                            <div class="toggle-filter__toggle">
+                                <a class="{!(v.paymentPlan)?'toggle-filter__toggle__switch toggle-filter__toggle__switch--transparent text-transform--uppercase':'toggle-filter__toggle__switch toggle-filter__toggle__switch--transparent text-transform--uppercase is-active'}"
+                                    title="{!$Label.c.Donations}" onclick="{!c.switchTab}"
+                                    data-name="donations"><span>{!$Label.c.Donations}</span></a>
+                                <a class="{!(v.paymentPlan)?'toggle-filter__toggle__switch toggle-filter__toggle__switch--transparent text-transform--uppercase is-active':'toggle-filter__toggle__switch toggle-filter__toggle__switch--transparent text-transform--uppercase '}"
+                                    title="{!$Label.c.Recurring_payments}" onclick="{!c.switchTab}"
+                                    data-name="recurring"><span>{!$Label.c.Recurring_payments}</span></a>
+                            </div>
+
+                            <aura:if isTrue="{!v.paymentPlan}">
+                                <!--Recurring Donations Tab-->
+                                <!--<div class="template-donations__responsive-table-actions">
+                            <div class="responsive-table-actions">
+                                <div class="responsive-table-actions__top-to-left">
+                                    <c:downloadStatement/>
+                                </div>
+                            </div>
+                        </div>-->
+                                <div class="responsive-table-overflow">
+                                    <table class="responsive-table">
+                                        <thead class="responsive-table__head">
+                                            <tr class="responsive-table__row">
+                                                <td class="responsive-table__cell text-color--light">{!$Label.c.Reference_Payment_plan_ID}</td>
+                                                <td class="responsive-table__cell text-color--light">{!$Label.c.Date}</td>
+                                                <td class="responsive-table__cell text-color--light">{!$Label.c.Type}</td>
+                                                <td class="responsive-table__cell text-color--light">{!$Label.c.Payment_Day}</td>                                                
+                                                <td class="responsive-table__cell text-color--light">{!$Label.c.Status}</td>
+                                                <td class="responsive-table__cell text-color--light">{!$Label.c.Total}</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="responsive-table__body">
+                                            <aura:if isTrue="{!v.showRow}">
+                                                <aura:iteration items="{!v.donationList}" var="rd">
+                                                    <tr class="responsive-table__row">
+                                                        <td class="responsive-table__cell responsive-table__cell--double-padding" data-th="Reference/Payment plan ID">{!rd.Name}</td>
+                                                        <td class="responsive-table__cell">{!rd.npsp__StartDate__c}</td>
+                                                        <td class="responsive-table__cell">{!rd.npsp__PaymentMethod__c}</td>
+                                                        <td class="responsive-table__cell">{!rd.npsp__PaymentMethod__c}</td>
+                                                        <td class="responsive-table__cell">{!rd.npsp__Status__c}</td>
+                                                        <td class="responsive-table__cell">
+                                                            <lightning:formattedNumber
+                                                                value="{!rd.npe03__Paid_Amount__c}" style="currency"
+                                                                currencyCode="{!rd.CurrencyIsoCode}" />
+                                                        </td>
+                                                    </tr>
+                                                </aura:iteration>
+                                                <aura:set attribute="else">
+                                                    {!$Label.c.No_Records_found}
+                                                </aura:set>
+                                            </aura:if>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <aura:set attribute="else">
+                                    <!--Donations Tab-->
+                                    <div class="template-donations__responsive-table-actions">
+                                        <div class="responsive-table-actions">
+                                            <div class="responsive-table-actions__top-to-left">
+                                                <div class="responsive-table-actions__button">
+                                                    <c:downloadStatement contactId="{!v.contactId}"/>
+                                                </div>
+                                            </div>
+                                            <div class="responsive-table-actions__hide-at-large">
+                                                <div class="responsive-table-actions__button">
+                                                    <a href="#toggle-filter"
+                                                        class="button button--block button--secondary filter-off-canvas-activator"
+                                                        title="{!$Label.c.Filter_donations}" onclick="{!c.toggleFilter}">{!$Label.c.Filter_donations}</a>
+                                                </div>
+                                            </div>
+                                            <div class="responsive-table-actions__show-at-large">
+                                                <a class="button button--inline-block button--secondary datepicker-init js-dropdown-filter-toggle"
+                                                    title="{!$Label.c.Filter_donations}" onclick="{!c.toggleFilter}">{!$Label.c.Filter_donations}</a>
+                                            </div>
+                                        </div>
+                                        <div class="responsive-table-message">
+                                            <p class="text-color--primary-light">{!$Label.c.You_filtered_dates_between}&nbsp;<strong>
+                                                    <lightning:formattedDateTime value="{!v.startDate}" />
+                                                </strong>&nbsp;{!$Label.c.and}&nbsp;<strong>
+                                                    <lightning:formattedDateTime value="{!v.endDate}" />
+                                                </strong>&nbsp;{!$Label.c.and}&nbsp;{!$Label.c.Type}&nbsp;<strong>{!v.typeString}</strong></p>
+                                        </div>
+                                    </div>
+                                    <div id="toggle-filter" class="filter filter--not-large">
+                                        <div class="filter__inner">
+                                            <a href="#" class="filter__close filter-off-canvas-deactivator"
+                                                title="Click to close filter options">
+                                                <span class="visuallyhidden">Click to close filter options</span>
+                                            </a>
+                                            <div class="filter__wrap">
+                                                <div class="filter__header">
+                                                    <h1 class="filter__title h1">Filter</h1>
+                                                    <a href="#"
+                                                        class="filter__reset text-color--primary prevent-default-helper"
+                                                        title="Reset filter">Reset<span class="visuallyhidden">
+                                                            filter</span></a>
+                                                </div>
+                                            </div>
+                                            <div class="filter__group">
+                                                <div class="filter__wrap">
+                                                    <a href="#"
+                                                        class="filter__filter-heading is-serif text-color--primary filter-accordion-activator"
+                                                        title="Filter by Type">
+                                                        <p><span class="visuallyhidden">Click to filter </span>Type</p>
+                                                        <img src="/img/filter-chevron.png"
+                                                            class="filter__filter-icon" />
+                                                    </a>
+                                                    <form class="form filter-accordion-container">
+                                                        <ul class="filter__list filter-accordion" data-height="57">
+                                                            <li class="filter__item filter-accordion-item">
+                                                                <div
+                                                                    class="filter__item__inner checkbox checkbox--small checkbox--lighter">
+                                                                    <input type="checkbox" id="emergency"
+                                                                        name="emergency" value="Emergency" />
+                                                                    <label for="emergency"
+                                                                        class="filter__label">Zakat<span
+                                                                            class="filter__count">13</span></label>
+                                                                </div>
+                                                            </li>
+                                                            <li class="filter__item filter-accordion-item">
+                                                                <div
+                                                                    class="filter__item__inner checkbox checkbox--small checkbox--lighter">
+                                                                    <input type="checkbox" id="sadaqh" name="sadaqh"
+                                                                        value="sadaqh" />
+                                                                    <label for="sadaqh"
+                                                                        class="filter__label">Sadaqh<span
+                                                                            class="filter__count">2</span></label>
+                                                                </div>
+                                                            </li>
+                                                            <li class="filter__item filter-accordion-item">
+                                                                <div
+                                                                    class="filter__item__inner checkbox checkbox--small checkbox--lighter">
+                                                                    <input type="checkbox" id="interest" name="interest"
+                                                                        value="interest" />
+                                                                    <label for="interest"
+                                                                        class="filter__label">Interest<span
+                                                                            class="filter__count">2</span></label>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="filter__group">
+                                                <div class="filter__wrap">
+                                                    <a href="#"
+                                                        class="filter__filter-heading is-serif text-color--primary filter-accordion-activator datepicker-init"
+                                                        title="Filter by Type">
+                                                        <p><span class="visuallyhidden">Click to filter </span>Date</p>
+                                                        <img src="/img/filter-chevron.png"
+                                                            class="filter__filter-icon" />
+                                                    </a>
+                                                    <form class="form filter-accordion-container">
+                                                        <ul class="filter__list filter-accordion" data-height="38">
+                                                            <li class="filter__item filter-accordion-item">
+                                                                <div
+                                                                    class="filter__item__inner filter__item__inner--retain-margin calendar-input">
+                                                                    <label for="date-from"
+                                                                        class="filter__label h4">From</label>
+                                                                    <!--<svg class="calendar-input__icon">
+                                    <use xlink:href="/img/svg-sprites.svg#calendar"></use>
+                                </svg>-->
+                                                                    <lightning:input
+                                                                        class="datepicker-activator hasDatepicker"
+                                                                        value="{!v.startDate}" type="date"
+                                                                        name="startDate" label="Start Date"
+                                                                        placeholder="dd/mm/yyyy" min="2020-01-01" />
+                                                                </div>
+                                                            </li>
+                                                            <li class="filter__item filter-accordion-item">
+                                                                <div
+                                                                    class="filter__item__inner filter__item__inner--retain-margin calendar-input">
+                                                                    <label for="date-to"
+                                                                        class="filter__label">To</label>
+                                                                    <!--<svg class="calendar-input__icon">
+                                    <use xlink:href="/img/svg-sprites.svg#calendar"></use>
+                                </svg>-->
+                                                                    <lightning:input
+                                                                        class="datepicker-activator hasDatepicker"
+                                                                        type="date" value="{!v.endDate}" name="endDate"
+                                                                        label="End Date" placeholder="dd/mm/yyyy"
+                                                                        min="{!v.startDate}" />
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="filter__group filter__group--padded">
+                                                <div class="filter__wrap">
+                                                    <div class="filter__item__inner">
+                                                        <button type="submit"
+                                                            class="button button--inline-block button--secondary">Filter
+                                                            now</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <aura:if isTrue="{!v.showFilter}">
+                                        <div class="dropdown-filter dropdown-filter--from-large js-dropdown-filter-context"
+                                            style="height: 116px;">
+                                            <div class="dropdown-filter__inner js-dropdown-filter">
+                                                <form method="" action="">
+                                                    <div class="dropdown-filter__flex">
+                                                        <div class="dropdown-filter__date-range dropdown-filter__flex">
+                                                            <div class="dropdown-filter__input dropdown-filter__flex">
+                                                                <label for="dropdown-date-from" class="dropdown-filter__label h4 text-color--primary-darker">{!$Label.c.Date}
+                                                                    <span class="visuallyhidden">from</span></label>
+                                                                <div class="dropdown-filter__icon calendar-input">
+                                                                    <!--<svg class="calendar-input__icon calendar-input__icon__translate-self">
+                                <use xlink:href="/img/svg-sprites.svg#calendar"></use>
+                            </svg>-->
+                                                                    <lightning:input
+                                                                        class="datepicker-activator hasDatepicker"
+                                                                        value="{!v.startDate}" type="date"
+                                                                        name="startDate" label="{!$Label.c.Start_Date}"
+                                                                        placeholder="dd/mm/yyyy" min="2020-01-01" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="dropdown-filter__input">
+                                                                <div class="dropdown-filter__icon calendar-input">
+                                                                    <label for="dropdown-date-to"><span
+                                                                            class="visuallyhidden">Date
+                                                                            to</span></label>
+                                                                    <!--<svg class="calendar-input__icon calendar-input__icon__translate-self">
+                                <use xlink:href="/img/svg-sprites.svg#calendar"></use>
+                            </svg>-->
+                                                                    <lightning:input
+                                                                        class="datepicker-activator hasDatepicker"
+                                                                        type="date" value="{!v.endDate}" name="endDate"
+                                                                        label="{!$Label.c.End_Date}" placeholder="dd/mm/yyyy"
+                                                                        min="{!v.startDate}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dropdown-filter__flex__end">
+                                                            <div class="dropdown-filter__flex">
+                                                                <fieldset>
+                                                                    <div class="dropdown-filter__flex">
+                                                                        <lightning:checkboxGroup name="Checkbox Group"
+                                                                            class="text-color--primary-darker dropdown-filter__checkboxes"
+                                                                            label="{!$Label.c.Type}" variant="label-inline"
+                                                                            options="{! v.options }"
+                                                                            value="{! v.selectedType }" />
+                                                                    </div>
+                                                                </fieldset>
+                                                                <div class="dropdown-filter__submit">
+                                                                    <Lightning:button
+                                                                        class="button button--inline-block button--transparent-hover-primary"
+                                                                        title="{!$Label.c.Filter_donations}"
+                                                                        onclick="{!c.filterdata}" label="{!$Label.c.Apply}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </aura:if>
+                                    <div class="responsive-table-overflow">
+                                        <table class="responsive-table">
+                                            <thead class="responsive-table__head">
+                                                <tr class="responsive-table__row">
+                                                    <td class="responsive-table__cell text-color--light">{!$Label.c.Date}</td>
+                                                    <td class="responsive-table__cell text-color--light">{!$Label.c.Single}/{!$Label.c.Regular}</td>
+                                                    <td class="responsive-table__cell text-color--light">{!$Label.c.Type}</td>
+                                                    <td class="responsive-table__cell text-color--light">{!$Label.c.Location}</td>
+                                                    <td class="responsive-table__cell text-color--light">{!$Label.c.Project}</td>
+                                                    <td class="responsive-table__cell text-color--light">{!$Label.c.Gift_Aid}</td>
+                                                    <td class="responsive-table__cell text-color--light">{!$Label.c.Amount}</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="responsive-table__body">
+                                                <aura:if isTrue="{!v.showRow}">
+                                                    <aura:iteration items="{!v.donationList}" var="donation">
+                                                        <tr class="responsive-table__row">
+                                                            <td class="responsive-table__cell" data-th="Date">{!donation.npsp__Opportunity__r.CloseDate}</td>
+                                                            <td class="responsive-table__cell" data-th="Single/Regular">{!donation.npsp__Opportunity__r.Donation_Type__c}</td>
+                                                            <td class="responsive-table__cell" data-th="Type">{!donation.Stipulation_Type__c}</td>
+                                                            <td class="responsive-table__cell" data-th="Location">{!donation.Country__c}</td>
+                                                            <td class="responsive-table__cell" data-th="Project">{!donation.GAU_Name__c}</td>
+                                                            <td class="responsive-table__cell" data-th="Gift Aid">{!donation.npsp__Opportunity__r.Gift_Aid_Eligible_Status__c}</td>
+                                                            <td class="responsive-table__cell" data-th="Amount">
+                                                                <lightning:formattedNumber value="{!donation.npsp__Amount__c}" style="currency" currencyCode="{!donation.CurrencyIsoCode}" />
+                                                            </td>
+                                                        </tr>
+                                                    </aura:iteration>
+                                                    <aura:set attribute="else">
+                                                        {!$Label.c.No_Records_found}
+                                                    </aura:set>
+                                                </aura:if>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="template-donations__table-mini">
+                                        <table class="table-mini">
+                                            <thead class="table-mini__head">
+                                                <tr class="table-mini__row">
+                                                    <td class="table-mini__cell text-color--light">{!$Label.c.Total_for_this_year}
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-mini__body">
+                                                <tr class="table-mini__row">
+                                                    <td class="table-mini__cell is-serif-light text-color--primary">
+                                                        {!$Label.c.Total}&nbsp;{!$Label.c.Sadaqh}:</td>
+                                                    <td class="table-mini__cell text-color--primary">
+                                                        <lightning:formattedNumber
+                                                                value="{!v.totalSadaqh}" style="currency"
+                                                                currencyCode="GBP" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="table-mini__row">
+                                                    <td class="table-mini__cell is-serif-light text-color--primary">
+                                                        {!$Label.c.Total}&nbsp;{!$Label.c.Zakat}:</td>
+                                                    <td class="table-mini__cell text-color--primary">
+                                                        <lightning:formattedNumber
+                                                                value="{!v.totalZakat}" style="currency"
+                                                                currencyCode="GBP" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="table-mini__row">
+                                                    <td class="table-mini__cell is-serif-light text-color--primary">
+                                                        {!$Label.c.Total}&nbsp;{!$Label.c.General}:</td>
+                                                    <td class="table-mini__cell text-color--primary">
+                                                        <lightning:formattedNumber
+                                                                value="{!v.totalGeneral}" style="currency"
+                                                                currencyCode="GBP" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="table-mini__row table-mini__row--dark">
+                                                    <td class="table-mini__cell text-color--primary">{!$Label.c.Grand}&nbsp;{!$Label.c.Total}:</td>
+                                                    <td class="table-mini__cell text-color--primary">
+                                                        <lightning:formattedNumber
+                                                                value="{!v.grandTotal}" style="currency"
+                                                                currencyCode="GBP" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="table-mini__row">
+                                                    <td class="table-mini__cell is-serif-light text-color--primary">{!$Label.c.Gift_Aid}&nbsp;{!$Label.c.Total}:</td>
+                                                    <td class="table-mini__cell text-color--primary">
+                                                        <lightning:formattedNumber
+                                                                value="{!v.totalGiftAid}" style="currency"
+                                                                currencyCode="GBP" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </aura:set>
+                            </aura:if>
+                        </div>
+                    </section>
+                </div>
+            </aura:set>
+        </aura:if>
+    </div>
+</aura:component>

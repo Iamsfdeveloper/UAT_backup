@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>By_Email</fullName>
+        <default>false</default>
+        <label>By Email</label>
+    </customValue>
+    <customValue>
+        <fullName>Verbally</fullName>
+        <default>false</default>
+        <label>Verbally</label>
+    </customValue>
+    <customValue>
+        <fullName>Via_Website</fullName>
+        <default>false</default>
+        <label>Via Website</label>
+    </customValue>
+    <customValue>
+        <fullName>DMS Data</fullName>
+        <default>false</default>
+        <label>DMS Data</label>
+    </customValue>
+    <customValue>
+        <fullName>Mailchimp Data</fullName>
+        <default>false</default>
+        <label>Mailchimp Data</label>
+    </customValue>
+    <customValue>
+        <fullName>DMS and Mailchimp Data</fullName>
+        <default>false</default>
+        <label>DMS and Mailchimp Data</label>
+    </customValue>
+    <customValue>
+        <fullName>Informed Donor Care Team</fullName>
+        <default>false</default>
+        <label>Informed Donor Care Team</label>
+    </customValue>
+    <customValue>
+        <fullName>From the Service Announcement</fullName>
+        <default>false</default>
+        <label>From the Service Announcement</label>
+    </customValue>
+    <customValue>
+        <fullName>From Pardot</fullName>
+        <default>false</default>
+        <label>From Pardot</label>
+    </customValue>
+    <description>Mailchimp and DMS are part of the set because of data sources at Go Live and the need to audit where the preferences originally came from. These can be deactivated after Go Live for any new declarations but should be retained as entries on the records where they are in use.</description>
+    <masterLabel>Means of preference declaration</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sponsoree_Is_Reserved__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Meant to allow a sponsoree to be reserved for a potential future sponsorship.</description>
+    <externalId>false</externalId>
+    <label>Reserved</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

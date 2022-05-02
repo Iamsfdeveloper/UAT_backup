@@ -1,0 +1,143 @@
+<apex:component access="global" controller="ReceiptTemplateController">
+    <apex:attribute name="opportunityId" type="Id" assignTo="{!oppId}" description="Opportunity Id"/>
+    <apex:attribute name="opp" type="Opportunity" description="Opportunity"/>
+    <apex:attribute name="theContact" type="Contact" description="Contact"/>
+    <apex:stylesheet value="{!URLFOR($Resource.SMP_DD_Resources, 'css/ReceiptTemplate.css')}"/>
+
+    <html>
+    <head>
+        <style>
+            @page {
+                size: portrait;
+                margin: 25mm;
+                @top-center {
+                    content: "";
+                }
+                @bottom-center {
+                    content: "Page " counter(page) " of " counter(pages);
+                }
+            }
+            .page-break {
+                display:block;
+                page-break-after:always;
+            }
+            body {
+                font-family: sans-serif;
+                font-size: 14px;
+            }
+            td{
+                border-top: 1px solid #838383;
+            }
+        </style>
+    </head>
+
+    <div style="height: 100%;min-height: 100%;">
+        <div style="float:left;">
+
+            <apex:outputText value="{!SUBSTITUTE(theContact.Salutation, '.', '')} " rendered="{!ISBLANK(theContact.Salutation) == false}"/><apex:outputField value="{!theContact.Name}"/><br/>
+            <apex:outputField value="{!theContact.MailingStreet}"/><br/>
+            <apex:outputField value="{!theContact.MailingCity}"/><br/>
+            <apex:outputField value="{!theContact.MailingPostalCode}"/>
+                  
+        </div>
+      
+        <div style = "display:flex; flex-direction:column; justify-content: space-between; float: right;">
+
+            <div style="margin-bottom: 30%;">
+
+                <apex:image id="theImage" value="{!URLFOR($Resource.SMP_DD_Resources, 'images/ha-logo-nobox.png')}" width="130px" height="130px" alt="Human Appeal logo" style="object-fit: cover;"/>
+        
+            </div>
+            
+        
+            <div style="text-align:right;">   
+                <br/>
+                <apex:outputText value="Donor ID: {!theContact.Donor_ID__c}"/><br/><br/>
+            
+            </div>
+
+        </div>
+        
+       
+        <div style="clear:both"/>
+        
+        <h2 style="margin-top: 67px; margin-bottom: 0px;">
+            
+            <apex:outputText value="Donation Receipt "/>
+        </h2>
+
+        <table>
+
+
+            <tr>
+                    <!-- total 950 px -->
+                    <th style="width: 100px">Type</th>
+                    <th style="width: 200px">Product</th>
+                    <th style="width: 100px">Start Date</th>
+                    <th style="width: 100px">End Date</th>
+                    <th style="width: 100px">Description</th>
+                    <th style="text-align: right">Amount</th>
+                </tr>
+                <apex:repeat var="prod" value="{!lstProdWrap}">
+                    <tr>
+                        <td><apex:outputText value="{!prod.stipulationType}"/></td>
+                        <td><apex:outputText value="{!prod.name}"/></td>
+                       <td><apex:outputText value="{0, date, dd/MM/yyyy}"><apex:param value="{!opp.Effective_Date__c}" /> </apex:outputText></td>
+                        <td><apex:outputText value="{0, date, dd/MM/yyyy}"><apex:param value="{!opp.End_Date__c}" /> </apex:outputText></td>
+                           <td>
+                            <apex:outputText rendered="{!opp.Donation_Type__c == '30N'}" value="Ramadan 30 Nights Payments"/>
+                            <apex:outputText rendered="{!opp.Donation_Type__c == '10N'}" value="Ramadan 10 Nights Payments"/>
+                            <apex:outputPanel rendered="{!opp.Donation_Type__c == '10D'}"> My Best 10 Days</apex:outputPanel>
+                        </td>
+                        <td style="text-align:right;"><apex:outputText value="{!CASE(prod.currencyCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!prod.amount}"/></td>                    
+                    </tr>
+                </apex:repeat>
+                
+                <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                    <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="6">
+                        <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                        <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,0.00}"><apex:param value="{!opp.Amount}" /></apex:outputText><br/>
+                    </td>
+                </tr>
+
+            <tr>
+                <td rowspan="{!BreakdownSize + 1}" style="border: 0px;">
+                        <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/regulator.png')}" width="160px"/>
+                </td>
+
+                <td rowspan="{!BreakdownSize + 1}" style="border: 0px;padding-left: 40px">
+                        <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/HA30badge.png')}" width="80px" height="80px"/>
+                </td>
+            </tr>
+            
+        </table>
+
+
+
+
+
+        <div style="margin-top:15px; font-size:11px; color: #838383">
+
+                    <p>
+                        Get updates about our life-saving work around the world. Sign up to our email and SMS updates to find out about the impact that Human Appeal supporters like you are making to the lives of vulnerable people around the world, as well as news, information, events, competitions and emergency updates about how you can help. Visit www.humanappeal.ie or call (01) 2910006 to sign up. 
+                    </p>
+                
+
+            <div style="position: fixed;bottom: 0;">
+
+            <p style=" color: #662d91; font-size: 11px; display: inline;">         
+                    <strong>HUMAN APPEAL</strong>&nbsp;&nbsp;&bull;&nbsp;&nbsp;1 Frankfort Centre, Dundrum Rd, D14 E4A4, Ireland</p>
+            <p style="color: #662d91; font-size: 10px; display: inline;">
+                    humanappeal.ie&nbsp;&nbsp;&bull;&nbsp;&nbsp;info@humanappeal.ie&nbsp;&nbsp;&bull;&nbsp;&nbsp;(01) 2910006<br/>  
+            </p>
+            <p style="color: #662d91; font-size: 9px; display: inline;">
+                    Charity Reg No. 1154288&nbsp;&nbsp;&bull;&nbsp;&nbsp;Company Reg No. 8553893&nbsp;&nbsp;&bull;&nbsp;&nbsp;Scottish Reg No. SC056481
+            </p>
+        </div>  
+
+        </div>   
+                
+        
+    </div>
+    </html>
+</apex:component>

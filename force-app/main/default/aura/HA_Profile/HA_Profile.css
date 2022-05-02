@@ -1,0 +1,20 @@
+.THIS .forceChatterEntityPhoto.circular {
+    border-radius: 80%;
+}
+.THIS .forceChatterEntityPhoto.xLargeSize.circular {
+    border: 5px solid #662d91;  
+}
+.THIS .forceChatterEntityPhoto.xLargeSize {
+    height: 10rem;
+    width: 10rem;
+}
+.THIS .forceChatterEntityPhoto.entityPhotoSpecificity {
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+    box-sizing: content-box;
+    flex-grow: initial;
+}
+ .THIS .forceChatterEntityPhotoDetail .photoWrapper, .THIS .forceChatterEntityPhotoDetail .photoIconContainer {
+    line-height: 0;
+}

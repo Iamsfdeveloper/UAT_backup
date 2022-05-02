@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Must_be_New_Instruction</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND( ISNEW(), NOT(  ISPICKVAL( DD_Status__c , &apos;New Instruction&apos;))  )</errorConditionFormula>
+    <errorDisplayField>DD_Status__c</errorDisplayField>
+    <errorMessage>All New DD must start as New Instruction</errorMessage>
+</ValidationRule>

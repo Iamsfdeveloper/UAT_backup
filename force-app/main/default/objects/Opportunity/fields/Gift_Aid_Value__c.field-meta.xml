@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Gift_Aid_Value__c</fullName>
+    <complianceGroup>GDPR</complianceGroup>
+    <description>If the Donation is Submitted to HMRC portal, this Field will show the Submitted Gift Aid Value , else  Estimate Gift Aid Value</description>
+    <externalId>false</externalId>
+    <formula>If(Gift_Aid_Submitted__c, Gift_Aid_Submitted_Value__c , Estimate_Gift_Aid_Value__c )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Estimate Gift Aid Value or Submitted Gift Aid Value</inlineHelpText>
+    <label>Gift Aid Value</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <securityClassification>Confidential</securityClassification>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

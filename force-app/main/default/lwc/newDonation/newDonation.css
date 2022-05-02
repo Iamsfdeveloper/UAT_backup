@@ -1,0 +1,23 @@
+.listOption > .slds-dueling-list__options{
+    height: 6rem !important;
+}
+.searchFilterSeperator{
+    display: flex; 
+    flex-direction: row; 
+}
+.searchFilterSeperator:before, .searchFilterSeperator:after { 
+            content: ""; 
+            flex: 1 1; 
+            border-bottom: 2px solid #000; 
+            margin: auto; 
+} 
+.hidden {
+    display: none;
+}
+.rowheader{
+    background-color: #fafaf9;
+    color: rgb(81, 79, 77);
+    padding: 0.25rem 0.5rem;
+    font-weight: 700;
+    line-height: normal;
+}

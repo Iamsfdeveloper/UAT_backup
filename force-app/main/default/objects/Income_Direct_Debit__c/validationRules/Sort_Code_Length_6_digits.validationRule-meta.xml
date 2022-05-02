@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sort_Code_Length_6_digits</fullName>
+    <active>true</active>
+    <description>Check that the Sort Code entered is 6 digits in length</description>
+    <errorConditionFormula>(NOT(ISNUMBER(DD_Bank_Account_Number__c )))   ||  NOT( REGEX(  DD_Bank_Sort_Code__c  , &quot;\\d{6}&quot;))</errorConditionFormula>
+    <errorMessage>Sort Code must contain 6 digits</errorMessage>
+</ValidationRule>

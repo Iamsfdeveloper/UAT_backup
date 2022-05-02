@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Data_Import_Batch_Guid__c</fullName>
+    <description>Data Upload Batch Guid for all type of Contact Uploads</description>
+    <externalId>true</externalId>
+    <inlineHelpText>Data Upload Batch Guid</inlineHelpText>
+    <label>Data Import Batch Guid</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

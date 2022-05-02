@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Accident</fullName>
+        <default>false</default>
+        <label>Accident</label>
+    </customValue>
+    <customValue>
+        <fullName>Cancer</fullName>
+        <default>false</default>
+        <label>Cancer</label>
+    </customValue>
+    <customValue>
+        <fullName>Heart Attack</fullName>
+        <default>false</default>
+        <label>Heart Attack</label>
+    </customValue>
+    <customValue>
+        <fullName>Heart Failure</fullName>
+        <default>false</default>
+        <label>Heart Failure</label>
+    </customValue>
+    <customValue>
+        <fullName>Heat Stroke</fullName>
+        <default>false</default>
+        <label>Heat Stroke</label>
+    </customValue>
+    <customValue>
+        <fullName>Hepatitis</fullName>
+        <default>false</default>
+        <label>Hepatitis</label>
+    </customValue>
+    <customValue>
+        <fullName>Illness</fullName>
+        <default>false</default>
+        <label>Illness</label>
+    </customValue>
+    <customValue>
+        <fullName>Kidney Failure</fullName>
+        <default>false</default>
+        <label>Kidney Failure</label>
+    </customValue>
+    <customValue>
+        <fullName>Killed</fullName>
+        <default>false</default>
+        <label>Killed</label>
+    </customValue>
+    <customValue>
+        <fullName>Liver Failure</fullName>
+        <default>false</default>
+        <label>Liver Failure</label>
+    </customValue>
+    <customValue>
+        <fullName>Natural Causes</fullName>
+        <default>false</default>
+        <label>Natural Causes</label>
+    </customValue>
+    <customValue>
+        <fullName>Natural Disaster</fullName>
+        <default>false</default>
+        <label>Natural Disaster</label>
+    </customValue>
+    <customValue>
+        <fullName>Stroke</fullName>
+        <default>false</default>
+        <label>Stroke</label>
+    </customValue>
+    <customValue>
+        <fullName>Suicide</fullName>
+        <default>false</default>
+        <label>Suicide</label>
+    </customValue>
+    <customValue>
+        <fullName>Undetermined Causes</fullName>
+        <default>false</default>
+        <label>Undetermined Causes</label>
+    </customValue>
+    <customValue>
+        <fullName>Unspecified</fullName>
+        <default>false</default>
+        <label>Unspecified</label>
+    </customValue>
+    <customValue>
+        <fullName>War</fullName>
+        <default>false</default>
+        <label>War</label>
+    </customValue>
+    <description>Orphan relatives causes of death</description>
+    <masterLabel>Causes Of Death</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

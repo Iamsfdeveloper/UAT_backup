@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Donation_Close_Date</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Not(CONTAINS($User.Alias, &apos;inte&apos;)),Not($Permission.Allow_Past_Date_Donations),Not(IsClosed), OR(ISNEW(),ISCHANGED(CloseDate)),CloseDate&lt;Today())</errorConditionFormula>
+    <errorMessage>Donation Close Date must be Today or future date</errorMessage>
+</ValidationRule>

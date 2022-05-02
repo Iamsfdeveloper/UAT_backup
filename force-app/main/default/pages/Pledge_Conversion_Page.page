@@ -1,0 +1,43 @@
+<apex:page controller="Pledge_Conversion_Data" sidebar="false" showHeader="false">
+    <apex:form >
+        <apex:pagemessages />
+        
+        
+        <apex:pageBlock >
+            <apex:pageBlockSection columns="4">
+                <apex:inputFile value="{!csvFileBody}"  filename="{!csvAsString}"/>
+                <apex:commandButton value="Read in campaign data" action="{!importCSVFile}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+        <h1>
+            Campaigns Converted To Pledge:
+        </h1>
+        
+        
+        
+        <apex:pageBlock >
+        	<apex:pageblocktable value="{!campaignList}" var="cam">
+                <apex:column value="{!cam.id}" />
+                <apex:column value="{!cam.name}" />
+                <apex:column value="{!cam.description}" />
+                <apex:column value="{!cam.RecordTypeId}" />
+       	 </apex:pageblocktable>
+        </apex:pageBlock>
+
+		<h1>
+            Gau's Added:
+        </h1>
+        
+        <apex:pageBlock >
+        	<apex:pageblocktable value="{!gauList}" var="gau">
+                <apex:column value="{!gau.npsp__Campaign__c}" />
+                <apex:column value="{!gau.id}" />
+                <apex:column value="{!gau.npsp__Percent__c}" />
+       	 </apex:pageblocktable>
+        </apex:pageBlock>
+        
+
+
+    </apex:form>
+</apex:page>

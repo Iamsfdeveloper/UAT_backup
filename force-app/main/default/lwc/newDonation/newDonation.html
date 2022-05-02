@@ -1,0 +1,311 @@
+<!--
+  @description       : 
+  @author            : Iamsfdeveloper
+  @group             : 
+  @last modified on  : 02-07-2022
+  @last modified by  : Iamsfdeveloper
+  Modifications Log 
+  Ver   Date         Author           Modification
+  1.0   11-19-2020   Iamsfdeveloper   Initial Version
+-->
+<template>
+    <div>
+    <template if:false={loadedSpinner}>
+        <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
+    </template>
+    <lightning-layout multiple-rows="true">
+        <lightning-layout-item  size="12">
+           <lightning-record-edit-form record-id={opportunityId} onsuccess={handleSuccess} onsubmit={handleSubmit} object-api-name="Opportunity" form-class="donation" >
+                   <lightning-messages>
+                   </lightning-messages>
+               <lightning-layout multiple-rows="true">
+                   <lightning-layout-item padding="horizontal-small" size="3">
+                    <c-payment-schedule default-donation-type ='SD' ontypechange={handleDonationTypeChange}></c-payment-schedule>
+                    <!--<lightning-input-field field-name="Payment_Schedule__c"  required class="searchFilter"  data-id="Payment_Schedule__c"></lightning-input-field>-->
+                </lightning-layout-item>
+                <template if:true={showContactField}>
+                   <lightning-layout-item padding="horizontal-small" size="3">
+                        <lightning-input-field field-name="npsp__Primary_Contact__c"    data-id="npsp__Primary_Contact__c"></lightning-input-field>
+                   </lightning-layout-item>
+                </template>
+                <template if:true={showAccountField}>
+                    <lightning-layout-item padding="horizontal-small" size="3">
+                         <lightning-input-field field-name="AccountId"  required   data-id="AccountId"></lightning-input-field>
+                    </lightning-layout-item>
+                 </template>
+                    <lightning-layout-item padding="horizontal-small" size="5">
+                        <lightning-input-field field-name="CampaignId"  data-id="CampaignId" required onchange={handleCampaignChange}></lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="horizontal-small" size="3"> 
+                    <lightning-input-field field-name="CurrencyIsoCode" value={currencyISOCode} onchange={handleChange} required data-id="CurrencyIsoCode"></lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="horizontal-small" size="3">
+                        <lightning-input-field field-name="Medium__c"  required data-id="Medium__c"></lightning-input-field>
+                    </lightning-layout-item>
+                    <template if:true={showRecurringDonationType}>
+                    <lightning-layout-item padding="horizontal-small" size="3">
+                        <lightning-input-field field-name="Recurring_Type__c"  required data-id="Recurring_Type__c" onchange={handleRecurringTypeChange}></lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="horizontal-small" size="3">
+                        <lightning-input-field field-name="CloseDate"  required data-id="CloseDate" onchange={handleCloseDateChange}></lightning-input-field>
+                    </lightning-layout-item>
+                    <template if:false={showNightSettings}>
+                        <lightning-layout-item padding="horizontal-small" size="3">
+                            <lightning-input-field field-name="Effective_Date__c"  required data-id="Effective_Date__c"></lightning-input-field>
+                        </lightning-layout-item>
+                    </template>
+                     </template>
+                    <template if:true={showNumberOfInstallments}>
+                        <lightning-layout-item padding="horizontal-small" size="3">
+                            <lightning-input-field field-name="Number_of_Installments__c"  required data-id="Number_of_Installments__c"></lightning-input-field>
+                        </lightning-layout-item>
+                    </template>
+                        <template if:true={showNightSettings}>
+                        <lightning-layout-item padding="horizontal-small" size="3">
+                            <lightning-combobox name="startDate" label={startDateObj.label} placeholder="select a Date" field-level-help={startDateObj.helpText}
+                                        value={startDate} onchange={handleStartDateChange} required options={startDateOptions}>
+                            </lightning-combobox>
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="horizontal-small" size="3">
+                            <lightning-combobox data-id ="xFactor_1" name="xFactor_1" label={xFactor_1.label} field-level-help={xFactor_1.helpText}
+                                        value={xFactor_1.value} disabled={hideXFactor} onchange={handleXFactorChange}  options={xFactor1Options}>
+                            </lightning-combobox>
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="horizontal-small" size="3">
+                            <lightning-combobox data-id ="xFactor_2" name="xFactor_2" disabled={hideXFactor} label={xFactor_2.label} field-level-help={xFactor_2.helpText}
+                                        value={xFactor_2.value} onchange={handleXFactorChange}  options={xFactor2Options}>
+                            </lightning-combobox>
+                        </lightning-layout-item>
+                            <lightning-layout-item padding="horizontal-small" size="2">
+                                 <lightning-input type="toggle" label="Manage  Donations" name="mdonations" onchange={handleManualScheduleDonations}></lightning-input>
+                            </lightning-layout-item>
+
+                            <lightning-layout-item padding="horizontal-small" size="2">
+                                <label class="slds-form-element__label" for="unique-id-of-input">Schedule Donations</label>
+                                <lightning-button-icon icon-name="utility:event" onclick={toggleShowDonationSchedule} variant="brand" alternative-text="show Donation Schedule"></lightning-button-icon>
+                            </lightning-layout-item>
+                    </template>
+               </lightning-layout>
+               <input type="submit" class="hidden" />
+           </lightning-record-edit-form>
+        </lightning-layout-item>
+        <lightning-layout-item  size="12">
+            <h4 class="searchFilterSeperator">Search Filter</h4> 
+        </lightning-layout-item>
+        <lightning-layout-item   size="6">
+            <div onkeyup={handleKeyUp}>
+                <lightning-input name="enter-search"  label="Search Item" type="search"></lightning-input>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item padding="horizontal-small" size="2">
+            <lightning-combobox name="Country__c" label="Country" value={selectedCountry} placeholder="Select Country"
+            options={countryList} onchange={handleChange} class="searchFilter">
+            </lightning-combobox>
+        </lightning-layout-item>
+           <lightning-layout-item padding="horizontal-small" size="2">
+            <lightning-checkbox-group name="Stipulation__c" class="searchFilter"  label="Stipulation"  value={stipulationType}
+                      options={stipulationOptions} onchange={handleChange}></lightning-checkbox-group>
+            </lightning-layout-item>
+            <lightning-layout-item  padding="horizontal-small" size="12">
+                <div class="slds-table--header-fixed_container" style="height:250px;">
+                    <div class="slds-scrollable_y" style="height:100%;">
+                <table class="slds-table slds-table_bordered slds-table--header-fixed slds-table_striped slds-p-top_small">
+                 <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="slds-text-align_right" scope="col" style="width:3.25rem">
+                                <div class="slds-truncate slds-cell-fixed" title=""></div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate slds-cell-fixed" title="Item Name">Item Name</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate slds-cell-fixed" title="Item Code">Code</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate slds-cell-fixed" title="Qty">Country</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate slds-cell-fixed" title="Stipulation Type">Stipulation Type</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate slds-cell-fixed" title="Amount">Amount</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={itemList} for:item="item">
+                            <tr aria-selected="false" class="slds-hint-parent" key={item.npsp__General_Accounting_Unit__c}>
+                                <td class="slds-text-align_right" role="gridcell">
+                                    <div class="slds-checkbox">
+                                        <lightning-button variant="brand-outline" label="Add" title="Primary action" name={item.npsp__General_Accounting_Unit__c}  disabled={disabledAddBtn} class="slds-m-left_x-small" onclick={addItemAllocation}></lightning-button>
+                                        
+                                    </div>
+                                </td>
+                                <th scope="row">
+                                    <div class="slds-truncate" title={item.npsp__General_Accounting_Unit__r.Name}>
+                                        <a href="javascript:void(0);" tabindex="0">{item.npsp__General_Accounting_Unit__r.Name}</a>
+                                    </div>
+                                </th>
+                                <td role="gridcell">
+                                    <div class="slds-truncate" title={item.npsp__General_Accounting_Unit__r.Donation_Item_Code__c}>{item.npsp__General_Accounting_Unit__r.Donation_Item_Code__c}</div>
+                                </td>
+                                <td role="gridcell">
+                                    <div class="slds-truncate" title={item.npsp__General_Accounting_Unit__r.Country__c}>
+                                        {item.npsp__General_Accounting_Unit__r.Country__c}
+                                    </div>
+                                </td>
+                                <td role="gridcell">
+                                    <div class="slds-truncate" title={item.npsp__General_Accounting_Unit__r.stipulationlabel}>{item.npsp__General_Accounting_Unit__r.stipulationlabel}</div>
+                                </td>
+                                <td role="gridcell">
+                                    <div class="slds-truncate" title="3"><lightning-formatted-number value={item.UnitPrice} format-style="currency" currency-code={currencyISOCode}></lightning-formatted-number></div>
+                                </td>
+                                
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+                </div>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small"  size="12">
+                <p>Selected Items:{itemAllocations.length}</p>
+                <div class="slds-grid slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped rowheader">
+                    
+                    <div class="slds-col slds-size_1-of-8"></div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Item Name">Item Name</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Code">Code</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Country"> Country</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Stipulation Type">Stipulation Type</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Amount">Amount</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8 slds-p-right_medium">
+                        <div class="slds-truncate slds-float_right" title="Total Price">Total Price</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Action">Action</div>
+                    </div>
+                </div> 
+                <template for:each={itemAllocations} for:item="itemAllocation" for:index="index">
+                    <c-donation-item  record-id={contactId} quantity-hide={hideQuantity} key={itemAllocation.npsp__General_Accounting_Unit__c} allocation-item={itemAllocation} index={index} ondelete={handleDelete} onitemchange={handleItemChange} selected-orphans={selectedOrphan} onclone={handleCloneRequest}></c-donation-item>
+                  
+                </template>
+                <div class="slds-grid">
+                    
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Total Price">Total Price</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8 slds-p-right_medium">
+                        <div class="slds-truncate slds-float_right" title="Total Price"><lightning-formatted-number value={totalAmount} format-style="currency" currency-code={currencyISOCode}></lightning-formatted-number></div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                </div>
+                <template if:true={hideXFactor}>
+                <div class="slds-grid">
+                    
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Un Allocated Amount">Un Allocated Amount</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8 slds-p-right_medium">
+                        <div class="slds-truncate slds-float_right" title="Un Allocated Amount"><lightning-formatted-number value={totalUnAllocatedAmount} format-style="currency" currency-code={currencyISOCode}></lightning-formatted-number></div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                </div>
+            </template>
+                <template if:true={showEMI}>
+                <div class="slds-grid slds-p-top_small">
+                    
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="EMI Amount">EMI Amount</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8 slds-p-right_medium">
+                        <div class="slds-truncate slds-float_right" title="EMI Amount"><lightning-formatted-number value={EMIAmt} format-style="currency" currency-code={currencyISOCode}></lightning-formatted-number></div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                </div>
+            </template>
+                    </lightning-layout-item>
+       </lightning-layout>
+    <footer class="slds-modal__footer">
+        <lightning-button label="Cancel" onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+    <lightning-button variant="brand" label="Save" title="Primary action" name="donationSave"  disabled={disabledSaveBtn} class="slds-m-left_x-small" onclick={saveAndNext} ></lightning-button>
+    </footer>
+
+    <template if:true={showCancelConfirm}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+              <header class="slds-modal__header">
+                <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">Cancel Donation</h2>
+              </header>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                  <p>Are you sure you want to discard the Changes?</p>
+              </div>
+              <footer class="slds-modal__footer">
+                <lightning-button label="No" title="Cancel No" onclick={handleCancelNo} class="slds-m-left_x-small"></lightning-button>
+                <lightning-button variant="brand" label="Yes" title="Cancel Yes" onclick={handleCancelYes} class="slds-m-left_x-small"></lightning-button>
+              </footer>
+            </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:true={showSchedule}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+              <header class="slds-modal__header">
+                  <lightning-button-icon icon-name="utility:close"  variant="border-inverse" class="slds-modal__close" alternative-text="Close" title="Close" onclick={toggleShowDonationSchedule}></lightning-button-icon>
+           
+                <h2 id="modal-heading-03" class="slds-modal__title slds-hyphenate"></h2>
+              </header>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3">
+                 <c-donation-schedule row-editable={hideXFactor} recurring-donations={recurringDonationList} donation-total={unAllocatedAmount} currency-code={currencyISOCode} onupdateddonation={handleScheduleDonations}> </c-donation-schedule>
+        
+              </div>
+            
+            </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</div>
+</template>

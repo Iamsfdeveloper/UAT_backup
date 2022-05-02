@@ -1,0 +1,183 @@
+<apex:page controller="HA_Donation_Statement_Cmp_Ctrl" renderAs="PDF" showHeader="false"
+           sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false">
+    <html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <meta name="author" content="Human Appeal" />
+            <meta name="date" content="@DateTime.Now" />
+            <meta name="generator" content="Human Appeal" />
+            
+            <title>Donation Statement</title>
+            
+            <style type="text/css" media="print">
+                @page {
+                size: A4;
+                margin-bottom:1cm;
+                margin-left:0cm;
+                margin-right:0cm;
+                margin-top:0.45cm;
+                font-family: sans-serif;
+                
+                @top-center {
+                content: element(header);
+                }
+                
+                @bottom-center {
+                content: element(footer);
+                }
+                }
+                
+                div.header {
+                position: running(header);	
+                background-color: #d5c2df;
+                font-size:10px;
+                text-align: center;
+                padding: 7px;
+                }
+                
+                div.footer {
+                position: running(footer);
+                background-color: #d5c2e0;
+                font-size:20px;
+                text-align: center;
+                padding: 15px;
+                font-weight: bold;
+                }
+                
+                div.headline {
+                background-color: #662d90;
+                }
+                
+                table { page-break-inside:auto }
+                tr    { page-break-inside:avoid; page-break-after:auto }
+                
+                .page {
+                page-break-before: always;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="header" name="header">
+                N'hesitez pas à nous contacter à contact@humanappeal.fr ou au 01 42 46 36 36 si vous constatez une anomalie ou si vous recevez plusieurs reçus récapitulatifs
+            </div>
+            
+            <div class="footer" name="footer">
+                Ce reçu fiscal récapitulatif remplace tous les reçus ponctuels émis en 2021
+            </div>
+            
+            <div class="content" name="content" style="width:100%;position:relative;background-color:blue;">
+                <div style="width:10%;position:absolute;top:0;left:-8px">
+                    <img alt="Human Appeal" src="{!URLFOR($Resource.DonationStatementSideImage)}" height="1056px"/>  
+                </div>
+                
+                <div style="width:84%;position:absolute;top:0;left:140px;">
+                    <div>
+                        <div align="center" style="margin:1.5% 23% 0% 23%;
+                                                   width: 54%;
+                                                   height: 32px;
+                                                   line-height: 3;
+                                                   background-color: #662d90;
+                                                   border-radius: 12px;
+                                                   color: white;
+                                                   font-weight: bold;
+                                                   text-align: center;
+                                                   height: 46px;
+                                                   line-height: 2;
+                                                   font-size: 20px;"> 
+                            Reçu – dons aux oeuvres année 2021
+                        </div>
+                        
+                        <table class="t1" style="width: 96%;margin: 2%;">
+                            <tr style="font-size: 12px;">
+                                
+                                <td style="text-align: left;">
+                                    Référence du reçu #
+                                    <br/>
+                                    {! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.Donor_ID__c,'')}{!IF(NOT(ISNULL(sDate)), -YEAR(sDate), '')}	
+                                </td>
+                                <td style="text-align: right;">
+                                    Article 200-5 et 238 <br/>Bis du code général des impôts 
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        <table class="t1" style="width: 96%;margin: 2%;">
+                            <tr style="text-align:left;
+                                       font-weight: bold;
+                                       font-size: 24px;
+                                       color: #662d90;
+                                       ">
+                                <th>Bénéficiaire</th>
+                                <th>Donateur</th>
+                            </tr>
+                            <tr style="font-size: 14px;
+                                       text-align: left;">
+                                <td>
+                                    <div>
+                                        <img alt="Human Appeal" src="{!URLFOR($Resource.SMP_DD_Resources, 'images/Human-Appeal-logo.png')}" width="70" height="70" style="float: left;"/>
+                                        <div style="
+                                                    font-size: 14px;
+                                                    padding-top: 11px;
+                                                    padding-left: 90px;">
+                                            Appel Humanitaire International <br/>38 rue Léon <br/>75018 Paris
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.Name,'')}"/><br/>
+                                    <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.MailingStreet,'')}"/><br/>
+                                    <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.MailingCity,'')}"/><br/>
+                                    <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.MailingCountry,'')}"/><br/>
+                                    <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.MailingPostalCode,'')}"/>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        <div style="padding: 18px;">
+                            <b>Nos missions :</b>  le secours humanitaire, l’assistance aux individus et aux populations civiles en souffrance, la lutte contre toutes les formes de pauvreté et de paupérisation, et la promotion de l’égal accès aux soins médicaux.
+                        </div>
+                        
+                        <p style="color:#662d90; padding:0px 18px">
+                            Appel Humanitaire International reconnait avoir reçu à titre de don, ouvrant droit à réduction d'impôt :
+                        </p>
+                        
+                        <div>
+                            <table style="  float:left;
+                                          font-size: 20px;
+                                          margin: 0px 18px;
+                                          width: 96%;">
+                                <tr>
+                                    <td style="color: #662d90;"><b>La somme de :</b></td>
+                                    <td><apex:outputText value="{!totalAmountFormatted} €" rendered="{!emptyList == False}"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #662d90;width: 45%;"><b>Somme en toutes lettres :</b></td>
+                                    <td>
+                                        {!totalAmountInWordsFrench}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <br/>
+                        <br/>
+                        
+                        <div style="margin: 52px 18px 18px 18px;">
+                            <apex:outputText value="Dons effectués en EUR (€) entre le {!sDate} et le {!eDate}" rendered="{! NOT(ISNULL(sDate))}"/>
+                        </div>
+                        
+                        <br/><br/><br/><br/>
+                        <div style="width: 20%;
+                                    float: right;
+                                    margin-right: 18px;
+                                    font-size: 20px;
+                                    text-align: center;">
+                            Mohamad Yousef<br/> Président
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </body>
+    </html>
+</apex:page>

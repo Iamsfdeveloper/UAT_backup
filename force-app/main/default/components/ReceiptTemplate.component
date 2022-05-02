@@ -1,0 +1,165 @@
+<apex:component access="global" controller="ReceiptTemplateController">
+    <apex:attribute name="opportunityId" type="Id" assignTo="{!oppId}" description="Opportunity Id"/>
+    <apex:attribute name="payment" type="npe01__OppPayment__c" description="Card Payment"/>
+    <apex:attribute name="theContact" type="Contact" description="Contact"/>
+    
+    <apex:stylesheet value="{!URLFOR($Resource.SMP_DD_Resources, 'css/ReceiptTemplate.css')}"/>
+
+   
+
+
+    <div>
+        <div style="float:left;">
+            <apex:outputPanel rendered="{!payment.npe01__Opportunity__r.Account.RecordType.Name == 'Organization'}">
+                <apex:outputField value="{!payment.npe01__Opportunity__r.Account.Name}"/><br/>
+                <apex:outputField value="{!payment.npe01__Opportunity__r.Account.BillingStreet}"/><br/>
+                <apex:outputField value="{!payment.npe01__Opportunity__r.Account.BillingCity}"/><br/>
+                <apex:outputField value="{!payment.npe01__Opportunity__r.Account.BillingPostalCode}"/>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!payment.npe01__Opportunity__r.Account.RecordType.Name != 'Organization'}">
+                <apex:outputText value="{!SUBSTITUTE(theContact.Salutation, '.', '')} " rendered="{!ISBLANK(theContact.Salutation) == false}"/><apex:outputField value="{!theContact.Name}"/><br/>
+                <apex:outputField value="{!theContact.MailingStreet}"/><br/>
+                <apex:outputField value="{!theContact.MailingCity}"/><br/>
+                <apex:outputField value="{!theContact.MailingPostalCode}"/>
+            </apex:outputPanel>            
+        </div>
+      
+        <div style = "display:flex; flex-direction:column; justify-content: space-between; float: right;">
+
+            <div style="margin-bottom: 30%;">
+
+                <apex:image id="theImage" value="{!URLFOR($Resource.SMP_DD_Resources, 'images/ha-logo-nobox.png')}" width="130px" height="130px" alt="Human Appeal logo" style="object-fit: cover;"/>
+        
+            </div>
+            
+        
+            <div style="text-align:right;">   
+                Page 1 of 1<br/><br/>
+                <apex:outputText value="Donor ID: {!theContact.Donor_ID__c}"/><br/><br/>
+                <apex:outputText value="{!DAY(DATEVALUE(payment.CreatedDate))}/{!MONTH(DATEVALUE(payment.CreatedDate))}/{!YEAR(DATEVALUE(payment.CreatedDate))}"/>
+            </div>
+
+        </div>
+        
+       
+        <div style="clear:both"/>
+        
+        <h2 style="margin-top: 67px; margin-bottom: 0px;">
+            
+            <apex:outputText value="Donation Receipt"/>
+        </h2>
+
+        <table>
+            <tr>
+                <th style="width:140px;">Type</th>
+                <th style="width:300px;">Location</th>
+                <th style="width:350px;">Project</th>
+                <th style="width:150px; text-align:right;">Amount</th>
+            </tr>
+            <apex:repeat var="prod" value="{!Products}">
+                <tr>
+                    <td><apex:outputField value="{!prod.Stipulation_Type__c}"/></td>
+                    <td><apex:outputText value="{!prod.npsp__General_Accounting_Unit__r.Country__c}"></apex:outputText></td>
+                    <td><apex:outputField value="{!prod.npsp__General_Accounting_Unit__r.Name}"/></td>
+                    <td style="text-align:right;"><apex:outputText value="{!CASE(prod.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!prod.npsp__Amount__c}"/></td>                    
+                </tr>
+            </apex:repeat>
+            <apex:repeat value="{!Breakdown}" var="type">
+                <tr style="border: 0px;">
+                    
+                    <td style="text-align:right; border: 0px; width:100px;" colspan="4">
+                        <b>
+                        <apex:outputText value="Total Zakat" rendered="{!type == 'ZK'}"/>
+                        <apex:outputText value="Total General Charity" rendered="{!type == 'XX'}"/>
+                        <apex:outputText value="Total Sadaqah" rendered="{!type == 'SD'}"/>
+                        &nbsp;&nbsp;&nbsp;</b>
+                        <apex:outputText value="{!CASE(payment.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!Breakdown[type]}"/>
+                    </td>
+                </tr>
+            </apex:repeat>
+            <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="4">
+                    <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                    <apex:outputText value="{!CASE(payment.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,0.00}"><apex:param value="{!payment.npe01__Payment_Amount__c}" /></apex:outputText><br/>
+                    <apex:outputText value="Per Year" rendered="{!payment.npe01__Opportunity__r.Payment_Schedule__r.Frequency__c == 'Annually'}"/>
+                    <apex:outputText value="Per Month" rendered="{!payment.npe01__Opportunity__r.Payment_Schedule__r.Frequency__c == 'Monthly'}"/>
+                    <apex:outputText value="Per Week" rendered="{!payment.npe01__Opportunity__r.Payment_Schedule__r.Frequency__c == 'Weekly'}"/>
+                    <apex:outputText value="Per Day" rendered="{!payment.npe01__Opportunity__r.Payment_Schedule__r.Frequency__c == 'Daily'}"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td rowspan="{!BreakdownSize + 1}" style="border: 0px;">
+                        <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/regulator.png')}" width="160px"/>
+                </td>
+
+                <td rowspan="{!BreakdownSize + 1}" style="border: 0px;padding-left: 40px">
+                        <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/HA30badge.png')}" width="80px" height="80px"/>
+                </td>
+            </tr>
+        </table>
+
+        <div style="margin-top:15px; font-size:12px;">
+            <!-- <apex:outputText value="Please make a note of your Agreement No. {!directDebit.Name} should you need to contact us about your regular donation. 
+                                    Your monthly donation of {!directDebit.DD_Ongoing_Collection_Amount__c} will be taken on or around the 1st of each month."
+                                    rendered="{!directDebit != null}"/>
+
+                                    the below can be fixed by changing the status__c to DonationCode__c -->
+
+            <apex:outputText value="Please make a note of your Agreement No. {!payment.Name} should you need to contact us about your regular donation. 
+                                    Your {!payment.npe01__Opportunity__r.Payment_Schedule__r.Frequency__c} donation of {!payment.npe01__Payment_Amount__c} will be taken on or around the {!payment.npe01__Opportunity__r.Payment_Schedule__r.Frequency__c} of each month."
+                                    rendered="{!payment.Status__c == 'RD' && payment.npe01__Opportunity__r.Payment_Schedule__r.Frequency__c == 'Monthly'}"/>
+
+            <apex:outputText value="Please make a note of your Agreement No. {!payment.Name} should you need to contact us about your daily donation."                                     
+                                    rendered="{!payment.Status__c == 'RD' && payment.npe01__Opportunity__r.Payment_Schedule__r.Frequency__c == 'Daily'}"/>
+        </div>
+
+        <div style="margin-top:15px; font-size:11px; color: #838383">
+            <apex:outputPanel rendered="{!theContact.MailingCountry == 'United Kingdom' || theContact.MailingCountry == 'UK' || theContact.MailingCountry == 'uk'}">
+                <apex:outputPanel rendered="{!payment.npe01__Opportunity__r.Gift_Aid_Submitted__c == false}">
+                    <p>
+                        Did you know you can make your donations 25% bigger with Gift Aid if you are a UK taxpayer? This government scheme raises the value of donations from UK taxpayers, claiming back the basic rate tax paid at no extra cost to you. So, if you were to donate £100 and allow us to Gift Aid it, your donation would increase to £125, enabling us to use the funds towards core funding costs of the charity and our Where Most Needed programmes to save and transform more lives. All it takes is a tick. To find out more, please visit www.humanappeal.org.uk or call 0161 225 0225.
+                    </p>
+                </apex:outputPanel>
+
+
+                <apex:outputPanel rendered="{!payment.npe01__Opportunity__r.Gift_Aid_Submitted__c == true}">
+                    <p>
+                        <apex:outputText value="Thank you for allowing us to claim Gift Aid on your donations. Please be aware we can only claim Gift Aid if you have paid or will pay an amount of tax at least equal to the amount of Gift Aid that all the charities you donate to will reclaim on your gifts for that tax year. Note that that other taxes such as VAT and Council Tax do not qualify. Human Appeal will reclaim 25p of tax on every £1 that you give which will be used to cover the costs of the charity's work."/>
+                        <br/><br/>
+                        <apex:outputText style="font-weight: bold;" value="Get updates about our life-saving work around the world. "/>
+                        <br/><br/>
+                        <apex:outputText value="Sign up to our email and SMS updates to find out about the impact that Human Appeal supporters like you are making to the lives of vulnerable people around the world, as well as news, information, events, competitions and emergency updates about how you can help. Visit www.humanappeal.org.uk or call 0161 225 0225 to sign up." />
+                    </p>
+
+                </apex:outputPanel>
+
+                <apex:outputPanel rendered="{!payment.npe01__Payment_Method__c == 'Direct Debit'}">
+                    <p>
+                        <strong>The Direct Debit Guarantee: </strong> This Guarantee is offered by all Banks and Building Societies that take part
+                        in the Direct Debit Scheme. The efficiency and security of the scheme is monitored by your own Bank. If the amount to be
+                        paid or the payment date changes we will notify you five working days in advance of your account being debited, or as
+                        otherwise agreed. If an error is made by us or your Bank, you are guaranteed a full and immediate refund from your branch
+                        of the amount paid. You can cancel a Direct Debit at any time by writing to your bank or contacting us.
+                    </p>
+                </apex:outputPanel>
+
+            </apex:outputPanel>  
+
+            <div style="position: fixed;bottom: 0;">
+
+            <p style=" color: #662d91; font-size: 11px; display: inline;">         
+                    <strong>HUMAN APPEAL</strong>&nbsp;&nbsp;&bull;&nbsp;&nbsp;Pennine House, Carrs Road, SK8 2BL, United Kingdom</p>
+            <p style="color: #662d91; font-size: 10px; display: inline;">
+                    humanappeal.org.uk&nbsp;&nbsp;&bull;&nbsp;&nbsp;customercare@humanappeal.org.uk&nbsp;&nbsp;&bull;&nbsp;&nbsp;0161 225 0225<br/>  
+            </p>
+            <p style="color: #662d91; font-size: 9px; display: inline;">
+                    Charity Reg No. 1154288&nbsp;&nbsp;&bull;&nbsp;&nbsp;Company Reg No. 8553893&nbsp;&nbsp;&bull;&nbsp;&nbsp;Scottish Reg No. SC056481
+            </p>
+        </div>  
+
+        </div>       
+                
+        
+    </div>
+</apex:component>

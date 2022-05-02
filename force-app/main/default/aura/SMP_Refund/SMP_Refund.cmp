@@ -1,0 +1,78 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride" access="global" controller="SMP_RefundController">
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:attribute name="paymentGateway" type="String"/>
+    <aura:attribute name="cardPaymentFields" type="Object"/>    
+
+    <aura:attribute name="histories" type="Object"/>
+    <aura:attribute name="historyColumns" type="List"/>
+    <aura:attribute name="selectedHistories" type="List"/>
+
+    <aura:attribute name="results" type="Object"/>
+    <aura:attribute name="resultsColumns" type="Object"/>
+    
+    <aura:attribute name="showHistoryPanel" type="Boolean" default="true"/>
+    <aura:attribute name="showRefundPanel" type="Boolean" default="false"/>
+    <aura:attribute name="showResultsPanel" type="Boolean" default="false"/>
+
+    <aura:attribute name="refundAmountDisabled" type="Boolean" default="true"/>    
+    <aura:attribute name="refundButtonDisabled" type="Boolean" default="true"/>
+    <aura:attribute name="maxRowSelection" type="Integer" default="99"/>
+
+    <aura:attribute name="refundAmount" type="currency" default="0.00"/>
+    <!-- <aura:attribute name="refundReason" type="String"/> -->
+
+    <lightning:spinner aura:id="loadingSpinner" alternativeText="Loading" size="large" />    
+    
+    <aura:if isTrue="{!v.showResultsPanel == false}">
+        <lightning:recordForm
+            aura:id="cardPaymentForm"
+            recordId="{!v.recordId}"
+            objectApiName="Income_Card_Payment__c"
+            layoutType="Compact"
+            columns="2"
+            mode="readonly"
+            density="compact"
+            onload="{!c.cardPaymentLoad}"/>
+        <hr/>
+        
+        <aura:if isTrue="{!v.showHistoryPanel == true}">
+            <lightning:datatable keyField="id"
+                                data="{!v.histories}"
+                                columns="{!v.historyColumns}"
+                                hideCheckboxColumn="false"
+                                onrowselection="{!c.historySelected}"
+                                maxRowSelection="{!v.maxRowSelection}"/>     
+                
+            <hr/>
+        </aura:if>
+
+        <lightning:layout multipleRows="true">
+            <aura:if isTrue="{!v.showRefundPanel}">
+                <lightning:layoutItem size="6" padding="horizontal-medium">
+                    <lightning:input type="number" aura:id="refundField" label="Refund Amount" value="{!v.refundAmount}" step="0.01" onblur="{!c.refundAmountChanged}" disabled="{!v.refundAmountDisabled}" required="true"/>
+                    <aura:if isTrue="{!v.refundAmountDisabled &amp;&amp; v.selectedHistories.length > 1}">
+                        You may only refund the full amount whens selecting multiple transactions.
+                    </aura:if>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="6" padding="horizontal-medium">
+                    <!-- <lightning:input type="text" aura:id="refundField" label="Refund Reason" value="{!v.refundReason}" required="true"/> -->
+                </lightning:layoutItem>
+                <lightning:layoutItem size="6" class="slds-m-top_medium" padding="horizontal-medium">
+                    <div style="text-align:right">
+                        <lightning:button aura:id="refundButton" label="Refund" variant="brand" title="Refund Payment" onclick="{!c.onRefundClick}" disabled="{!v.refundButtonDisabled}"/>
+                    </div>
+                </lightning:layoutItem>
+            </aura:if>
+        </lightning:layout>
+    </aura:if>
+
+    <aura:if isTrue="{!v.showResultsPanel == true}">
+        <lightning:datatable keyField="id"
+                            data="{!v.results}"
+                            columns="{!v.resultsColumns}"
+                            hideCheckboxColumn="true"/>
+    </aura:if>
+    
+</aura:component>

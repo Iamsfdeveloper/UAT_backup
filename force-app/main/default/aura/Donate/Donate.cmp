@@ -1,0 +1,148 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="donationController">
+    <aura:handler name="init" value="{!this}" action="{!c.Init}"/>
+    <aura:attribute name="donation" type="Object" />
+    <div class="campaign-header__flex__right">
+        <div class="fill-height">
+            <div class="campaign-header__flex campaign-header__flex--column fill-height bg-light">
+                <div class="campaign-header__flex campaign-header__flex--column campaign-header__flex__vertically-centre">
+                    <div class="wrap wrap--not-large">    
+                        <div class="campaign-header__wrap-at-large">
+                            <div class="campaign-header__progress">
+                                <div class="campaign-header__progress__icon">
+                                    <div class="progress">
+                                        <div class="progress__inner">
+                                            <span class="progress__text">
+                                                <span class="progress__value">73</span><span class="progress__unit">%</span>
+                                                <span class="visuallyhidden"> of target reached.</span>
+                                            </span>
+                                            <div class="progress__indicator">
+                                                <div class="progress__indicator__inner" style="height: 73%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>    </div>
+                                <div class="campaign-header__progress__number">
+                                    <p class="text-color--primary">£500.00</p>
+                                </div>
+                                <div class="campaign-header__progress__data">
+                                    <p class="text-color--primary-light">
+                                        <span>
+                                            <strong>£1,000</strong> Target
+                                        </span>
+                                        <span class="campaign-header__progress__split">
+                                            <strong>20</strong> Supporters
+                                        </span>
+                                        <span>
+                                            <strong>120</strong> Days left
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>                                                        <div class="campaign-header__form">
+                            <form method="" action="" class="form form--donate form-has-currency is-serif">
+                                <div class="toggle toggle--desc">
+                                    <fieldset>
+                                        <legend class="visuallyhidden">Currency select and donation amount</legend>
+                                        <div class="form__field form__inline form__field--less-margin pos-rel">
+                                            <div class="form__inline__1-5">
+                                                <div class="toggle__item">
+                                                    <label for="donate-currency" class="visuallyhidden">Change currency</label>
+                                                    <div class="form__input form__input--select form__input--select-mini">
+                                                        <select id="donate-currency" name="donate-currency" class="select--narrow">
+                                                            <option value="gbp">£</option>
+                                                            <option value="usd">$</option>
+                                                            <option value="eur">€</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form__inline__4-5 form__inline">
+                                                <div class="form__inline__1-4 radio radio--toggle radio--desc toggle__item __curr __curr--init __curr--gbp">
+                                                    <input type="radio" id="donate-amount-gbp-100" name="donate-amount" value="100"  checked=""/>
+                                                    <label for="donate-amount-gbp-100" class="focus">£100</label>
+                                                </div>
+                                                <div class="form__inline__1-4 radio radio--toggle radio--desc toggle__item __curr __curr--init __curr--gbp">
+                                                    <input type="radio" id="donate-amount-gbp-50" name="donate-amount" value="50" />
+                                                    <label for="donate-amount-gbp-50" class="focus">£50</label>
+                                                </div>
+                                                <div class="form__inline__1-4 radio radio--toggle radio--desc toggle__item __curr __curr--init __curr--gbp">
+                                                    <input type="radio" id="donate-amount-gbp-20" name="donate-amount" value="20" />
+                                                    <label for="donate-amount-gbp-20" class="focus">£20</label>
+                                                </div>
+                                                <div class="form__inline__1-4 radio radio--toggle radio--desc toggle__item __curr __curr--usd">
+                                                    <input type="radio" id="donate-amount-usd-100" name="donate-amount" value="100"  disabled=""/>
+                                                    <label for="donate-amount-usd-100" class="focus">$100</label>
+                                                </div>
+                                                <div class="form__inline__1-4 radio radio--toggle radio--desc toggle__item __curr __curr--usd">
+                                                    <input type="radio" id="donate-amount-usd-50" name="donate-amount" value="50"  disabled=""/>
+                                                    <label for="donate-amount-usd-50" class="focus">$50</label>
+                                                </div>
+                                                <div class="form__inline__1-4 radio radio--toggle radio--desc toggle__item __curr __curr--usd">
+                                                    <input type="radio" id="donate-amount-usd-20" name="donate-amount" value="20"  disabled=""/>
+                                                    <label for="donate-amount-usd-20" class="focus">$20</label>
+                                                </div>
+                                                <div class="form__inline__1-4 radio radio--toggle radio--desc toggle__item __curr __curr--eur">
+                                                    <input type="radio" id="donate-amount-eur-130" name="donate-amount" value="130"  disabled=""/>
+                                                    <label for="donate-amount-eur-130" class="focus">€130</label>
+                                                </div>
+                                                <div class="form__inline__1-4 radio radio--toggle radio--desc toggle__item __curr __curr--eur">
+                                                    <input type="radio" id="donate-amount-eur-80" name="donate-amount" value="80"  disabled=""/>
+                                                    <label for="donate-amount-eur-80" class="focus">€80</label>
+                                                </div>
+                                                <div class="form__inline__1-4 radio radio--toggle radio--desc toggle__item __curr __curr--eur">
+                                                    <input type="radio" id="donate-amount-eur-40" name="donate-amount" value="40"  disabled=""/>
+                                                    <label for="donate-amount-eur-40" class="focus">€40</label>
+                                                </div>
+                                                <div class="form__inline__1-4 radio radio--toggle radio--toggle-with-text radio--desc toggle__item">
+                                                    <input type="radio" id="donate-amount-other" name="donate-amount" value="" />
+                                                    <label for="donate-amount-other" class="focus">Other</label>
+                                                    <div class="radio--toggle-with-text__text-input form__input form__input--error">
+                                                        <p class="radio--toggle-with-text__text-input__fake-label">Please enter a different amount</p>
+                                                        <span class="input-prefix radio--toggle-with-text__text-input__placeholder">£</span>
+                                                        <input type="text" id="donate-amount-custom" name="" value=""/>
+                                                        <!-- Field validation error message -->
+                                                        <span class="form__error-message is-sans">Something is wrong</span>
+                                                        <!-- END - field validation error message -->
+                                                    </div>
+                                                    <label for="donate-amount-custom" class="radio--toggle-with-text__text-input__label">
+                                                        <span class="visuallyhidden">Please enter a different amount</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 
+                    Toggle description value gets updated with jQuery on click of a radio button.
+                    Description of default option should be provided below.
+                -->
+                                        <p class="toggle__desc is-sans"><span class="is-sans-medium">£100</span> could pay for 4 months worth of consectetur adipiscing elit.</p>
+                                    </fieldset>
+                                    <div class="form__field form__field--no-m-bot form__field--m-top form__field--centered">
+                                        <div class="form__input">
+                                            <aura:if isTrue="{!v.donation.isGuestUser}">
+                                                <button class="button button--primary button--tall button--inline-block button--action" type="submit">Donate</button>
+                                                <aura:set attribute="else">
+                                                    <button class="button button--primary button--tall button--inline-block button--action" type="submit">Quick Donate </button>
+                                                </aura:set>
+                                            </aura:if>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>                                                    </div>
+                    </div>
+                </div>
+                <div class="bg-grey campaign-header__flex__vertically-bottom">
+                    <div class="wrap wrap--not-large">
+                        <div class="campaign-header__wrap-at-large">
+                            <div class="campaign-header__profile">
+                                <div class="campaign__profile campaign__profile--large">
+                                    <div class="campaign__profile__picture">
+                                        <img src="https://placehold.it/132x120" srcset="https://placehold.it/66x60 1x, https://placehold.it/132x120 2x" alt="Profile picture."/>
+                                    </div>\
+                                </div>
+                            </div>                                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</aura:component>

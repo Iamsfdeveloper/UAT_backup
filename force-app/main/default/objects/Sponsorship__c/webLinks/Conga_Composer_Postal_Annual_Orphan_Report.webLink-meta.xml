@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conga_Composer_Postal_Annual_Orphan_Report</fullName>
+    <availability>online</availability>
+    <description>Originally created by Conga Solution Manager. Date of last use of Update Button from Conga Solution record: https://humanappeal--uat--apxtconga4.visualforce.com/a270C000000SuEVQA0
+03-Mar-2022 09:01:02 AM</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>false</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>660</height>
+    <isResizable>false</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Postal Annual Orphan Report</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/APXTConga4__Conga_Composer?SolMgr=1
+&amp;serverUrl={!API.Partner_Server_URL_370}
+&amp;Id={!Sponsorship__c.Id}
+
+&amp;QueryId=[postalOrphanReport]0Q_032UAA996033
+
+&amp;TemplateId=0T_013UAA808314
+
+&amp;EmailToId=
+&amp;AC0=1
+&amp;AC1=Annual+report+for+%7B!Sponsorship__c.Orphan_First_Name__c%7D+%7B!Sponsorship__c.Orphan_Last_Name__c%7D
+&amp;DefaultPDF=1
+&amp;FP0=1
+&amp;EmailAdditionalTo=abdullah.chowdhery21@gmail.com</url>
+    <width>900</width>
+</WebLink>

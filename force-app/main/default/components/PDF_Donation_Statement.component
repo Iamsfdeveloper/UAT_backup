@@ -1,0 +1,104 @@
+<apex:component controller="HA_Donation_Statement_Cmp_Ctrl" access="global" >
+    <apex:attribute name="recordId" description="Contact Id to fetch Donations" type="String" assignTo="{!contactId}" />
+    <apex:attribute name="startDPDf" description="Start date of donation" type="Date" assignTo="{!sDate}" />
+    <apex:attribute name="eDatePDf" description="End date of donation" type="Date" assignTo="{!eDate}" />
+    <apex:attribute name="show_Logo" description="Show Logo" type="Boolean" assignTo="{!showLogo}" />
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="author" content="Human Appeal" />
+        <meta name="date" content="@DateTime.Now" />
+        <meta name="generator" content="Human Appeal" />
+        
+        <title>Donation Statement</title>
+    </head>
+    
+    <div class="page">                     
+        <apex:outputPanel rendered="{!showLogo}"> 
+            <div class="header">
+                <img alt="Human Appeal" src="{!URLFOR($Resource.SMP_DD_Resources, 'images/ha-logo-nobox.png')}" width="100" height="100" />
+            </div>
+            
+            <div class="footer"> 
+                <b>HUMAN APPEAL </b>• Cheadle Point, Carrs Road, Cheadle, SK8 2BL, UK
+                humanappeal.org.uk • info@humanappeal.org.uk • 0161 225 0225
+                Charity Reg No. 1154288 • Company Reg No. 8553893 • Scottish Reg No. SC056481
+            </div>
+        </apex:outputPanel>
+        
+        <div style ="display:flex; flex-direction:column; justify-content: space-between; float: right;">
+            <div style="text-align:right;" colspan="6"> 
+                <apex:outputText value="Donor ID: {! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.Donor_Id__c,'')}"/>
+                <br/>
+                <br/>
+                <apex:outputText value="{0, date, dd/MM/yyyy}">
+                    <apex:param value="{!NOW()}" />
+                </apex:outputText>
+            </div>
+        </div>
+        
+        <div style="clear:both"/>
+        <div>
+            <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.Name,'')}"/><br/>
+            <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.MailingStreet,'')}"/><br/>
+            <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.MailingCity,'')}"/><br/>
+            <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.MailingCountry,'')}"/><br/>
+            <apex:outputText value="{! IF(donationList.size > 0,donationList[0].npsp__Opportunity__r.npsp__Primary_Contact__r.MailingPostalCode,'')}"/>  
+        </div>
+        <br/>
+        <h3 class="slds-align--absolute-center slds-p-around--large">         
+            <apex:outputText value="Statement of donations made in GBP (£) between {!sDate} and {!eDate}" rendered="{! NOT(ISNULL(sDate))}"/>
+        </h3>
+        <table>
+            <tr style="font-weight: bold; text-align: left;">
+                <th >Date</th>
+                <th style="margin-right:1rem;">Single/Regular</th>
+                <th >Type</th>            
+                <th >Location</th>
+                <th >Project</th>
+                <th class="slds-p-right--medium">Gift Aid</th>
+                <th style="text-align:right;">Amount</th>
+            </tr>
+            <apex:variable value="{!1}" var="rowCounter"/>
+            
+            <apex:repeat var="prod" value="{!donationList}">
+                <tr>
+                    <td><apex:outputField value="{!prod.npsp__Opportunity__r.CloseDate}"/></td>
+                    <td class="slds-p-right--medium"><apex:outputField value="{!prod.npsp__Opportunity__r.Donation_Type__c}"/></td>
+                    <td class="slds-p-right--medium"><apex:outputField value="{!prod.Stipulation_Type__c}"/></td>
+                    <td class="slds-p-right--medium"><apex:outputText value="{!prod.npsp__Opportunity__r.npsp__Primary_Contact__r.MailingCountry}"></apex:outputText></td>  
+                    <td class="slds-p-right--medium"><apex:outputField value="{!prod.npsp__General_Accounting_Unit__r.Name}"/></td>   
+                    <td class="slds-p-right--medium"><apex:outputField value="{!prod.npsp__Opportunity__r.Gift_Aid_Eligible_Status__c}"/></td>                        
+                    <td style="text-align:right;"><apex:outputText value="{!CASE(prod.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!prod.npsp__Amount__c}"/></td>                    
+                </tr>
+                <apex:variable var="rowNum" value="{!rowCounter + 1}"/>
+            </apex:repeat>
+            <apex:repeat value="{!Breakdown}" var="type">
+                <tr class="slds-p-around--small" style="border: 0px;">
+                    
+                    <td style="text-align:right; border: 0px; width:100px;" colspan="8">
+                        <b>
+                            <apex:outputText value="Total Zakat" rendered="{!type == 'ZK'}"/>
+                            <apex:outputText value="Total General Charity" rendered="{!type == 'XX'}"/>
+                            <apex:outputText value="Total Sadaqah" rendered="{!type == 'SD'}"/>
+                            <apex:outputText value=" £{!Breakdown[type]}"> </apex:outputText>
+                        </b>
+                    </td>
+                </tr>
+            </apex:repeat>
+            <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="7">
+                    <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                    <apex:outputText value="£{!totalAmount}" rendered="{!emptyList == False}"></apex:outputText><br/>
+                    <b><apex:outputText value="Gift Aid Value"/>&nbsp;&nbsp;&nbsp;</b>
+                    <apex:outputText value="£{!totalGiftAid}" rendered="{!emptyList == False}"></apex:outputText><br/>
+                </td>          
+            </tr>
+            
+            <tr>
+                <td rowspan="{!BreakdownSize + 1}" style="border: 0px;">
+                    <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/regulator.png')}" width="160px"/>
+                </td>   
+            </tr>
+        </table>
+    </div> 
+</apex:component>

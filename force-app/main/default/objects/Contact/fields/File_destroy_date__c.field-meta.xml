@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>File_destroy_date__c</fullName>
+    <description>Calculate File_destroy_date field when volunteer status is set to Leaver</description>
+    <externalId>false</externalId>
+    <label>File destroy date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

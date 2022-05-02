@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Direct Debit Detail</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Direct Debit Details</value>
+    </caseValues>
+    <layouts>
+        <layout>HA Income Direct Debit Layout</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>DD Dates</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Direct Debit Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Income Direct Debit Layout</layout>
+        <sections>
+            <label></label>
+            <section>Account Finder</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>DD Dates</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Direct Debit Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Account_Number_Length_8_digits</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Must_be_New_Instruction</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Sort_Code_Length_6_digits</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>must_be_set</name>
+    </validationRules>
+    <webLinks>
+        <label></label>
+        <name>Mandate_PDF</name>
+    </webLinks>
+    <webLinks>
+        <label></label>
+        <name>Paper_Based_Mandate_PDF</name>
+    </webLinks>
+</CustomObjectTranslation>

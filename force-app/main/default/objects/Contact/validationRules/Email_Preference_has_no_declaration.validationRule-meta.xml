@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Preference_has_no_declaration</fullName>
+    <active>true</active>
+    <description>Reactivated after updating data so all pre-existing records are clean and would pass. 10/03/2021</description>
+    <errorConditionFormula>AND (
+     !ISBLANK (Email),
+     !ISPICKVAL( Can_Appeal_Via_Email__c, &quot;Unspecified&quot;) ,
+      ISBLANK( TEXT(  Email_Preference_declared__c ))
+     )</errorConditionFormula>
+    <errorDisplayField>Email_Preference_declared__c</errorDisplayField>
+    <errorMessage>Please state by what means the Email preference was declared</errorMessage>
+</ValidationRule>

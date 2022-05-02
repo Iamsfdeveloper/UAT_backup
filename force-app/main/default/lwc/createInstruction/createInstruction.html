@@ -1,0 +1,324 @@
+<!--
+@description       : 
+@author            : Iamsfdeveloper
+@group             : 
+@last modified on  : 10-13-2021
+@last modified by  : Iamsfdeveloper
+Modifications Log 
+Ver   Date         Author           Modification
+1.0   11-19-2020   Iamsfdeveloper   Initial Version
+-->
+<template>
+    <div>
+        <template if:false={loadedSpinner}>
+            <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
+        </template>
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="12">
+                <!-- <lightning-record-view-form record-id={recordId} onsuccess={handleSuccess}  object-api-name="Campaign" form-class="donation" >
+                <lightning-messages>
+                </lightning-messages>
+            <lightning-layout multiple-rows="true">
+                
+                <lightning-layout-item padding="horizontal-small" size="3">
+                        <lightning-output-field field-name="CurrencyIsoCode" onchange={handleChange} required data-id="CurrencyIsoCode"></lightning-output-field>
+                </lightning-layout-item>
+                <lightning-layout-item padding="horizontal-small" size="3">
+                    <lightning-output-field field-name="Available_Amount__c"></lightning-output-field>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-record-view-form>
+    -->
+                <lightning-record-edit-form record-id={instructionRecordId} object-api-name="Instruction__c"
+                    onsubmit={handleSubmit}>
+                    <lightning-messages>
+                    </lightning-messages>
+                    <lightning-layout multiple-rows="true">
+
+                        <lightning-layout-item padding="horizontal-small" size="3">
+                            <lightning-input-field field-name="Campaign__c" required data-id="Campaign__c">
+                            </lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="horizontal-small" size="3">
+                            <lightning-input-field field-name="Type__c" onchange={handleTypeChange} required
+                                data-id="Type"></lightning-input-field>
+                        </lightning-layout-item>                                                
+                        <lightning-layout-item padding="horizontal-small" size="3">
+                            <lightning-input-field field-name="Instruction_Notes__c" required
+                                data-id="Instruction_Notes__c"></lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="horizontal-small" size="3">
+                            <lightning-input-field field-name="CurrencyIsoCode" required data-id="CurrencyIsoCode"
+                                onchange={handleChange}></lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="horizontal-small" size="3">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="form-element-01">Available Amount</label>
+                                <div class="slds-form-element__control">
+                                    <lightning-formatted-number format-style="currency" currency-code={currencyISOCode}
+                                        value={campaignDetail.Available_Amount__c}></lightning-formatted-number>
+                                </div>
+                            </div>
+
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="horizontal-small" size="3">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="form-element-01">Campaign
+                                    Description</label>
+                                <div class="slds-form-element__control">
+                                    <lightning-formatted-text value={campaignDetail.Description}>
+                                    </lightning-formatted-text>
+                                </div>
+                            </div>
+
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="horizontal-small" size="3">
+                            <lightning-input-field field-name="Sponsorship_Start_Date__c"  data-id="Sponsorship_Start_Date__c"></lightning-input-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <input type="submit" class="hidden" />
+                </lightning-record-edit-form>
+            </lightning-layout-item>
+            <div class="slds-p-top_x-large">
+            <lightning-layout-item size="12">
+                <template for:each={campaignDetail.npsp__Allocations__r} for:item='cpa'>
+                    <div class="slds-notify_container slds-is-relative" style="text-align:left;"
+                        key={cpa.npsp__General_Accounting_Unit__c}>
+                        <div class="slds-notify slds-notify_toast slds-theme_info" role="status">
+                            <lightning-icon
+                                class="slds-icon_container slds-icon-utility-info slds-m-right_small slds-no-flex slds-align-top"
+                                icon-name="utility:info" size="small" alternative-text="Information"
+                                title="Campaign Purpose" variant="inverse"></lightning-icon>
+                            <div class="slds-notify__content" style="padding: 0.3em;">
+                                <label style = "color: white; font-size: medium;">Current Fund</label>
+                                <lightning-layout>
+                                    <lightning-layout-item>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" style = "color: white" for="form-element-01">Item
+                                                Name</label>
+                                            <div class="slds-form-element__control">
+                                                <lightning-formatted-text
+                                                    value={cpa.npsp__General_Accounting_Unit__r.Name}>
+                                                </lightning-formatted-text>
+                                            </div>
+                                        </div>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item class="slds-p-left_x-small">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" style = "color: white" for="form-element-01">Item
+                                                Code</label>
+                                            <div class="slds-form-element__control">
+                                                <lightning-formatted-text
+                                                    value={cpa.npsp__General_Accounting_Unit__r.Donation_Item_Code__c}>
+                                                </lightning-formatted-text>
+                                            </div>
+                                        </div>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item class="slds-p-left_x-small">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" style = "color: white" for="form-element-01">Item
+                                                Catergory</label>
+                                            <div class="slds-form-element__control">
+                                                <lightning-formatted-text
+                                                    value={cpa.npsp__General_Accounting_Unit__r.Product_Type__c}>
+                                                </lightning-formatted-text>
+                                            </div>
+                                        </div>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </template>
+            </lightning-layout-item>
+        </div>
+            <lightning-layout-item size="12">
+                <h4 class="searchFilterSeperator">Search Filter</h4>
+            </lightning-layout-item>
+            <lightning-layout-item size="6">
+                <div onkeyup={handleKeyUp}>
+                    <lightning-input name="enter-search" label="Search Item" type="search"></lightning-input>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item padding="horizontal-small" size="2">
+                <lightning-combobox name="Country__c" label="Country" value={selectedCountry}
+                    placeholder="Select Country" options={countryList} onchange={handleChange} class="searchFilter">
+                </lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item padding="horizontal-small" size="2">
+                <lightning-checkbox-group name="Stipulation__c" class="searchFilter" label="Stipulation"
+                    value={stipulationType} options={stipulationOptions} onchange={handleChange}>
+                </lightning-checkbox-group>
+            </lightning-layout-item>
+            <lightning-layout-item padding="horizontal-small" size="12">
+                <div class="slds-table--header-fixed_container" style="height:250px;">
+                    <div class="slds-scrollable_y" style="height:100%;">
+                        <table
+                            class="slds-table slds-table_bordered slds-table--header-fixed slds-table_striped slds-p-top_small">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="slds-text-align_right" scope="col" style="width:3.25rem">
+                                        <div class="slds-truncate slds-cell-fixed" title=""></div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate slds-cell-fixed" title="Item Name">Item Name</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate slds-cell-fixed" title="Item Code">Code</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate slds-cell-fixed" title="Qty">Country</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate slds-cell-fixed" title="Stipulation Type">Stipulation
+                                            Type</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate slds-cell-fixed" title="Amount">Amount</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={itemList} for:item="item">
+                                    <tr aria-selected="false" class="slds-hint-parent"
+                                        key={item.npsp__General_Accounting_Unit__c}>
+                                        <td class="slds-text-align_right" role="gridcell">
+                                            <div class="slds-checkbox">
+                                                <lightning-button variant="brand-outline" label="Add"
+                                                    title="Primary action" name={item.npsp__General_Accounting_Unit__c}
+                                                    disabled={disabledAddBtn} class="slds-m-left_x-small"
+                                                    onclick={addItemAllocation}></lightning-button>
+
+                                            </div>
+                                        </td>
+                                        <th scope="row">
+                                            <div class="slds-truncate"
+                                                title={item.npsp__General_Accounting_Unit__r.Name}>
+                                                <a href="javascript:void(0);"
+                                                    tabindex="0">{item.npsp__General_Accounting_Unit__r.Name}</a>
+                                            </div>
+                                        </th>
+                                        <td role="gridcell">
+                                            <div class="slds-truncate"
+                                                title={item.npsp__General_Accounting_Unit__r.Donation_Item_Code__c}>
+                                                {item.npsp__General_Accounting_Unit__r.Donation_Item_Code__c}</div>
+                                        </td>
+                                        <td role="gridcell">
+                                            <div class="slds-truncate"
+                                                title={item.npsp__General_Accounting_Unit__r.Country__c}>
+                                                {item.npsp__General_Accounting_Unit__r.Country__c}
+                                            </div>
+                                        </td>
+                                        <td role="gridcell">
+                                            <div class="slds-truncate"
+                                                title={item.npsp__General_Accounting_Unit__r.stipulationlabel}>
+                                                {item.npsp__General_Accounting_Unit__r.stipulationlabel}</div>
+                                        </td>
+                                        <td role="gridcell">
+                                            <div class="slds-truncate" title="3">
+                                                <lightning-formatted-number value={item.UnitPrice}
+                                                    format-style="currency" currency-code={currencyISOCode}>
+                                                </lightning-formatted-number>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="12">
+                <p>Selected Items:{itemAllocations.length}</p>
+                <div
+                    class="slds-grid slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped rowheader">
+
+                    <div class="slds-col slds-size_1-of-8"></div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Item Name">Item Name</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Code">Code</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Country"> Country</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Stipulation Type">Stipulation Type</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Amount">Amount</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8 slds-p-right_medium">
+                        <div class="slds-truncate slds-float_right" title="Total Price">Total Price</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Action">Action</div>
+                    </div>
+                </div>
+                <template for:each={itemAllocations} for:item="itemAllocation" for:index="index">
+                    <c-donation-item record-id={contactId} quantity-hide={hideQuantity} key={itemAllocation.key}
+                        allocation-item={itemAllocation} index={index} ondelete={handleDelete}
+                        onitemchange={handleItemChange} selected-orphans={selectedOrphan} onclone={handleCloneRequest}
+                        currency-code={currencyISOCode}></c-donation-item>
+
+                </template>
+                <div class="slds-grid">
+
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                        <div class="slds-truncate" title="Total Price">Total Allocated Amount</div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8 slds-p-right_medium">
+                        <div class="slds-truncate slds-float_right" title="Total Price">
+                            <lightning-formatted-number value={totalAmount} format-style="currency"
+                                currency-code={currencyISOCode}></lightning-formatted-number>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8">
+                    </div>
+                </div>
+
+            </lightning-layout-item>
+        </lightning-layout>
+        <footer class="slds-modal__footer">
+            <lightning-button label="Cancel" onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+            <lightning-button variant="brand" label="Save" title="Primary action" name="donationSave"
+                disabled={disabledSaveBtn} class="slds-m-left_x-small" onclick={saveAndNext}></lightning-button>
+        </footer>
+
+        <template if:true={showCancelConfirm}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small"
+                aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">Cancel Donation</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                        <p>Are you sure you want to discard the Changes?</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="No" title="Cancel No" onclick={handleCancelNo}
+                            class="slds-m-left_x-small"></lightning-button>
+                        <lightning-button variant="brand" label="Yes" title="Cancel Yes" onclick={handleCancelYes}
+                            class="slds-m-left_x-small"></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+    </div>
+</template>

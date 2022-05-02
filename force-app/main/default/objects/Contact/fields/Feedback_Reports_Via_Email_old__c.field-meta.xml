@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Feedback_Reports_Via_Email_old__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description>Field confirms contact accepts communication for special request, project and sponsorship reports being sent to them by email.
+
+This is default for feed backs as long as email value is available,</description>
+    <externalId>false</externalId>
+    <label>Feedback Reports Via Email</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

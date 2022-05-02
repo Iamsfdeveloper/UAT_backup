@@ -1,0 +1,44 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="HA_ManageGroupMember" access="global" >
+    <aura:attribute name='QueueName' type="String" default='Dialer_Queue_UK_2'/>
+    <aura:attribute name='recordId' type="String"/>
+    <aura:attribute name='groupId' type="String"/>
+	<aura:attribute name="listOptions" type="List" default="[]"/>
+    <aura:attribute name="exsitingMembers" type="List" default="[]"/>
+    <aura:attribute name="actualexsitingMembers" type="Map" />
+    <aura:attribute name="newMembers" type="List" default="[]"/>
+    <aura:handler name="init" value="{! this }" action="{! c.initialize }"/>
+    <aura:attribute name="disabled" type="Boolean" default='true'/>
+    <aura:attribute name="loaded" type="Boolean" default="false" />
+    
+    <div>
+        <lightning:card class="slds-p-around_small">
+            <aura:if isTrue="{! v.loaded }">
+                <lightning:spinner alternativeText="Loading" size="small" variant="brand"/>
+            </aura:if>
+            <aura:set attribute="actions">
+                
+                <lightning:button label="save" variant="brand" disabled="{!v.disabled}" onclick="{!c.save}"/>
+            </aura:set>
+            <aura:set attribute="title">
+                <lightning:icon iconName="standard:queue" size="small"/>
+                {!' Manage Queue Members '+v.QueueName}
+            </aura:set>
+            <lightning:dualListbox aura:id="selectOptions" name="Select Options"  label= "Select Options"
+                                   sourceLabel="Available Options"
+                                   selectedLabel="Selected Options"
+                                   options="{! v.listOptions }"
+                                   value="{! v.exsitingMembers }"
+                                   onchange="{! c.handleChange }"/>
+            <div class="slds-notify_container slds-is-relative">
+                    <div class="slds-notify slds-notify_toast slds-theme_warning" role="status">
+                        <span class="slds-assistive-text">warning</span>
+                        <lightning:buttonIcon iconName="utility:warning" size="large" variant="bare"  alternativeText="Warning" title="Warning" class="slds-p-right_small"/>
+                        
+                        <div class="slds-notify__content">
+                            <h3 class="slds-text-heading_small ">The user must logoff and then logon again for the change to take effect.</h3>
+                        </div>
+                    </div>
+            </div>
+        </lightning:card>
+    </div>
+</aura:component>

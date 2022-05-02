@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Amount__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( AND( OR(ISPICKVAL(Transaction_Type__c, &quot;Sale&quot;), ISPICKVAL(Transaction_Type__c, &quot;Authorised&quot;) ) , Payment_Status__c = &quot;Successful&quot; ), Amount__c , if ( AND(ISPICKVAL(Transaction_Type__c, &quot;Deferred Released&quot;), Payment_Status__c = &quot;Successful&quot;), Amount__c , if (AND (ISPICKVAL(Transaction_Type__c, &quot;Refund&quot;) || ISPICKVAL(Transaction_Type__c, &quot;Void&quot;), Payment_Status__c = &quot;Successful&quot; ), -Amount__c ,0) ) )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Credit Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

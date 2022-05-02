@@ -1,0 +1,232 @@
+<apex:page controller="P2P_downloadStatementPDF" renderAs="pdf"  showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false" cache="true">
+    <head>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        <meta name="author" content="Human Appeal" />
+        <meta name="date" content="@DateTime.Now" />
+        <meta name="generator" content="Human Appeal" />
+        
+        <title>Donation Statement</title>
+        <style type="text/css" media="print">
+            * {
+            margin: 0px;
+            padding: 0px;
+            }
+            @page{
+            size: A4;
+            margin-top:3cm;
+            margin-bottom: 2.50cm;
+            font-family: sans-serif;
+            @bottom-right{
+            content: "Page " counter(page) " of " counter(pages);
+            }
+            @bottom-left{
+            content: element(footer);
+            }
+            
+            @top-right{
+            content: element(header);
+            }
+            
+            }
+            div{
+            font-family: sans-serif;
+            font-size:12px;
+            }
+            .page-break {
+            display:table-row;
+            page-break-after:always;
+            }
+            
+            h2
+            {
+            margin-top:0px;
+            font-size:26px;
+            }
+            
+            .maincontainer
+            {
+            padding:20px;
+            }
+            
+            .border
+            {
+            border: 1px solid #000;
+            }
+            
+            .border-dashed-top
+            {
+            border-top: 1px dashed #000;
+            }
+            
+            .ddg-wrapper
+            {
+            background-color: #ffffff;
+            padding: 5px 8px 5px 8px;   
+            }
+            
+            .float-right
+            {
+            float:right;
+            
+            }
+            
+            .float-left
+            {
+            float:left; 
+            }
+            
+            .text-align-left{
+            text-align: left;
+            }
+            
+            .text-align-right{
+            text-align: right;
+            }
+            
+            div {
+            font-family: sans-serif;
+            font-size: 12px;
+            color: #333333;
+            }
+            
+            table {
+            width:100%; border-collapse:collapse;
+            
+            }
+            
+            th, td{    
+            padding-top: 6px;
+            padding-bottom: 6px;
+            }
+            table tr {
+            margin-top: 3px;
+            margin-bottom: 3px;
+            }
+            
+            table td {
+            margin: 6px;
+            padding: 2px;
+            vertical-align: top;
+            }
+            th, h2 {
+            color: #000000;
+            }
+            
+            td{
+            border-top: 1px solid #838383;
+            border-bottom: 1px solid #838383;
+            }
+            div.header {
+            margin-top: 10%;
+            text-align: right;
+            position: running(header);
+            
+            }
+            div.footer {
+            display: block;
+            padding: 5px;
+            font-size:10px;
+            width:200px;
+            color:purple;
+            position: running(footer);
+            }
+            .page {
+            page-break-before: always;
+            }
+            
+            
+        </style>
+    </head>
+    
+    <div class="page">                     
+        
+        
+        <div class="header">
+            <img alt="Human Appeal" src="{!URLFOR($Resource.SMP_DD_Resources, 'images/ha-logo-nobox.png')}" width="100" height="100" />
+            
+            
+        </div>
+        
+        
+        <div class="footer"> 
+            <b>HUMAN APPEAL </b>• Cheadle Point, Carrs Road, Cheadle, SK8 2BL, UK
+            humanappeal.org.uk • info@humanappeal.org.uk • 0161 225 0225
+            Charity Reg No. 1154288 • Company Reg No. 8553893 • Scottish Reg No. SC056481
+        </div>
+        <div style ="display:flex; flex-direction:column; justify-content: space-between; float: right;">
+            <div style="text-align:right;" colspan="6"> 
+                <apex:outputText value="Donor ID: {!donor.Donor_ID__c}"/><br/><br/>
+                <apex:outputText value="{0, date, dd/MM/yyyy}">
+                    <apex:param value="{!NOW()}" />
+                </apex:outputText>
+            </div>
+            
+        </div>
+        
+        <div style="clear:both"/>
+        <div style="float:left;">
+            <apex:outputText value="{! donor.Name}"/><br/>
+            <apex:outputText value="{! donor.MailingStreet}"/><br/>
+            <apex:outputText value="{! donor.MailingCity}"/><br/>
+            <apex:outputText value="{! donor.MailingCountry}"/>                
+        </div>
+        <br/>
+        <h3 style="margin-top: 50px; margin-bottom: 0px;">            
+            <apex:outputText value="Statement of donations made in {!donor.currencyISOCode} between {!formatStartDate} and {!formatEndDate}"/>
+        </h3>
+        <table>
+            <tr style="font-weight: bold; text-align: left;">
+                <th >Date</th>
+                <th style="margin-right:1rem;">Single/Regular</th>
+                <th >Type</th>            
+                <th >Location</th>
+                <th >Project</th>
+                <th >Gift Aid</th>
+                <th style="text-align:right;">Amount</th>
+            </tr>
+            <apex:variable value="{!1}" var="rowCounter"/>
+            
+            <apex:repeat var="item" value="{!donationList}">
+                <tr>
+                    <!--Id,npsp__Amount__c,npsp__Opportunity__r.currencyIsoCode,npsp__Opportunity__r.CloseDate,npsp__Opportunity__r.Donation_Type__c,Stipulation_Type__c,npsp__General_Accounting_Unit__r.Name,npsp__Opportunity__r.Gift_Aid_Eligible_Status__c, Gift_Aid_Value__c-->
+                    <td><apex:outputField value="{!item.npsp__Opportunity__r.CloseDate}"/></td>
+                    <td ><apex:outputField value="{!item.npsp__Opportunity__r.Donation_Type__c}"/></td>
+                    <td><apex:outputField value="{!item.Stipulation_Type__c}"/></td>
+                    <td><apex:outputText value="{!item.Country__c}"></apex:outputText></td>  
+                    <td><apex:outputField value="{!item.npsp__General_Accounting_Unit__r.Name}"/></td>   
+                    <td><apex:outputField value="{!item.npsp__Opportunity__r.Gift_Aid_Eligible_Status__c}"/></td>                        
+                    <td style="text-align:right;"><apex:outputText value="{!CASE(donor.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!item.npsp__Amount__c}"/></td>                    
+                </tr>
+                <apex:variable var="rowNum" value="{!rowCounter + 1}"/>
+            </apex:repeat>
+            <apex:repeat value="{!totalByType}" var="type">
+                <tr style="border: 0px;">
+                    
+                    <td style="text-align:right; border: 0px; width:100px;" colspan="8">
+                        <b>
+                            <apex:outputText value="{!type}"/><apex:outputText value="{!CASE(donor.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!totalByType[type]}"> </apex:outputText>
+                        </b>
+                    </td>
+                </tr>
+            </apex:repeat>
+            <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="7">
+                    <b><apex:outputText value="Gift Aid Value"/>&nbsp;&nbsp;&nbsp;</b>
+                    <apex:outputText value="{!CASE(donor.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!GiftAidAmount}" ></apex:outputText><br/>
+                    <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                    <apex:outputText value="{!CASE(donor.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!TotalAmount}" ></apex:outputText><br/>
+                    
+                </td>          
+            </tr>
+            
+            <tr>
+                <td rowspan="4" style="border: 0px;">
+                    <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/regulator.png')}" width="160px"/>
+                </td>   
+                
+            </tr>
+        </table>
+    </div> 
+</apex:page>

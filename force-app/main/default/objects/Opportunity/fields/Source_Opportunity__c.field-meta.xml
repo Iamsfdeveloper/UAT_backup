@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_Opportunity__c</fullName>
+    <description>Opportunity (Source) - The original donation opportunity</description>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(npe03__Recurring_Donation__r.Opportunity__c,npe03__Recurring_Donation__r.Opportunity__r.Name)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Original Donation Opportunity</inlineHelpText>
+    <label>Source Opportunity</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Concept_Note__c</entityName>
+    <fieldName>Stage__c</fieldName>
+    <masterLabel>Concept Note Path Standard</masterLabel>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Concept note has been Finance Approved and the user can click on Send Agreement button to send agreements to the Signatories &lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Approved - Finance</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Concept note has been DC Approved and can be submitted for HOP Approval&lt;/p&gt;</info>
+        <picklistValueName>Approved-DC</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Concept note has been HOP Approved and can be submitted for Finance Approval&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Approved-HoP</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;In Draft stage please make changes to the concept note and make it ready for submission.&lt;/p&gt;</info>
+        <picklistValueName>Draft</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Concept Note has been signed by all signatories &lt;/p&gt;</info>
+        <picklistValueName>FA-signed</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Project has been Created.&lt;/p&gt;</info>
+        <picklistValueName>Project Created</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;on Submission, user can now click on submit for approval button for submission for approval&lt;/p&gt;</info>
+        <picklistValueName>Submitted</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Standard</recordTypeName>
+</PathAssistant>

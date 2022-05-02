@@ -1,0 +1,81 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="BulkUploadController" access="global" >
+    <aura:attribute name="options" type="List" default="[
+                                                        {'label': 'Agencies', 'value': 'Agencies'},
+                                                        {'label': 'Agencies(Organizations)', 'value': 'AgenciesOrg'},
+                                                        {'label': 'Agencies(Contacts)', 'value': 'AgenciesCon'},
+                                                        {'label': 'Bank Transfers', 'value': 'BankTransfers'},
+                                                        {'label': 'Bank Transfers(Organizations)', 'value': 'BankTransfersOrg'},
+                                                        {'label': 'Card Terminals', 'value': 'CardTerminals'},
+                                                        {'label': 'Donor Pledge', 'value': 'Donor_Pledge'},
+                                                        {'label': 'Agency Pledge', 'value': 'Pledge'}
+                                                        ]"/>
+    <aura:attribute name="value" type="String" default="Agencies"/>
+    <aura:attribute name="fileNameValue" type="String" default=""/>
+    <aura:attribute name="hideButton" type="Boolean" default="false"/>
+    <aura:attribute name="spinner" type="boolean" default="false"/>
+    <aura:attribute name="resultData" type="Object"/>
+    <aura:attribute name="showResults" type="Boolean" default="false"/>
+    <aura:attribute name="showProcessErrorMessage" type="Boolean" default="false"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    <aura:attribute type="object[]" name="processList"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <div class="c-container">
+        <lightning:card>
+            <aura:if isTrue="{!v.spinner}">
+                <div aura:id="spinnerId" class="slds-spinner_container">
+                    <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                        <span class="slds-assistive-text">Loading...</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </aura:if>
+            <lightning:layout verticalAlign="stretch" multipleRows="true">
+                <lightning:layoutItem padding="around-small" size="12">
+                    <ui:message title="File Rules" severity="info" closable="false"> 
+                        ***Please Upload only CSV Files***<br/>
+                        ***Please Open the file in some text editor and ensure there is only new line after end of the file and remove any extra multiple empty lines as it would fail the process***<br/>
+                        ***Please keep the column header names as per template***<br/>
+                        ***Date Format should be yyyy-mm-dd***<br/>
+                        ***File Size should be less than 20MB***<br/>
+                        <a href="{!'/servlet/servlet.FileDownload?file=0154J000001I8mf'}">Download Template</a>`<br/>
+                        <lightning:formattedUrl label="View Opportunities" value="/00O4J000004LzgI" target="_blank" /><br/>
+                        <lightning:formattedUrl label="View Errors" value="/00O4J000004M1ZZ" target="_blank" /><br/>
+                    </ui:message>                    
+                </lightning:layoutItem>    
+                <lightning:layoutItem padding="around-small" size="12">
+                    <lightning:radioGroup name="radioGroup"
+                                          label="Bulk Upload Type"
+                                          options="{! v.options }"
+                                          value="{! v.value }"
+                                          type="radio"
+                                          required="true"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small" size="12">
+                    <input type="file" class="file" aura:id="file" accept=".csv"/>
+                    <lightning:button variant="brand" label="Create Records" title="Brand action" onclick="{! c.CreateRecord }" disabled="{!v.hideButton}"/>
+                </lightning:layoutItem>
+            </lightning:layout>
+            <aura:if isTrue="{!v.showResults}">
+			      <ui:message title="Information" severity="info" closable="false"> 
+                    Processing Donations is Initiated, It will take some time for the processing<br/>
+                      
+                </ui:message>  
+              
+            </aura:if>
+            
+                <lightning:layoutItem padding="around-small" size="12">
+                <lightning:datatable data="{!v.processList}"
+                                     columns="{!v.mycolumns}"
+                                     keyField="id"
+                                     hideCheckboxColumn="true"/>                      
+                    </lightning:layoutItem>              
+            <aura:if isTrue="{!v.showProcessErrorMessage}">
+			      <ui:message title="Error" severity="error" closable="false"> 
+                    There is some issue with file processing, Please contact System Administrator<br/>
+                </ui:message>   
+            </aura:if>
+        </lightning:card>
+    </div>
+</aura:component>

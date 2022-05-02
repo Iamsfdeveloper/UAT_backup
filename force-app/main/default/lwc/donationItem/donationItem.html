@@ -1,0 +1,173 @@
+<!--
+  @description       : 
+  @author            : Iamsfdeveloper
+  @group             : 
+  @last modified on  : 08-11-2021
+  @last modified by  : Iamsfdeveloper
+  Modifications Log 
+  Ver   Date         Author           Modification
+  1.0   12-11-2020   Iamsfdeveloper   Initial Version
+-->
+<template>
+
+<div class={classname}>
+    <div class="slds-col slds-size_1-of-8"></div>
+    <template if:true={showOrphanSelector}>
+        <!--
+    <div class="slds-col slds-size_1-of-8">
+        
+            <a data-id={tempAllocationItem.npsp__General_Accounting_Unit__c} onclick={cloneItem} title="Clone">
+                <lightning-icon icon-name="action:add_relationship" alternative-text="Add" title="Add" size="xx-small"></lightning-icon>
+            </a>
+        
+    </div>
+    -->
+    </template>
+    <div class="slds-col slds-size_1-of-8">
+        <!--
+        <template if:true={showOrphanSelector} class="slds-p-right_small">
+            <a data-id={tempAllocationItem.npsp__General_Accounting_Unit__c} onclick={cloneItem} title="Clone">
+                <lightning-icon icon-name="action:add_relationship" alternative-text="Add" title="Add" size="xx-small"></lightning-icon>
+            </a>
+        </template>
+        -->
+        <div class="slds-grid slds-has-flexi-truncate">
+            <span class="slds-truncate" title={tempAllocationItem.npsp__General_Accounting_Unit__r.Name}>
+                    <a href="javascript:void(0);" tabindex="0">{tempAllocationItem.npsp__General_Accounting_Unit__r.Name}</a>
+            </span>
+         </div>
+    </div>
+    <div class="slds-col slds-size_1-of-8">
+        <div class="slds-grid slds-has-flexi-truncate">
+            <span class="slds-truncate" title={tempAllocationItem.npsp__General_Accounting_Unit__r.Donation_Item_Code__c}>
+                {tempAllocationItem.npsp__General_Accounting_Unit__r.Donation_Item_Code__c}
+            </span>
+        </div>
+    </div>
+    <div class="slds-col slds-size_1-of-8">
+        <div class="slds-grid slds-has-flexi-truncate">
+            <span class="slds-truncate" title={tempAllocationItem.npsp__General_Accounting_Unit__r.Country__c}>
+                {tempAllocationItem.npsp__General_Accounting_Unit__r.Country__c}
+            </span>
+        </div>
+    </div>
+    <div class="slds-col slds-size_1-of-8 slds-p-right_small">
+        <lightning-combobox data-id="stipulationType"
+        name="stipulationType"
+        variant="label-hidden"
+        value={tempAllocationItem.Stipulation_Type__c}
+        label="Stipulation Type"
+        placeholder="Stipulation Type"
+        options={options} onchange={handleOnChange}></lightning-combobox>
+    </div>
+    <!--
+    <template if:false={quantityHide}>
+    <div class="slds-col slds-size_1-of-8 slds-p-right_small">
+        <lightning-input type="number" value={tempAllocationItem.Quantity__c} min="1" name="Quantity__c" variant="label-hidden" onchange={handleChange} max="10" readonly={quantityReadOnly}></lightning-input>
+    
+    </div>
+    </template>-->
+    <div class="slds-col slds-size_1-of-8 slds-p-right_small">
+        <div class="slds-grid slds-has-flexi-truncate">
+            <span class="slds-truncate" title={tempAllocationItem.npsp__General_Accounting_Unit__r.UnitPrice}>
+                <lightning-input type="number" required value={tempAllocationItem.UnitPrice} min={tempAllocationItem.minPrice} name="UnitPrice" variant="label-hidden" onchange={handleChange} readonly={inputReadonly} step="0.01"></lightning-input>
+            </span>
+        </div>
+    </div>
+    <div class="slds-col slds-size_1-of-8 slds-p-right_medium">
+        <div class="slds-grid slds-float_right">
+            <span class="slds-truncate" title="Total Price">
+                <lightning-formatted-number value={tempAllocationItem.npsp__Amount__c} format-style="currency" currency-code={currencyCode}></lightning-formatted-number>
+            </span>
+        </div>
+    </div>
+    <div class="slds-col slds-size_1-of-8">
+        <lightning-button-icon icon-name="utility:delete"    alternative-text="Delete"   class="slds-m-left_xx-small" title="Delete" onclick={showDelete}></lightning-button-icon>
+        <lightning-button-icon icon-name="utility:note"    alternative-text="note"   class="slds-m-left_xx-small" title="Add Receipt Note" onclick={toggleReceiptNote}></lightning-button-icon>
+        <template if:true={showSpecialNote}>
+            <a onclick={showSpecialInstructionModal} class="slds-m-left_xx-small slds-button__icon">
+                <lightning-icon icon-name="standard:customer_portal_users" alternative-text="Add Special Instruction" title="Add Special Instruction" size="small"></lightning-icon>
+            </a>
+        </template>
+    </div>
+</div>  
+    <template if:true={showModal}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+              <header class="slds-modal__header">
+                <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Special Instruction</h2>
+              </header>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <template if:true={showOrphanSelector}>
+                <c-orphan-selector showsponsored-orphansonly={tempAllocationItem.npsp__General_Accounting_Unit__r.Sponsored_Orphan_Only__c} excluded-data={selectedOrphans} onselected={handleSelectedRow} selectrow={selectedRows} selected-country={country} record-id={recordId}></c-orphan-selector>
+            </template>
+                <template if:false={showOrphanSelector}>
+                    <div class="slds-form-element__row slds-grid" >
+                        <template if:true={showTextArea}>
+                            <div class="slds-size_1-of-1">
+                                <div class="slds-form-element">
+                                    <lightning-textarea name="Name" max-length="80"  class="specialInst"  label="Name on Certificate/Plaque" placeholder="type here..." value={tempAllocationItem.Name__c}></lightning-textarea>
+                                </div>
+                            </div>
+                        </template>
+                        <template if:false={showTextArea}>
+                            <div class="slds-size_1-of-2">
+                                <div class="slds-form-element">
+                                    <lightning-input type="text" name="Name" max-length="80" class="specialInst" label="Name" value={tempAllocationItem.Name__c}></lightning-input>
+                                </div>
+                            </div>
+                            <div class="slds-size_1-of-2 slds-p-left_medium">
+                                <div class="slds-form-element">
+                                    <lightning-input type="date" name="dob" class="specialInst"  label="Date of Birth" value={tempAllocationItem.Date_of_Birth__c}></lightning-input>
+                                </div>
+                            </div>
+                        </template>
+                   
+                    </div>
+                    
+                </template>
+              </div>
+              <footer class="slds-modal__footer">
+                <!--<lightning-button label="Cascade Update" title="Cancel" onclick={cascadeUpdate} class="slds-m-left_x-small slds-float_left"></lightning-button>-->
+                <lightning-button label="Cancel" title="Cancel" onclick={hideModal} class="slds-m-left_x-small"></lightning-button>
+                <lightning-button variant="brand" label="Save" title="Save" onclick={saveSpecialInstruction} class="slds-m-left_x-small"></lightning-button>
+              </footer>
+            </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:true={showDeleteModal}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+              <header class="slds-modal__header">
+                <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">Delete Item</h2>
+              </header>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                  <p>Are you sure you want to delete opportunity “{tempAllocationItem.npsp__General_Accounting_Unit__r.Name}”?</p>
+              </div>
+              <footer class="slds-modal__footer">
+                <lightning-button label="Cancel" title="Cancel" onclick={cancelDelete} class="slds-m-left_x-small"></lightning-button>
+                <lightning-button variant="brand" label="Delete" title="Save" onclick={deleteItem} class="slds-m-left_x-small"></lightning-button>
+              </footer>
+            </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:true={showReceiptNote}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+              <header class="slds-modal__header">
+                <h2 id="modal-heading-03" class="slds-modal__title slds-hyphenate">Receipt Note</h2>
+              </header>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3">
+                <lightning-textarea name="receiptNote" label="Enter some text" placeholder="type here..." value={ReceiptNote}></lightning-textarea>
+              </div>
+              <footer class="slds-modal__footer">
+                <lightning-button label="Cancel" title="Cancel" onclick={toggleReceiptNote} class="slds-m-left_x-small"></lightning-button>
+                <lightning-button variant="brand" label="Save" title="Save" onclick={updateItem} class="slds-m-left_x-small"></lightning-button>
+              </footer>
+            </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

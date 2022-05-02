@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>FR_Test</label>
+    <protected>false</protected>
+    <values>
+        <field>Body__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>CertificateName__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Endpoint__c</field>
+        <value xsi:type="xsd:string">https://api.stripe.com</value>
+    </values>
+    <values>
+        <field>HeaderParameters__c</field>
+        <value xsi:type="xsd:string">Authorization: Bearer sk_test_51I6DCWBqqDaI4pY6hcR5ynQoJlUYzHC77UwoT6XqUvzhJ9lTm1xAoHOmZMNRk3I3kkyDkGx1n4P5nrWqxoIUmXe000ycJo84u1
+}</value>
+    </values>
+    <values>
+        <field>IsCompressed__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Method__c</field>
+        <value xsi:type="xsd:string">POST</value>
+    </values>
+    <values>
+        <field>Timeout__c</field>
+        <value xsi:type="xsd:double">120000.0</value>
+    </values>
+    <values>
+        <field>URLParameters__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>publishable_Key__c</field>
+        <value xsi:type="xsd:string">pk_test_51I6DCWBqqDaI4pY6sj6hgLU2GPe0KIES5eLA9TViOyLPTEM0XYg6jPPZvqRU5AbG80LrU0DOvsaO6NDruHcCFDZ500Zkyl53CY</value>
+    </values>
+</CustomMetadata>

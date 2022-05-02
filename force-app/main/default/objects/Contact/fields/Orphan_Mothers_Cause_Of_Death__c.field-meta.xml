@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Orphan_Mothers_Cause_Of_Death__c</fullName>
+    <externalId>false</externalId>
+    <label>Mothers Cause Of Death</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Accident</fullName>
+                <default>false</default>
+                <label>Accident</label>
+            </value>
+            <value>
+                <fullName>Cancer</fullName>
+                <default>false</default>
+                <label>Cancer</label>
+            </value>
+            <value>
+                <fullName>Heart Attack</fullName>
+                <default>false</default>
+                <label>Heart Attack</label>
+            </value>
+            <value>
+                <fullName>Heart Failure</fullName>
+                <default>false</default>
+                <label>Heart Failure</label>
+            </value>
+            <value>
+                <fullName>Heat Stroke</fullName>
+                <default>false</default>
+                <label>Heat Stroke</label>
+            </value>
+            <value>
+                <fullName>Hepatitis</fullName>
+                <default>false</default>
+                <label>Hepatitis</label>
+            </value>
+            <value>
+                <fullName>Illness</fullName>
+                <default>false</default>
+                <label>Illness</label>
+            </value>
+            <value>
+                <fullName>Kidney Failure</fullName>
+                <default>false</default>
+                <label>Kidney Failure</label>
+            </value>
+            <value>
+                <fullName>Killed</fullName>
+                <default>false</default>
+                <label>Killed</label>
+            </value>
+            <value>
+                <fullName>Liver Failure</fullName>
+                <default>false</default>
+                <label>Liver Failure</label>
+            </value>
+            <value>
+                <fullName>Natural Causes</fullName>
+                <default>false</default>
+                <label>Natural Causes</label>
+            </value>
+            <value>
+                <fullName>Natural Disaster</fullName>
+                <default>false</default>
+                <label>Natural Disaster</label>
+            </value>
+            <value>
+                <fullName>Stroke</fullName>
+                <default>false</default>
+                <label>Stroke</label>
+            </value>
+            <value>
+                <fullName>Suicide</fullName>
+                <default>false</default>
+                <label>Suicide</label>
+            </value>
+            <value>
+                <fullName>Undetermined Causes</fullName>
+                <default>false</default>
+                <label>Undetermined Causes</label>
+            </value>
+            <value>
+                <fullName>Unspecified</fullName>
+                <default>false</default>
+                <label>Unspecified</label>
+            </value>
+            <value>
+                <fullName>War</fullName>
+                <default>false</default>
+                <label>War</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,136 @@
+<apex:component access="global" controller="ReceiptTemplateController">
+    <apex:attribute name="opportunityId" type="Id" assignTo="{!oppId}" description="Opportunity Id"/>
+    <apex:attribute name="opp" type="Opportunity" description="Opportunity"/>
+    <apex:attribute name="theContact" type="Contact" description="Contact"/>
+    <apex:stylesheet value="{!URLFOR($Resource.SMP_DD_Resources, 'css/ReceiptTemplate.css')}"/>
+
+    <html>
+    <head>
+        <style>
+            @page {
+                size: portrait;
+                margin: 25mm;
+                @top-center {
+                    content: "";
+                }
+                @bottom-center {
+                    content: "Page " counter(page) " of " counter(pages);
+                }
+            }
+            .page-break {
+                display:block;
+                page-break-after:always;
+            }
+            body {
+                font-family: sans-serif;
+                font-size: 14px;
+            }
+            td{
+                border-top: 1px solid #838383;
+            }
+        </style>
+    </head>
+
+    <div style="height: 100%;min-height: 100%;">
+        <div style="float:left;">
+
+            <apex:outputText value="{!SUBSTITUTE(theContact.Salutation, '.', '')} " rendered="{!ISBLANK(theContact.Salutation) == false}"/><apex:outputField value="{!theContact.Name}"/><br/>
+            <apex:outputField value="{!theContact.MailingStreet}"/><br/>
+            <apex:outputField value="{!theContact.MailingCity}"/><br/>
+            <apex:outputField value="{!theContact.MailingPostalCode}"/>
+                  
+        </div>
+      
+        <div style = "display:flex; flex-direction:column; justify-content: space-between; float: right;">
+
+            <div style="margin-bottom: 30%;">
+
+                <apex:image id="theImage" value="{!URLFOR($Resource.SMP_DD_Resources, 'images/ha-logo-nobox.png')}" width="130px" height="130px" alt="Human Appeal logo" style="object-fit: cover;"/>
+        
+            </div>
+            
+        
+            <div style="text-align:right;">   
+                <br/>
+                <apex:outputText value="ID del donante: {!theContact.Donor_ID__c}"/><br/><br/>
+            
+            </div>
+
+        </div>
+        
+       
+        <div style="clear:both"/>
+        
+        <h2 style="margin-top: 67px; margin-bottom: 0px;">
+            
+            <apex:outputText value="Recibo de tu donación"/>
+        </h2>
+
+        <table>
+
+
+            <tr>
+                    <!-- total 950 px -->
+                    <th style="width: 100px">Tipo</th>
+                    <th style="width: 200px">Proyecto</th>
+                    <th style="width: 100px">Fecha de Inicio</th>
+                    <th style="width: 100px">Fecha Final</th>
+                    <th style="width: 100px">Descripción</th>
+                    <th style="text-align: right">Monto</th>
+                </tr>
+                <apex:repeat var="prod" value="{!lstProdWrap}">
+                    <tr>
+                        <td><apex:outputText value="{!prod.stipulationType}"/></td>
+                        <td><apex:outputText value="{!prod.name}"/></td>
+                       <td><apex:outputText value="{0, date, dd/MM/yyyy}"><apex:param value="{!opp.Effective_Date__c}" /> </apex:outputText></td>
+                        <td><apex:outputText value="{0, date, dd/MM/yyyy}"><apex:param value="{!opp.End_Date__c}" /> </apex:outputText></td>
+                           <td>
+                            <apex:outputText rendered="{!opp.Donation_Type__c == '30N'}" value="Proyecto 30 Noches de Ramadán"/>
+                            <apex:outputText rendered="{!opp.Donation_Type__c == '10N'}" value="Proyecto 10 Noches de Ramadán"/>
+                            <apex:outputPanel rendered="{!opp.Donation_Type__c == '10D'}"> Proyecto mis 10 mejores días</apex:outputPanel>
+                        </td>
+                        <td style="text-align:right;"><apex:outputText value="{!CASE(prod.currencyCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{!prod.amount}"/></td>                    
+                    </tr>
+                </apex:repeat>
+                
+                <tr style="border-bottom: 0px solid black; border-top: 0px solid black;">                
+                    <td style="text-align:right; border-bottom: none; border-top: 1px solid black; font-size: 14px; font-weight:bold; width:100px;" colspan="6">
+                        <b><apex:outputText value="Grand Total"/>&nbsp;&nbsp;&nbsp;</b>
+                        <apex:outputText value="{!CASE(opp.CurrencyIsoCode, 'EUR', '€', 'USD', '$', 'GBP', '£', '')}{0,number,0.00}"><apex:param value="{!opp.Amount}" /></apex:outputText><br/>
+                    </td>
+                </tr>
+
+            <tr>
+                <td rowspan="{!BreakdownSize + 1}" style="border: 0px;">
+                        <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/regulator.png')}" width="160px"/>
+                </td>
+
+                <td rowspan="{!BreakdownSize + 1}" style="border: 0px;padding-left: 40px">
+                        <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/HA30badge.png')}" width="80px" height="80px"/>
+                </td>
+            </tr>
+            
+        </table>
+
+
+
+
+
+        <div style="margin-top:15px; font-size:11px; color: #838383">        
+
+            <div style="position: fixed;bottom: 0;">
+
+            <p style=" color: #662d91; font-size: 11px; display: inline;">         
+                    <strong>HUMAN APPEAL ESPAÑA</strong>&nbsp;&nbsp;&bull;&nbsp;&nbsp;Calle Arquitecto Rodríguez 8, bajo. 46019 Valencia</p>
+            <p style="color: #662d91; font-size: 10px; display: inline;">
+                    humanappeal.es&nbsp;&nbsp;&bull;&nbsp;&nbsp;info@humanappeal.es&nbsp;&nbsp;&bull;&nbsp;&nbsp;+34 961 156 245<br/>  
+            </p>
+        
+        </div>  
+
+        </div>   
+                
+        
+    </div>
+    </html>
+</apex:component>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pledge_campaign_not_be_used_as_parent</fullName>
+    <active>true</active>
+    <description>Pledged campaign should not be used as parent campaign.</description>
+    <errorConditionFormula>Parent.RecordType.DeveloperName =  &apos;Pledge&apos;</errorConditionFormula>
+    <errorDisplayField>ParentId</errorDisplayField>
+    <errorMessage>Pledge should not be selected as Parent Campaign</errorMessage>
+</ValidationRule>

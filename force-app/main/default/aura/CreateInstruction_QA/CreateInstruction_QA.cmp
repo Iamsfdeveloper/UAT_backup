@@ -1,0 +1,22 @@
+<!--
+  @description       : 
+  @author            : Iamsfdeveloper
+  @group             : 
+  @last modified on  : 09-07-2021
+  @last modified by  : Iamsfdeveloper
+-->
+<aura:component implements="force:lightningQuickActionWithoutHeader,force:hasRecordId,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,lightning:actionOverride" >
+	<aura:html tag="style">
+        .modal-container{
+        width:90% !important;
+        max-width:70rem;
+        }
+        .slds-dueling-list__options{
+            height: 6rem !important;
+        }
+    </aura:html>
+    
+    <c:createInstruction recordId="{!v.recordId}" onopendonation="{!c.navigateInstrcution}"
+                  oncancel="{!c.handleCanceAction}"/>
+       
+</aura:component>

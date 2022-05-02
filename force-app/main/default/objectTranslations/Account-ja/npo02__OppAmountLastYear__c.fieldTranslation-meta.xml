@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>この団体に関連する成立支援で、今年または今年度に完了したものの総額。</help>
+    <label></label>
+    <name>npo02__OppAmountLastYear__c</name>
+</CustomFieldTranslation>

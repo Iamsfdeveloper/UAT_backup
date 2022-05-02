@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sum_of_Beneficiaries__c</fullName>
+    <externalId>false</externalId>
+    <formula>PlannedBoys__c  +  PlannedGirls__c  +  PlannedHouseholds__c  +  PlannedIndividuals__c  +  PlannedMen__c  +  PlannedWomen__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sum of Beneficiaries</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

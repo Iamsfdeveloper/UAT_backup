@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conga_Composer_Donation</fullName>
+    <availability>online</availability>
+    <description>Created by Conga Solution Manager. Record link: https://humanappeal--dev--apxtconga4.visualforce.com/a2726000000xtHQAAY.</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>660</height>
+    <linkType>url</linkType>
+    <masterLabel>Send Donation Receipt</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <url>/apex/APXTConga4__Conga_Composer?SolMgr=1
+&amp;serverUrl={!API.Partner_Server_URL_370}
+&amp;Id={!Contact.Id}</url>
+</WebLink>

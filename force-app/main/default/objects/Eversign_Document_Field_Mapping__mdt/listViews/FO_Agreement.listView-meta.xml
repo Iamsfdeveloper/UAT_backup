@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FO_Agreement</fullName>
+    <columns>MasterLabel</columns>
+    <columns>DeveloperName</columns>
+    <columns>NamespacePrefix</columns>
+    <columns>Eversign_Document_Field_Identifier__c</columns>
+    <columns>Object_Name__c</columns>
+    <columns>Saleforce_Reference__c</columns>
+    <columns>Template_Name__c</columns>
+    <columns>Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Template_Name__c</field>
+        <operation>equals</operation>
+        <value>HA Funding Agreement FO V8 Template</value>
+    </filters>
+    <label>FO Agreement</label>
+    <language>en_US</language>
+</ListView>

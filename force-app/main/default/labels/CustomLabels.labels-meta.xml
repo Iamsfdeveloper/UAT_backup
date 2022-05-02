@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Additional_Monthly_Description</fullName>
+        <categories>Chekout Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Additional Monthly Description</shortDescription>
+        <value>.</value>
+    </labels>
+    <labels>
+        <fullName>Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amount</shortDescription>
+        <value>Amount</value>
+    </labels>
+    <labels>
+        <fullName>Apply</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Apply</shortDescription>
+        <value>Apply</value>
+    </labels>
+    <labels>
+        <fullName>BackButton</fullName>
+        <categories>Donation Statement</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BackButton</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>Card_Payment</fullName>
+        <categories>Chekout Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Card Payment</shortDescription>
+        <value>Card Payment</value>
+    </labels>
+    <labels>
+        <fullName>Checkout</fullName>
+        <categories>Chekout Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Checkout</shortDescription>
+        <value>Checkout</value>
+    </labels>
+    <labels>
+        <fullName>Chekout_Page_Title</fullName>
+        <categories>Chekout Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Chekout Page Title</shortDescription>
+        <value>Payment Setup | Human Appeal</value>
+    </labels>
+    <labels>
+        <fullName>Click_to_close_filter_options</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Click to close filter options</shortDescription>
+        <value>Click to close filter options</value>
+    </labels>
+    <labels>
+        <fullName>Close</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>CloseRecurringPayment_RequestProcessing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CloseRecurringPayment_RequestProcessing</shortDescription>
+        <value>Your Request is Processing , this payment Plan will be closed next day.</value>
+    </labels>
+    <labels>
+        <fullName>Confirm_Payment_Button</fullName>
+        <categories>Chekout Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm Payment Button</shortDescription>
+        <value>CONFIRM PAYMENT METHOD</value>
+    </labels>
+    <labels>
+        <fullName>Contact_Orphan_Visit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact_Orphan_Visit</shortDescription>
+        <value>{!Orphan_Visit__c}</value>
+    </labels>
+    <labels>
+        <fullName>Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Date</shortDescription>
+        <value>Date</value>
+    </labels>
+    <labels>
+        <fullName>Donation_Card_Setup</fullName>
+        <categories>Chekout Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Donation Card Setup</shortDescription>
+        <value>Donation Card Setup</value>
+    </labels>
+    <labels>
+        <fullName>Donation_Card_Setup_Single</fullName>
+        <categories>Chekout Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Donation Card Setup Single</shortDescription>
+        <value>Pay via Card</value>
+    </labels>
+    <labels>
+        <fullName>Donation_Payment_Method</fullName>
+        <categories>Donation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Donation Payment Method</shortDescription>
+        <value>Please add a payment method</value>
+    </labels>
+    <labels>
+        <fullName>Donations</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Donations</shortDescription>
+        <value>Donations</value>
+    </labels>
+    <labels>
+        <fullName>Donor_Organization_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Donor_Organization_Id</shortDescription>
+        <value>0014J00000T9XrKQAV</value>
+    </labels>
+    <labels>
+        <fullName>Download</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Download</shortDescription>
+        <value>Download</value>
+    </labels>
+    <labels>
+        <fullName>Download_DateMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Download_DateMessage</shortDescription>
+        <value>Use the form below to choose the date range for your statement.</value>
+    </labels>
+    <labels>
+        <fullName>Download_statement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Download statement</shortDescription>
+        <value>Download statement</value>
+    </labels>
+    <labels>
+        <fullName>EmailSuccessMsg</fullName>
+        <categories>Donation Statement</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailSuccessMsg</shortDescription>
+        <value>Email has sent successfully.</value>
+    </labels>
+    <labels>
+        <fullName>Enable_recurring_donations</fullName>
+        <categories>Chekout Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enable recurring donations</shortDescription>
+        <value>We need to take your card details to enable your recurring donations</value>
+    </labels>
+    <labels>
+        <fullName>End</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>End</shortDescription>
+        <value>End</value>
+    </labels>
+    <labels>
+        <fullName>EndDate</fullName>
+        <categories>Donation Statement</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EndDate</shortDescription>
+        <value>End Date</value>
+    </labels>
+    <labels>
+        <fullName>End_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>End Date</shortDescription>
+        <value>End Date</value>
+    </labels>
+    <labels>
+        <fullName>Field_Office_Funding_Agreement_Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Field Office Funding Agreement Template</shortDescription>
+        <value>HA Funding Agreement FO V8 Template</value>
+    </labels>
+    <labels>
+        <fullName>Field_Office_Funding_Agreement_TemplateId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Field Office Funding Agreement TemplateId</shortDescription>
+        <value>716d8d9681fc484db7ccbf6aeda018e5</value>
+    </labels>
+    <labels>
+        <fullName>Filter_donations</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter donations</shortDescription>
+        <value>Filter donations</value>
+    </labels>
+    <labels>
+        <fullName>General</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>General</shortDescription>
+        <value>General</value>
+    </labels>
+    <labels>
+        <fullName>Gift_Aid</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Gift Aid</shortDescription>
+        <value>Gift Aid</value>
+    </labels>
+    <labels>
+        <fullName>Grand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Grand</shortDescription>
+        <value>Grand</value>
+    </labels>
+    <labels>
+        <fullName>HA_ErrorMessage_OrphanProfilePhotoRequired</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HA_ErrorMessage_OrphanProfilePhotoRequired</shortDescription>
+        <value>Please uncheck the ‘Active’ field on this form, then check it back again on the next page after uploading orphan’s ‘Profile Photo’</value>
+    </labels>
+    <labels>
+        <fullName>HA_Request_to_attach_CHY3_Form</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HA_Request to attach CHY3 Form</shortDescription>
+        <value>Please Attach the CHY3 Form</value>
+    </labels>
+    <labels>
+        <fullName>Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Location</shortDescription>
+        <value>Location</value>
+    </labels>
+    <labels>
+        <fullName>Make_another_donation</fullName>
+        <categories>Chekout Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Make another donation</shortDescription>
+        <value>Make another donation</value>
+    </labels>
+    <labels>
+        <fullName>No_Records_found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Records found</shortDescription>
+        <value>No Records found !!!</value>
+    </labels>
+    <labels>
+        <fullName>NotSupportedMessage</fullName>
+        <categories>RecordDetailView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NotSupportedMessage</shortDescription>
+        <value>Not Supported Message</value>
+    </labels>
+    <labels>
+        <fullName>Partner_Funding_Agreement_Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Funding Agreement Template</shortDescription>
+        <value>HA Funding Agreement Partner V8 Template</value>
+    </labels>
+    <labels>
+        <fullName>Partner_Funding_Agreement_TemplateId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Funding Agreement TemplateId</shortDescription>
+        <value>87fb3748e9e74ab7a74dd91cff38ddb8</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Day</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Day</shortDescription>
+        <value>Payment Day</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Option_Card</fullName>
+        <categories>Chekout Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Option Card</shortDescription>
+        <value>Card Payment</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Option_Direct_Debit</fullName>
+        <categories>Chekout Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Option Direct Debit</shortDescription>
+        <value>Direct Debit</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Setup</fullName>
+        <categories>Chekout Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Setup</shortDescription>
+        <value>Payment Setup</value>
+    </labels>
+    <labels>
+        <fullName>Project</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Project</shortDescription>
+        <value>Project</value>
+    </labels>
+    <labels>
+        <fullName>Recurring_payments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Recurring payments</shortDescription>
+        <value>Recurring payments</value>
+    </labels>
+    <labels>
+        <fullName>Reference_Payment_plan_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reference/Payment plan ID</shortDescription>
+        <value>Reference/Payment plan ID</value>
+    </labels>
+    <labels>
+        <fullName>Regular</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Regular</shortDescription>
+        <value>Regular</value>
+    </labels>
+    <labels>
+        <fullName>Sadaqh</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sadaqh</shortDescription>
+        <value>Sadaqh</value>
+    </labels>
+    <labels>
+        <fullName>SendEmailButton</fullName>
+        <categories>Donation Statement</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SendEmailButton</shortDescription>
+        <value>Send Email</value>
+    </labels>
+    <labels>
+        <fullName>Single</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Single</shortDescription>
+        <value>Single</value>
+    </labels>
+    <labels>
+        <fullName>Start</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Start</shortDescription>
+        <value>Start</value>
+    </labels>
+    <labels>
+        <fullName>StartDate</fullName>
+        <categories>Donation Statement</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>StartDate</shortDescription>
+        <value>Start Date</value>
+    </labels>
+    <labels>
+        <fullName>Start_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Start Date</shortDescription>
+        <value>Start Date</value>
+    </labels>
+    <labels>
+        <fullName>Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>Total</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total</shortDescription>
+        <value>Total</value>
+    </labels>
+    <labels>
+        <fullName>Total_for_this_year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total for this year</shortDescription>
+        <value>Total for this year</value>
+    </labels>
+    <labels>
+        <fullName>Type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>UpdateButton</fullName>
+        <categories>Donation Statement</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UpdateButton</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>You_filtered_dates_between</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You filtered dates between</shortDescription>
+        <value>You filtered dates between</value>
+    </labels>
+    <labels>
+        <fullName>Zakat</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Zakat</shortDescription>
+        <value>Zakat</value>
+    </labels>
+    <labels>
+        <fullName>and</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>and</shortDescription>
+        <value>and</value>
+    </labels>
+</CustomLabels>

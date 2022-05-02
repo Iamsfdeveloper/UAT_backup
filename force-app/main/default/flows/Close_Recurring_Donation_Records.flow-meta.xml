@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <assignments>
+        <name>Close_the_Recurring_Donation_records</name>
+        <label>Close the Recurring Donation records</label>
+        <locationX>50</locationX>
+        <locationY>396</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.npsp__Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Closed</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_the_Recurring_Donation_Records</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Check_the_end_date</name>
+        <label>Check the end date</label>
+        <locationX>182</locationX>
+        <locationY>276</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_if_the_end_date_is_less_than_or_equal_today</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.npsp__EndDate__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <elementReference>Today</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Close_the_Recurring_Donation_records</targetReference>
+            </connector>
+            <label>Check if the end date is less than or equal today</label>
+        </rules>
+    </decisions>
+    <description>This flow is scheduled to run daily and pick up the active recurring donation records which has an end date filled in.</description>
+    <formulas>
+        <name>Today</name>
+        <dataType>Date</dataType>
+        <expression>Today()</expression>
+    </formulas>
+    <interviewLabel>Close Recurring Donation Records {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Close Recurring Donation Records - Sceduled</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_the_Recurring_Donation_Records</name>
+        <label>Update the Recurring Donation Records</label>
+        <locationX>50</locationX>
+        <locationY>516</locationY>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_the_end_date</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>npsp__Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Active</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>npsp__ClosedReason__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>npsp__EndDate__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>npe03__Recurring_Donation__c</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2022-02-09</startDate>
+            <startTime>01:15:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

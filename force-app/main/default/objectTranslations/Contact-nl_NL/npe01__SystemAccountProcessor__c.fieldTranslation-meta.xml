@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>VEROUDERD - Geeft aan welk model zorgt voor Account Relatiegedrag. Individu (Bucket) of Eén-op-Eén.</help>
+    <label></label>
+    <name>npe01__SystemAccountProcessor__c</name>
+    <picklistValues>
+        <masterLabel>Individual</masterLabel>
+        <translation>Individu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>One-to-One</masterLabel>
+        <translation>Eén-op-één</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HA_Volunteer_compact_layout</fullName>
+    <fields>Title</fields>
+    <fields>GW_Volunteers__Volunteer_Status__c</fields>
+    <fields>Volunteer_Type__c</fields>
+    <fields>Email</fields>
+    <fields>MobilePhone</fields>
+    <fields>Badges__c</fields>
+    <label>HA Volunteer compact layout</label>
+</CompactLayout>

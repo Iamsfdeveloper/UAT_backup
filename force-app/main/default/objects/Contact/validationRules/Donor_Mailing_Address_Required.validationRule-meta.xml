@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Donor_Mailing_Address_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISNEW(),Not($Permission.Website_Donation),IF(Contact_Type__c = &apos;Donor&apos;, true, false),OR(  
+ ISBLANK( MailingCity ) ,
+ ISBLANK( MailingCountry ) ,
+ ISBLANK( MailingStreet ) ,
+ ISBLANK( MailingPostalCode )
+))</errorConditionFormula>
+    <errorMessage>Please enter address (Street,City,State,Country,Postal Code)</errorMessage>
+</ValidationRule>

@@ -1,0 +1,223 @@
+{
+    "inputs": [
+       {
+          "newDonation": [
+             {
+                "TransactionTimeUtc": "2022-03-22T15:26:03.0207349Z",
+                "BasketId": "cdbdabb4-7d03-409c-b160-55090e00779f",
+                "CheckoutId": "cdbdabb4-7d03-409c-b160-55090e00779f",
+                "Supporter": {
+                   "SupporterId": "",
+                   "Title": "Mr",
+                   "FirstName": "Steve",
+                   "LastName": "Morgan",
+                   "IsOrganisation": false,
+                   "OrganisationName": null,
+                   "AddressLine1": "8 Bentley Road",
+                   "AddressLine2": "",
+                   "AddressLine3": "",
+                   "TownCity": "Manchester",
+                   "State": "Manchester",
+                   "PostalCode": "M21 9WD",
+                   "CountryCode": "GBR",
+                   "Telephone": "07968694745",
+                   "Email": "steve@siempresolutions.co.uk",
+                   "GiftAidDeclared": "Yes",
+                   "SubscribeEmailList": false,
+                   "SubscribeSmsList": false,
+                   "ReceiptViaEmail": false,
+                   "ReceiptViaPost": false,
+                   "NationalIdentificationNumber": null
+                },
+                "Basket": {
+                   "Notes": "",
+                   "ItemGroups": [
+                      {
+                         "PaymentScheduleList": [],
+                         "PrimaryCampaignCode": "",
+                         "Amount": 50,
+                         "DonationType": "SD",
+                         "PaymentMethodIndex": 0,
+                         "GroupId": "911bbbda-b070-4f8e-b9c1-1250b41e19ca-0",
+                         "GroupIndex": 0,
+                         "Items": [
+                            {
+                               "SchemeData": [],
+                               "StipulationCode": "XX",
+                               "LocationCode": "XX",
+                               "DonationType": "SD",
+                               "SubCampaignCode": "",
+                               "DonationItemCode": "ZZ20-51601",
+                               "Amount": 50
+                            }
+                         ]
+                      },
+                      {
+                         "PaymentScheduleList": [],
+                         "PrimaryCampaignCode": "",
+                         "Amount": 20,
+                         "DonationType": "RD",
+                         "PaymentMethodIndex": 0,
+                         "GroupId": "911bbbda-b070-4f8e-b9c1-1250b41e19ca-1",
+                         "GroupIndex": 1,
+                         "Items": [
+                            {
+                               "SchemeData": [],
+                               "StipulationCode": "XX",
+                               "LocationCode": "XX",
+                               "DonationType": "RD",
+                               "SubCampaignCode": "",
+                               "DonationItemCode": "ZZ20-51601",
+                               "Amount": 20
+                            }
+                         ]
+                      },
+                      {
+                         "PaymentScheduleList": [
+                            {
+                               "Amount": 30,
+                               "Timezone": "GMT",
+                               "Date_Time": "2022-04-12T22:00:00+00:00",
+                               "Index": 0
+                            },
+                            {
+                               "Amount": 30,
+                               "Timezone": "GMT",
+                               "Date_Time": "2022-04-13T22:00:00+00:00",
+                               "Index": 1
+                            },
+                            {
+                               "Amount": 30,
+                               "Timezone": "GMT",
+                               "Date_Time": "2022-04-14T22:00:00+00:00",
+                               "Index": 2
+                            },
+                            {
+                               "Amount": 30,
+                               "Timezone": "GMT",
+                               "Date_Time": "2022-04-15T22:00:00+00:00",
+                               "Index": 3
+                            },
+                            {
+                               "Amount": 30,
+                               "Timezone": "GMT",
+                               "Date_Time": "2022-04-16T22:00:00+00:00",
+                               "Index": 4
+                            },
+                            {
+                               "Amount": 30,
+                               "Timezone": "GMT",
+                               "Date_Time": "2022-04-17T22:00:00+00:00",
+                               "Index": 5
+                            },
+                            {
+                               "Amount": 30,
+                               "Timezone": "GMT",
+                               "Date_Time": "2022-04-18T22:00:00+00:00",
+                               "Index": 6
+                            },
+                            {
+                               "Amount": 30,
+                               "Timezone": "GMT",
+                               "Date_Time": "2022-04-19T22:00:00+00:00",
+                               "Index": 7
+                            },
+                            {
+                               "Amount": 30,
+                               "Timezone": "GMT",
+                               "Date_Time": "2022-04-20T22:00:00+00:00",
+                               "Index": 8
+                            },
+                            {
+                               "Amount": 30,
+                               "Timezone": "GMT",
+                               "Date_Time": "2022-04-21T22:00:00+00:00",
+                               "Index": 9
+                            }
+                         ],
+                         "PrimaryCampaignCode": "",
+                         "Amount": 300,
+                         "DonationType": "10N",
+                         "PaymentMethodIndex": 0,
+                         "GroupId": "911bbbda-b070-4f8e-b9c1-1250b41e19ca-2",
+                         "GroupIndex": 2,
+                         "Items": [
+                            {
+                               "SchemeData": [
+                                  {
+                                     "ParameterValue": "10",
+                                     "ParameterName": "Number of Payments: ",
+                                     "ParameterCode": "RECNoPayments"
+                                  },
+                                  {
+                                     "ParameterValue": "2022-02-21",
+                                     "ParameterName": "Payments Start Date",
+                                     "ParameterCode": "RECStartDate"
+                                  },
+                                  {
+                                     "ParameterValue": "1",
+                                     "ParameterName": "27th Night Factor: x",
+                                     "ParameterCode": "RECBoostFactor1"
+                                  },
+                                  {
+                                     "ParameterValue": "7",
+                                     "ParameterName": "27th Night ",
+                                     "ParameterCode": "RECBoostPayments1"
+                                  },
+                                  {
+                                     "ParameterValue": "1",
+                                     "ParameterName": "Odd Nights Factor: x",
+                                     "ParameterCode": "RECBoostFactor2"
+                                  },
+                                  {
+                                     "ParameterValue": "1,3,5,7,9",
+                                     "ParameterName": "Odd Nights Days",
+                                     "ParameterCode": "RECBoostPayments2"
+                                  },
+                                  {
+                                     "ParameterValue": "GMT",
+                                     "ParameterName": "Timezone: ",
+                                     "ParameterCode": "Timezone"
+                                  }
+                               ],
+                               "StipulationCode": "ZK",
+                               "LocationCode": "XX",
+                               "DonationType": "10N",
+                               "SubCampaignCode": "",
+                               "DonationItemCode": "ZZ20-51001",
+                               "Amount": 300
+                            }
+                         ]
+                      }
+                   ],
+                   "CurrencyISOCode": "GBP"
+                },
+                "PaymentMethods": [
+                   {
+                      "DateTimeCreated": "2022-04-12T07:58:09Z",
+                      "Status": "succeeded",
+                      "PaymentMethodId": "8ac7a4a1801b4c8b01801cc7a9a76979",
+                      "Descriptor": "9009.1375.6163 humanappeal-org-uk - 3DV2",
+                      "CurrencyISOCode": "GBP",
+                      "Amount": 70,
+                      "ExpYear": "2034",
+                      "ExpMonth": "12",
+                      "Last4Card": "4242",
+                      "CustomerIP": "49.207.213.135",
+                      "PaymentType": "VISA",
+                      "PaymentIntent": "8ac7a4a1801b4c8b01801cc7aa9a698c",
+                      "Description": "Request successfully processed in 'Merchant in Integrator Test Mode'",
+                      "StatusCode": "000.100.110",
+                      "Gateway": "Oppwa",
+                      "PaymentMethodIndex": 0,
+                      "Id": "oppwa"
+                   }
+                ],
+                "UserIp": "127.0.0.1",
+                "SiteCode": "UK",
+                "Status": "Paid"
+             }
+          ]
+       }
+    ]
+ }

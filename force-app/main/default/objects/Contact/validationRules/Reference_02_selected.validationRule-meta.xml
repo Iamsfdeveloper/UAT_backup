@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reference_02_selected</fullName>
+    <active>false</active>
+    <description>if reference__02 is selected then must enter Reference_02_Date</description>
+    <errorConditionFormula>AND(  !(ISPICKVAL(Reference_02__c, &quot;&quot;)) ,ISBLANK( Reference_02_Date__c ) )</errorConditionFormula>
+    <errorDisplayField>Reference_02_Date__c</errorDisplayField>
+    <errorMessage>Please Fill Reference_02 Date</errorMessage>
+</ValidationRule>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transaction_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Transaction Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sale</fullName>
+                <default>false</default>
+                <label>Sale</label>
+            </value>
+            <value>
+                <fullName>Refund</fullName>
+                <default>false</default>
+                <label>Refund</label>
+            </value>
+            <value>
+                <fullName>Void</fullName>
+                <default>false</default>
+                <label>Void</label>
+            </value>
+            <value>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+                <label>Deferred</label>
+            </value>
+            <value>
+                <fullName>Deferred Released</fullName>
+                <default>false</default>
+                <label>Deferred Released</label>
+            </value>
+            <value>
+                <fullName>Deferred Aborted</fullName>
+                <default>false</default>
+                <label>Deferred Aborted</label>
+            </value>
+            <value>
+                <fullName>Authenticate</fullName>
+                <default>false</default>
+                <label>Authenticate</label>
+            </value>
+            <value>
+                <fullName>Authorised</fullName>
+                <default>false</default>
+                <label>Authorised</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,7 @@
+.THIS .siteHeader{
+    top: 4%!important;
+    left: 90%!important;
+    float: right!important;
+    position: absolute!important;
+    z-index: 999;
+}

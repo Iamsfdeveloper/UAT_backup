@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Affiliate / partner marketing (including sponsorship)</fullName>
+        <default>false</default>
+        <label>Affiliate / partner marketing (including sponsorship)</label>
+    </customValue>
+    <customValue>
+        <fullName>Call Centre</fullName>
+        <default>false</default>
+        <label>Call Centre</label>
+    </customValue>
+    <customValue>
+        <fullName>Challenge</fullName>
+        <default>false</default>
+        <label>Challenge</label>
+    </customValue>
+    <customValue>
+        <fullName>Collection – street, mosques</fullName>
+        <default>false</default>
+        <label>Collection – street, mosques</label>
+    </customValue>
+    <customValue>
+        <fullName>Community Fundraising</fullName>
+        <default>false</default>
+        <label>Community Fundraising</label>
+    </customValue>
+    <customValue>
+        <fullName>Display Direct</fullName>
+        <default>false</default>
+        <label>Display Direct</label>
+    </customValue>
+    <customValue>
+        <fullName>Email marketing</fullName>
+        <default>false</default>
+        <label>Email marketing</label>
+    </customValue>
+    <customValue>
+        <fullName>Events – Tours, Dinners, Challenges, Stalls</fullName>
+        <default>false</default>
+        <label>Events – Tours, Dinners, Challenges, Stalls</label>
+    </customValue>
+    <customValue>
+        <fullName>High Network Donor</fullName>
+        <default>false</default>
+        <label>High Network Donor</label>
+    </customValue>
+    <customValue>
+        <fullName>Influencer</fullName>
+        <default>false</default>
+        <label>Influencer</label>
+    </customValue>
+    <customValue>
+        <fullName>In Kind Donations</fullName>
+        <default>false</default>
+        <label>In Kind Donations</label>
+    </customValue>
+    <customValue>
+        <fullName>Institutional Funds</fullName>
+        <default>false</default>
+        <label>Institutional Funds</label>
+    </customValue>
+    <customValue>
+        <fullName>International Offices</fullName>
+        <default>false</default>
+        <label>International Offices</label>
+    </customValue>
+    <customValue>
+        <fullName>Leaflets / posters</fullName>
+        <default>false</default>
+        <label>Leaflets / posters</label>
+    </customValue>
+    <customValue>
+        <fullName>Organic search</fullName>
+        <default>false</default>
+        <label>Organic search</label>
+    </customValue>
+    <customValue>
+        <fullName>Paid search</fullName>
+        <default>false</default>
+        <label>Paid search</label>
+    </customValue>
+    <customValue>
+        <fullName>Partnerships</fullName>
+        <default>false</default>
+        <label>Partnerships</label>
+    </customValue>
+    <customValue>
+        <fullName>Peer to Peer</fullName>
+        <default>false</default>
+        <label>Peer to Peer</label>
+    </customValue>
+    <customValue>
+        <fullName>Pledges</fullName>
+        <default>false</default>
+        <label>Pledges</label>
+    </customValue>
+    <customValue>
+        <fullName>Post – direct mail, door drops</fullName>
+        <default>false</default>
+        <label>Post – direct mail, door drops</label>
+    </customValue>
+    <customValue>
+        <fullName>PPC</fullName>
+        <default>false</default>
+        <label>PPC</label>
+    </customValue>
+    <customValue>
+        <fullName>Radio Appeal</fullName>
+        <default>false</default>
+        <label>Radio Appeal</label>
+    </customValue>
+    <customValue>
+        <fullName>Referral</fullName>
+        <default>false</default>
+        <label>Referral</label>
+    </customValue>
+    <customValue>
+        <fullName>Retail Shops</fullName>
+        <default>false</default>
+        <label>Retail Shops</label>
+    </customValue>
+    <customValue>
+        <fullName>SMS</fullName>
+        <default>false</default>
+        <label>SMS</label>
+    </customValue>
+    <customValue>
+        <fullName>Social media marketing – Facebook</fullName>
+        <default>false</default>
+        <label>Social media marketing – Facebook</label>
+    </customValue>
+    <customValue>
+        <fullName>Social media marketing – Instagram</fullName>
+        <default>false</default>
+        <label>Social media marketing – Instagram</label>
+    </customValue>
+    <customValue>
+        <fullName>Social media marketing –  Twitter</fullName>
+        <default>false</default>
+        <label>Social media marketing –  Twitter</label>
+    </customValue>
+    <customValue>
+        <fullName>Speaker</fullName>
+        <default>false</default>
+        <label>Speaker</label>
+    </customValue>
+    <customValue>
+        <fullName>Benevity</fullName>
+        <default>false</default>
+        <label>Third party giving - Benevity</label>
+    </customValue>
+    <customValue>
+        <fullName>Charities Trust</fullName>
+        <default>false</default>
+        <label>Third party giving - Charities Trust</label>
+    </customValue>
+    <customValue>
+        <fullName>Everyday hero</fullName>
+        <default>false</default>
+        <label>Third party giving - Everyday hero</label>
+    </customValue>
+    <customValue>
+        <fullName>Facebook Giving</fullName>
+        <default>false</default>
+        <label>Third party giving - Facebook Giving</label>
+    </customValue>
+    <customValue>
+        <fullName>Go Fund Me</fullName>
+        <default>false</default>
+        <label>Third party giving - Go Fund Me</label>
+    </customValue>
+    <customValue>
+        <fullName>Just Giving</fullName>
+        <default>false</default>
+        <label>Third party giving - Just Giving</label>
+    </customValue>
+    <customValue>
+        <fullName>LaunchGood</fullName>
+        <default>false</default>
+        <label>Third party giving - LaunchGood</label>
+    </customValue>
+    <customValue>
+        <fullName>Third party giving - Muslim Giving</fullName>
+        <default>false</default>
+        <label>Third party giving - Muslim Giving</label>
+    </customValue>
+    <customValue>
+        <fullName>Ramadhan Giving</fullName>
+        <default>false</default>
+        <label>Third party giving - Ramadhan Giving</label>
+    </customValue>
+    <customValue>
+        <fullName>Virgin Money</fullName>
+        <default>false</default>
+        <label>Third party giving - Virgin Money</label>
+    </customValue>
+    <customValue>
+        <fullName>Tour</fullName>
+        <default>false</default>
+        <label>Tour</label>
+    </customValue>
+    <customValue>
+        <fullName>TV Live Appeal</fullName>
+        <default>false</default>
+        <label>TV Live Appeal</label>
+    </customValue>
+    <customValue>
+        <fullName>Unspecified Agency</fullName>
+        <default>false</default>
+        <label>Unspecified Agency</label>
+    </customValue>
+    <customValue>
+        <fullName>Unspecified Bank Transfer</fullName>
+        <default>false</default>
+        <label>Unspecified Bank Transfer</label>
+    </customValue>
+    <customValue>
+        <fullName>Unspecified Other</fullName>
+        <default>false</default>
+        <label>Unspecified Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Volunteer Fundraising Event</fullName>
+        <default>false</default>
+        <label>Volunteer Fundraising Event</label>
+    </customValue>
+    <customValue>
+        <fullName>Website (appeal / product landing page)</fullName>
+        <default>false</default>
+        <label>Website (appeal / product landing page)</label>
+    </customValue>
+    <customValue>
+        <fullName>Word Of Mouth</fullName>
+        <default>false</default>
+        <label>Word Of Mouth</label>
+    </customValue>
+    <customValue>
+        <fullName>Third Party giving - Givebrite</fullName>
+        <default>false</default>
+        <label>Third Party giving - Givebrite</label>
+    </customValue>
+    <description>Used on Campaigns and Donations. Proposed configuration:  If Donation.Source is blank and Primary_Campaign_Source.Source is not blank,  then copy the Source from the Primary_Campaign_Source.Source to the Donation.Source</description>
+    <masterLabel>Source</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

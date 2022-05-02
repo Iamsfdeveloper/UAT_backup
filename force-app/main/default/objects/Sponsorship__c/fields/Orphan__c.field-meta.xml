@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Orphan__c</fullName>
+    <externalId>false</externalId>
+    <label>Orphan</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <errorMessage>Please select different Orphan</errorMessage>
+        <filterItems>
+            <field>Contact.RecordType.DeveloperName</field>
+            <operation>equals</operation>
+            <value>Orphan</value>
+        </filterItems>
+        <filterItems>
+            <field>Contact.Active_Sponsorships__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filterItems>
+        <infoMessage>Select Orphan Contacts with no Sponsorships</infoMessage>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Orphan Sponsorships</relationshipLabel>
+    <relationshipName>Sponsoree</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

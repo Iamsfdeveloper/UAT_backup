@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Card Payment History</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Card Payment History</value>
+    </caseValues>
+    <layouts>
+        <layout>HA Payment History Layout</layout>
+        <sections>
+            <label></label>
+            <section>Amount</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Payment Schedule</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Transaction Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Income Card Payment History Layout</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description></description>
+        <label></label>
+        <name>Bank_Transfer</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>Card_Payment</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>Cash</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>Cheque</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

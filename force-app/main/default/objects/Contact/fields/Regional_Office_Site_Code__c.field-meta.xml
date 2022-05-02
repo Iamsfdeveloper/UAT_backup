@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Regional_Office_Site_Code__c</fullName>
+    <externalId>false</externalId>
+    <label>Regional Office Site Code</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>UK</fullName>
+                <default>false</default>
+                <label>UK</label>
+            </value>
+            <value>
+                <fullName>FR</fullName>
+                <default>false</default>
+                <label>FR</label>
+            </value>
+            <value>
+                <fullName>ES</fullName>
+                <default>false</default>
+                <label>ES</label>
+            </value>
+            <value>
+                <fullName>IE</fullName>
+                <default>false</default>
+                <label>IE</label>
+            </value>
+            <value>
+                <fullName>AR</fullName>
+                <default>false</default>
+                <label>AR</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

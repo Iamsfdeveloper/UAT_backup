@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Processed_Date__c</fullName>
+    <externalId>false</externalId>
+    <label>Last Processed Date</label>
+    <summarizedField>Income_Debit_History__c.CreatedDate</summarizedField>
+    <summaryForeignKey>Income_Debit_History__c.Income_Direct_Debit__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

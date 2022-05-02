@@ -1,0 +1,115 @@
+<!--
+  @description       : 
+  @author            : Iamsfdeveloper
+  @group             : 
+  @last modified on  : 02-08-2021
+  @last modified by  : Iamsfdeveloper
+  Modifications Log 
+  Ver   Date         Author           Modification
+  1.0   02-08-2021   Iamsfdeveloper   Initial Version
+-->
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="HA_Utility">
+	
+    <aura:attribute name="addressObject" type="Map" />
+    <aura:attribute name="selectedAddressObject" type="Map" default="{label:''}"/>
+    <aura:attribute name="resultAddress" type="List" />
+    <aura:attribute name="onfocusShow" type="Boolean" />
+    <aura:attribute name="canBlur" type="Boolean" />
+    <aura:attribute name="canBlurOver" type="Boolean" />
+    <aura:attribute name="autoCompleteList" type="List" />
+    <aura:attribute name="loaded" type="Boolean" default="false" />
+	<aura:attribute name="contactRecord" type="Map" default="{}"/>
+    <aura:attribute name="CurrentAddressRecord" type="Map" default="{}"/>
+    <aura:attribute name="recordLoadError" type="String" />
+    <force:recordData aura:id="recordEditor"
+                      recordId="{!v.recordId}"
+                      fields="MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, npsp__Current_Address__c"
+                      targetFields="{!v.contactRecord}"
+                      targetError="{!v.recordLoadError}" mode="EDIT"
+                      recordUpdated="{!c.recordUpdated}" 
+                      />
+    <aura:if isTrue="{!not(empty(v.contactRecord.npsp__Current_Address__c))}">
+        <force:recordData aura:id="recordAddressEditor"
+                          recordId="{!v.contactRecord.npsp__Current_Address__c}"
+                          fields="npsp__Verified__c , npsp__Verification_Status__c"
+                          targetFields="{!v.CurrentAddressRecord}"
+                          targetError="{!v.recordLoadError}" mode="EDIT"
+                          />
+    </aura:if>
+         
+        <lightning:card  title="Address verify">
+            <aura:if isTrue="{! v.loaded }">
+             <lightning:spinner alternativeText="Loading" variant="brand"/>
+         </aura:if>
+            <aura:set attribute="actions">
+                <lightning:button label="Save" variant="brand" onclick="{!c.handleSaveRecord}"/>
+            </aura:set>
+            <p class="slds-p-horizontal_small">
+                <div onkeyup="{! c.handleKeyUp }">
+                    <lightning:input
+                                     aura:id="postalCode"
+                                     name="postalCode"
+                                     label="Postal Code"
+                                     type="search"
+                                     />
+                </div>
+                <div class="slds-form-element"  >
+                    <label class="slds-form-element__label" for="combobox-id-5">Select Address</label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-combobox_container slds-has-selection"  >
+                            <div role="combobox" class="{!(v.onfocusShow)?'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click  slds-is-open':'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click '}">
+                                <div onkeyup="{! c.handleKeyUpAddress }" class="slds-combobox__form-element slds-input-has-icon  slds-input-has-icon_right" >
+                                    <lightning:input class="slds-combobox__input slds-combobox__input-value"
+                                                     aura:id="selectAddress"
+                                                     name="selectAddress" variant="label-hidden"
+                                                     label="Select Address"
+                                                     value ="{!empty(v.selectedAddressObject.description)? v.selectedAddressObject.label:v.selectedAddressObject.label+', '+v.selectedAddressObject.description}"
+                                                     onfocus="{!c.handleOnFoucs}"
+                                                     />
+                                    <aura:if isTrue="{!!empty(v.selectedAddressObject.label)}">
+                                        <lightning:buttonIcon class="slds-input__icon slds-input__icon_right" iconName="utility:close" variant="bare" onclick="{! c.handleClickToRemove }" alternativeText="Remove" title="Remove" />
+                                    </aura:if>
+                                </div>
+                                
+                                <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox" >
+                                    <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                        <aura:iteration items="{!v.autoCompleteList}" var="item" indexVar="ind">
+                                            <li role="presentation" class="slds-listbox__item" data-index="{!ind}" data-value="{!item.value}" onclick="{!c.handleOnSelect}">
+                                                <div id="option1" class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+                                                    <span class="slds-media__figure slds-listbox__option-icon">
+                                                        <lightning:icon iconName="standard:address" size="small" alternativeText="Address" title="Address" />
+                                                    </span>
+                                                    <span class="slds-media__body">
+                                                        <span class="slds-listbox__option-text slds-listbox__option-text_entity">{!item.label}</span>
+                                                        <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">{!item.description}</span>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            
+                                        </aura:iteration>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="max-width: 400px;">
+                    <lightning:inputAddress aura:id="mailingAddress"
+                                            addressLabel="Address"
+                                            streetLabel="Street"
+                                            cityLabel="City"
+                                            countryLabel="Country"
+                                            provinceLabel="Province"
+                                            postalCodeLabel="PostalCode"
+                                            street="{!empty(v.addressObject.Line2)?v.addressObject.Line1:v.addressObject.Line1+', '+v.addressObject.Line2 }"
+                                            city="{!v.addressObject.City}"
+                                            country="{!v.addressObject.CountryName }"
+                                            province="{!empty(v.addressObject.Province)?v.addressObject.City:v.addressObject.Province}"
+                                            postalCode="{!v.addressObject.PostalCode }"
+                                            required="true"
+                                            fieldLevelHelp="Mailing Address"
+                                            />
+                </div>
+            </p>
+        </lightning:card>
+</aura:component>

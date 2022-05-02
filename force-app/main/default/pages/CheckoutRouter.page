@@ -1,0 +1,3 @@
+<apex:page controller="CheckoutRouterController" action="{!redirect}">
+
+</apex:page>

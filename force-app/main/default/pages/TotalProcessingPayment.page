@@ -1,0 +1,4 @@
+<apex:page action="{!setPaymentStatus}" Controller="HA_TotalProcessingPaymentController"> 
+    <script src="{!paymentURL}"></script>
+    <form action="/apex/TotalProcessingPayment?recId={!opportunityId}" class="paymentWidgets" data-brands="VISA MASTER AMEX"></form>
+</apex:page>

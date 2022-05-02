@@ -1,0 +1,83 @@
+<!--
+  @description       : 
+  @author            : Iamsfdeveloper
+  @group             : 
+  @last modified on  : 01-10-2022
+  @last modified by  : Iamsfdeveloper
+  Modifications Log 
+  Ver   Date         Author           Modification
+  1.0   02-08-2021   Iamsfdeveloper   Initial Version
+-->
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="HA_Utility">
+	
+    <aura:attribute name="addressObject" type="Map" />
+    <aura:attribute name="selectedAddressObject" type="Map" default="{label:''}"/>
+    <aura:attribute name="resultAddress" type="List" />
+    <aura:attribute name="onfocusShow" type="Boolean" />
+    <aura:attribute name="canBlur" type="Boolean" />
+    <aura:attribute name="canBlurOver" type="Boolean" />
+    <aura:attribute name="autoCompleteList" type="List" />
+    <aura:attribute name="loaded" type="Boolean" default="false" />
+	<aura:attribute name="contactRecord" type="Map" default="{}"/>
+    <aura:attribute name="CurrentAddressRecord" type="Map" default="{}"/>
+    <aura:attribute name="recordLoadError" type="String" />
+        
+          
+    <div onkeyup="{! c.handleKeyUp }">
+    <lightning:input
+                    variant="label-inline"
+                    aura:id="postalCode"
+                    name="postalCode"
+                    label="Postal Code"
+                    type="text"
+                    required="true"
+                    placeholder="SK8 2BL"
+                    pattern="^[a-zA-Z]{1,2}\d[a-zA-Z\d]?\s?\d[a-zA-z]{2}$"
+                    />
+    </div>
+    <div class="slds-form-element slds-form-element_horizontal"  >  
+                    <label class="slds-form-element__label" for="combobox-id-5">
+                        <abbr lightning-combobox_combobox="" title="required" class="slds-required">*</abbr>
+                        Select Address</label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-combobox_container slds-has-selection"  >
+                            <div role="combobox" class="{!(v.onfocusShow)?'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click  slds-is-open':'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click '}">
+                                <div onkeyup="{! c.handleKeyUpAddress }" class="slds-combobox__form-element slds-input-has-icon  slds-input-has-icon_right" >
+                                    <lightning:input class="slds-combobox__input slds-combobox__input-value"
+                                                     aura:id="selectAddress"
+                                                     name="selectAddress" variant="label-hidden"
+                                                     label="{!'Select Address '+v.resultAddress.length}"
+                                                     value ="{!empty(v.selectedAddressObject.description)? v.selectedAddressObject.label:v.selectedAddressObject.label+', '+v.selectedAddressObject.description}"
+                                                     onfocus="{!c.handleOnFoucs}"
+                                                     />
+                                    <aura:if isTrue="{!!empty(v.selectedAddressObject.label)}">
+                                        <lightning:buttonIcon class="slds-input__icon slds-input__icon_right" iconName="utility:close" variant="bare" onclick="{! c.handleClickToRemove }" alternativeText="Remove" title="Remove" />
+                                    </aura:if>
+                                </div>
+                                
+                                <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox" >
+                                    <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                        <aura:iteration items="{!v.autoCompleteList}" var="item" indexVar="ind">
+                                            <li role="presentation" class="slds-listbox__item" data-index="{!ind}" data-value="{!item.value}" onclick="{!c.handleOnSelect}">
+                                                <div id="option1" class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+                                                    <span class="slds-media__figure slds-listbox__option-icon">
+                                                        <lightning:icon iconName="standard:address" size="small" alternativeText="Address" title="Address" />
+                                                    </span>
+                                                    <span class="slds-media__body">
+                                                        <span class="slds-listbox__option-text slds-listbox__option-text_entity">{!item.label}</span>
+                                                        <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">{!item.description}</span>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            
+                                        </aura:iteration>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+           
+           
+</aura:component>

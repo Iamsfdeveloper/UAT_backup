@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Development</fullName>
+        <default>false</default>
+        <label>Development</label>
+    </customValue>
+    <customValue>
+        <fullName>Humanitarian</fullName>
+        <default>false</default>
+        <label>Humanitarian</label>
+    </customValue>
+    <customValue>
+        <fullName>Orphans Child Welfare</fullName>
+        <default>false</default>
+        <label>Orphans Child Welfare</label>
+    </customValue>
+    <customValue>
+        <fullName>Seasonal</fullName>
+        <default>false</default>
+        <label>Seasonal</label>
+    </customValue>
+    <customValue>
+        <fullName>Special Request</fullName>
+        <default>false</default>
+        <label>Special Request</label>
+    </customValue>
+    <description>Core Themes</description>
+    <masterLabel>Core Theme</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

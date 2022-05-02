@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DD_Collection_Day__c</fullName>
+    <externalId>false</externalId>
+    <label>Collection Day</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>DD_Collection_Period__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1</fullName>
+                <default>true</default>
+                <label>1</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Monthly</controllingFieldValue>
+            <valueName>1</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

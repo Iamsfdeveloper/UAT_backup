@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Gift_Aid_Declaration__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Gift Aid Declaration</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>$Source.npsp__Primary_Contact__c</field>
+            <operation>equals</operation>
+            <valueField>Gift_Aid_Declaration__c.Donor__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Gift_Aid_Declaration__c.Gift_Aid_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Unspecified</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Gift_Aid_Declaration__c</referenceTo>
+    <relationshipLabel>Opportunities</relationshipLabel>
+    <relationshipName>giftAidDeclaration</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

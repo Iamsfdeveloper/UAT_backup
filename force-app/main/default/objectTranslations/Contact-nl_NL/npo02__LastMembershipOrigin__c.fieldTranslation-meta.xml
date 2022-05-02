@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>De Herkomst van de meest recente Gewonnen Lidamaatschap Opportunity gerelateerd aan een Contactpersoon door een Primair Opportunity Contactpersoon Rol.</help>
+    <label></label>
+    <name>npo02__LastMembershipOrigin__c</name>
+</CustomFieldTranslation>

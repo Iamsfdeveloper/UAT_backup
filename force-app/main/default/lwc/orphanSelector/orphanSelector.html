@@ -1,0 +1,58 @@
+<!--
+  @description       : 
+  @author            : Iamsfdeveloper
+  @group             : 
+  @last modified on  : 06-24-2021
+  @last modified by  : Iamsfdeveloper
+  Modifications Log 
+  Ver   Date         Author           Modification
+  1.0   01-14-2021   Iamsfdeveloper   Initial Version
+-->
+<template>
+
+    <div style="height: 450px;">
+        <template if:true={loaded}>
+            <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
+        </template>
+        <lightning-layout>
+            <lightning-layout-item padding="around-small">
+                <div onkeyup={handleKeyUp}>
+                    <lightning-input
+                        name="Search"
+                        label="Search By Name Or Id"
+                        type="search"
+                    ></lightning-input>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-combobox name="Country" label="Country" value={selected_Country} placeholder="Select Country"
+                options={countryList} onchange={handleChange} class="searchFilter">
+                </lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-combobox name="Gender" label="Gender" value={selectedGender} placeholder="Select Gender"
+                options={genderOptions} onchange={handleChange} class="searchFilter">
+                </lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-combobox name="Age" label="Age" value={selectedAge} placeholder="Select Age"
+                options={ageOptions} onchange={handleChange} class="searchFilter">
+                </lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-combobox name="Status" label="Status" value={selectedStatus} placeholder="Select Status"
+                options={statusOption} onchange={handleChange} class="searchFilter">
+                </lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                
+            </lightning-layout-item>
+        </lightning-layout>
+        
+        <lightning-datatable
+                key-field="Id"
+                data={orphanList}
+                columns={columns} max-row-selection="1" selected-rows={selectedRows} onrowselection={getSelectedRow}>
+        </lightning-datatable>
+    </div>    
+</template>

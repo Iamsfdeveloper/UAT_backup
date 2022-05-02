@@ -1,0 +1,84 @@
+<apex:page standardController="Contact" extensions="HA_Generate_StatmentController" docType="html-5.0" lightningStylesheets="true" showHeader="false" sidebar="false"  >
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+        <apex:slds />
+        <style>
+            .wrapper{
+            padding:1.5rem;
+            }
+            .header{
+            
+            }
+            .wrapperbody{
+              padding-top:1rem;
+            }
+            .slds-disabled{
+                background-color: #c9c7c5;
+                border-color: #c9c7c5;
+                color: #fff;
+            }
+            body{
+                font-weight:400;
+            }
+        </style>
+        <apex:form id="formid">
+            <apex:actionFunction name="refreshPanel" reRender="formid" status="progressbarId"/>
+            
+            <div class="slds-grid slds-wrap slds-align_absolute-center wrapper">
+             <div class="slds-col slds-size_8-of-12">
+                <apex:outputPanel rendered="{!showEmailSent}">
+                <div class="slds-notify_container slds-is-relative">
+                <div class="slds-notify slds-notify_toast slds-theme_success" role="status">
+                <span class="slds-assistive-text">success</span>
+                <span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top" title="Description of icon when needed">
+                <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#success"></use>
+                </svg>
+                </span>
+                <div class="slds-notify__content">
+                <h2 class="slds-text-heading_small ">Email has sent successfully.</h2>
+                </div>
+                <div class="slds-notify__close">
+                <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Close</span>
+                </button>
+                </div>
+                </div>
+                </div>
+                </apex:outputPanel>
+             </div>
+            
+                <div class="slds-col slds-size_8-of-12">
+                    <div class="slds-grid">
+                        <div class="slds-col">
+                            <apex:outputLabel value="Start Date :" for="startD"/>
+                            <apex:input type="date"  value="{!startDate}" id="startD"  title="Start Date :"/>
+                        </div>
+                        <div class="slds-col">
+                            <apex:outputLabel value="End Date :" for="endD"/>
+                            <apex:input type="date"  value="{!endDate}" id="endD" title="End Date"/>
+                        </div>
+                        <div class="slds-col">
+                            <apex:commandButton title="Update" value="Update" oncomplete="refreshPanel();" action="{!show_SendEmail}"/>   
+                        </div>
+                        <div class="slds-col">
+                             <apex:commandButton title="Send Email" value="Send Email" disabled="{!showEmailSent}" action="{!sendEmail}" styleClass="slds-button_brand"/>
+                        </div>
+                        <div class="slds-col">
+                             <apex:commandButton title="Back" value="Back" styleClass="slds-button_destructive" action="{!back}"/>
+                        </div>
+                    </div>
+                    </div>
+                <div class="slds-col slds-size_12-of-12 slds-align_absolute-center slds-p-top_medium">
+                    <apex:actionRegion >
+                       <c:PDF_Donation_Statement eDatePDf="{!endDate}" startDPDf="{!startDate}" recordId="{!Contact.Id}"  show_Logo="false"/>
+                        
+                    </apex:actionRegion>
+                </div>
+            </div>
+        </apex:form>
+        </html>
+    </apex:page>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Arts</fullName>
+        <default>false</default>
+        <label>Arts</label>
+    </customValue>
+    <customValue>
+        <fullName>Basketball</fullName>
+        <default>false</default>
+        <label>Basketball</label>
+    </customValue>
+    <customValue>
+        <fullName>Board Games</fullName>
+        <default>false</default>
+        <label>Board Games</label>
+    </customValue>
+    <customValue>
+        <fullName>Charity Work</fullName>
+        <default>false</default>
+        <label>Charity Work</label>
+    </customValue>
+    <customValue>
+        <fullName>Computer</fullName>
+        <default>false</default>
+        <label>Computer</label>
+    </customValue>
+    <customValue>
+        <fullName>Cooking</fullName>
+        <default>false</default>
+        <label>Cooking</label>
+    </customValue>
+    <customValue>
+        <fullName>Cricket</fullName>
+        <default>false</default>
+        <label>Cricket</label>
+    </customValue>
+    <customValue>
+        <fullName>Cycling</fullName>
+        <default>false</default>
+        <label>Cycling</label>
+    </customValue>
+    <customValue>
+        <fullName>Drama</fullName>
+        <default>false</default>
+        <label>Drama</label>
+    </customValue>
+    <customValue>
+        <fullName>Drawing / Painting</fullName>
+        <default>false</default>
+        <label>Drawing / Painting</label>
+    </customValue>
+    <customValue>
+        <fullName>Football</fullName>
+        <default>false</default>
+        <label>Football</label>
+    </customValue>
+    <customValue>
+        <fullName>Games</fullName>
+        <default>false</default>
+        <label>Games</label>
+    </customValue>
+    <customValue>
+        <fullName>Gardening</fullName>
+        <default>false</default>
+        <label>Gardening</label>
+    </customValue>
+    <customValue>
+        <fullName>Handicrafts</fullName>
+        <default>false</default>
+        <label>Handicrafts</label>
+    </customValue>
+    <customValue>
+        <fullName>Hockey</fullName>
+        <default>false</default>
+        <label>Hockey</label>
+    </customValue>
+    <customValue>
+        <fullName>Horse Riding</fullName>
+        <default>false</default>
+        <label>Horse Riding</label>
+    </customValue>
+    <customValue>
+        <fullName>Knitting</fullName>
+        <default>false</default>
+        <label>Knitting</label>
+    </customValue>
+    <customValue>
+        <fullName>Learning Languages</fullName>
+        <default>false</default>
+        <label>Learning Languages</label>
+    </customValue>
+    <customValue>
+        <fullName>Meeting Friends</fullName>
+        <default>false</default>
+        <label>Meeting Friends</label>
+    </customValue>
+    <customValue>
+        <fullName>Nasheeds</fullName>
+        <default>false</default>
+        <label>Nasheeds</label>
+    </customValue>
+    <customValue>
+        <fullName>Performing Arts</fullName>
+        <default>false</default>
+        <label>Performing Arts</label>
+    </customValue>
+    <customValue>
+        <fullName>Pets</fullName>
+        <default>false</default>
+        <label>Pets</label>
+    </customValue>
+    <customValue>
+        <fullName>Poetry</fullName>
+        <default>false</default>
+        <label>Poetry</label>
+    </customValue>
+    <customValue>
+        <fullName>Reading</fullName>
+        <default>false</default>
+        <label>Reading</label>
+    </customValue>
+    <customValue>
+        <fullName>Reciting Quran</fullName>
+        <default>false</default>
+        <label>Reciting Quran</label>
+    </customValue>
+    <customValue>
+        <fullName>Sewing</fullName>
+        <default>false</default>
+        <label>Sewing</label>
+    </customValue>
+    <customValue>
+        <fullName>Sports</fullName>
+        <default>false</default>
+        <label>Sports</label>
+    </customValue>
+    <customValue>
+        <fullName>Story Writing</fullName>
+        <default>false</default>
+        <label>Story Writing</label>
+    </customValue>
+    <customValue>
+        <fullName>Studying</fullName>
+        <default>false</default>
+        <label>Studying</label>
+    </customValue>
+    <customValue>
+        <fullName>Swimming</fullName>
+        <default>false</default>
+        <label>Swimming</label>
+    </customValue>
+    <customValue>
+        <fullName>Tennis</fullName>
+        <default>false</default>
+        <label>Tennis</label>
+    </customValue>
+    <customValue>
+        <fullName>Travel</fullName>
+        <default>false</default>
+        <label>Travel</label>
+    </customValue>
+    <customValue>
+        <fullName>Undecided</fullName>
+        <default>false</default>
+        <label>Undecided</label>
+    </customValue>
+    <customValue>
+        <fullName>Unspecified</fullName>
+        <default>false</default>
+        <label>Unspecified</label>
+    </customValue>
+    <customValue>
+        <fullName>Volleyball</fullName>
+        <default>false</default>
+        <label>Volleyball</label>
+    </customValue>
+    <customValue>
+        <fullName>Watching Television</fullName>
+        <default>false</default>
+        <label>Watching Television</label>
+    </customValue>
+    <customValue>
+        <fullName>Writing</fullName>
+        <default>false</default>
+        <label>Writing</label>
+    </customValue>
+    <masterLabel>Hobbies</masterLabel>
+    <sorted>true</sorted>
+</GlobalValueSet>

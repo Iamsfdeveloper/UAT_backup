@@ -1,0 +1,237 @@
+<apex:page standardController="Income_Direct_Debit__c" showHeader="false" sidebar="false" renderAs="pdf" applyBodyTag="false">
+    <head>
+        <apex:stylesheet value="{!URLFOR($Resource.SMP_DD_Resources, 'css/PaperBasedMandate.css')}"/>
+    </head>
+    
+    <div class="footer">
+        <div style="margin-left:-50px; margin-right:-50px; background-color: #DDDDDD" class="border-dashed-top">
+            <div style="text-align:center; padding-top:10px; padding-bottom: 10px; font-size:10px;">
+                This guarantee should be detached and retained by the payer. 
+            </div>
+
+            <div class="ddg-wrapper border">
+                <div class="float-left text-align-right" style="width:35%;">
+                    &nbsp;
+                </div>
+                <div class="float-left" style="width:30%; text-align:center; font-size:24px;">
+                    The<br/>Direct Debit<br/>Guarantee
+                </div>
+                <div class="float-left text-align-right" style="width:35%;">
+                    <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/DD.jpg')}" width="150px"/>                    
+                </div>
+                <div class="floatfix"/>
+    
+                <div class="guarantee" style="font-size:11px;">
+                    <ul>
+                        <li>
+                            This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits
+                        </li>
+                        <li>
+                            If there are any changes to the amount, date or frequency of your Direct Debit Human Appeal will notify you 10 working days in advance
+                            of your account being debited or as otherwise agreed. If you request Human Appeal to collect a payment, confirmation of the amount
+                            and date will be given to you at the time of the request. 
+                        </li>
+                        <li>
+                            If an error is made in the payment of your Direct Debit, by Human Appeal or your bank or building society, you are entitled to a full and
+                            immediate refund of the amount paid from your bank or building society
+                            <br/>                            
+                            – If you receive a refund you are not entitled to, you must pay it back when Human Appeal asks you to                               
+                        </li>
+                        <li>
+                            You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify us.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <br/><br/><br/>
+        </div>
+    </div>
+    <div class="content">
+        <div class="float-left" style="width: 48%;">
+            <apex:image url="https://gallery.mailchimp.com/54e19cc3f9692dd8376b05a97/images/66a51d2a-1aeb-4858-9063-c64481c6a912.png" style="max-width:180px; width:100px; height:90px;" />
+            <br />
+            <apex:outputLabel value="Please fill in the whole form including official use box using a ball point pen and send it to: " style="font-size: 10px;"/>
+            <br />
+            <div class="border" style="height:120px; padding:10px; font-size:15px; margin-bottom:5px;">                
+                Human Appeal,
+                Pennine House,<br/>
+                Carrs Road,<br/>
+                Cheadle,<br/>
+                SK8 2BL,<br/>
+                UK<br/>           
+            </div>
+            <div class="item" style="margin-bottom:5px;">
+                <div>
+                    <apex:outputLabel style="font-size: 10px; font-weight:bold;">
+                        Name(s) of account holder(s)
+                    </apex:outputLabel>
+                </div>
+                <div class="border" style="height: 30px;">
+                    &nbsp;
+                </div>
+                <div class="border" style="height: 30px;">
+                    &nbsp;                            
+                </div>                    
+            </div>
+            <div class="item" style="margin-bottom:5px;">
+                <div>
+                    <apex:outputLabel style="font-size: 10px; font-weight:bold;">
+                        Bank/Building Society account number
+                    </apex:outputLabel>
+                </div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="floatfix"/>
+            </div>
+            <div class="item" style="margin-bottom:5px;">
+                <div>
+                    <apex:outputLabel style="font-size: 10px; font-weight:bold;">
+                        Branch sort code
+                    </apex:outputLabel>
+                </div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="border float-left" style="width: 10%; height: 30px;"></div>
+                <div class="floatfix"/>
+            </div>
+            <div class="item" style="margin-bottom:5px;">
+                <div>
+                    <apex:outputLabel style="font-size: 10px; font-weight:bold;">
+                        Name and full postal address of your bank or building society
+                    </apex:outputLabel>
+                </div>
+                <div class="border" style="height: 30px; padding-left: 2px; padding-right: 2px;">
+                    <apex:outputLabel style="font-size: 10px; float:left;">
+                        To: The Manager
+                    </apex:outputLabel>
+                    <apex:outputLabel style="font-size: 10px; float:right;">
+                        Bank/building society
+                    </apex:outputLabel>
+                    <div class="floatfix"/>
+                    &nbsp;
+                </div>
+                <div class="border" style="height: 30px; padding-left: 2px; padding-right: 2px;">
+                    <apex:outputLabel style="font-size: 10px;">
+                        Address
+                    </apex:outputLabel>
+                    &nbsp;                            
+                </div>
+                <div class="border" style="height: 30px; padding-left: 2px; padding-right: 2px;">
+                    &nbsp;
+                </div>
+                <div class="border" style="height: 30px; padding-left: 2px; padding-right: 2px;">
+                    <apex:outputLabel style="font-size: 10px; float:right; padding-right: 110px;">
+                        Postcode
+                    </apex:outputLabel>
+                    &nbsp;                            
+                </div>
+            </div>
+            <div class="item" style="margin-bottom:5px;">
+                <div>
+                    <apex:outputLabel style="font-size: 10px; font-weight:bold;">
+                        Reference
+                    </apex:outputLabel>
+                </div>
+                <div class="border float-left" style="width: 17px; height: 30px;"></div>
+                <div class="border float-left" style="width: 17px; height: 30px;"></div>
+                <div class="border float-left" style="width: 17px; height: 30px;"></div>
+                <div class="border float-left" style="width: 17px; height: 30px;"></div>
+                <div class="border float-left" style="width: 17px; height: 30px;"></div>
+                <div class="border float-left" style="width: 17px; height: 30px;"></div>
+                <div class="border float-left" style="width: 17px; height: 30px;"></div>
+                <div class="border float-left" style="width: 17px; height: 30px;"></div>
+                <div class="border float-left" style="width: 17px; height: 30px;"></div>
+                <div class="border float-left" style="width: 17px; height: 30px;"></div>
+                <div class="border float-left" style="width: 17px; height: 30px;"></div>
+                <div class="border float-left" style="width: 17px; height: 30px;"></div>
+                <div class="border float-left" style="width: 17px; height: 30px;"></div>
+                <div class="border float-left" style="width: 16px; height: 30px;"></div>
+                <div class="border float-left" style="width: 16px; height: 30px;"></div>
+                <div class="border float-left" style="width: 16px; height: 30px;"></div>
+                <div class="border float-left" style="width: 16px; height: 30px;"></div>
+                <div class="border float-left" style="width: 16px; height: 30px;"></div>
+                <div class="floatfix"/>
+            </div>
+        </div>
+        <div class="float-left" style="width: 2%;">&nbsp;</div>
+        <div class="float-left" style="width: 48%;">
+            <div style="text-align: right; margin-bottom: 10px;">
+                <apex:image url="{!URLFOR($Resource.SMP_DD_Resources, 'images/DD.jpg')}" width="150px"/>
+            </div>            
+            <div style="font-size:24px;">
+                Instruction to your Bank or Building Society to pay by Direct Debit
+            </div>
+            <div class="item" style="margin-bottom:15px;">
+                <div>
+                    <apex:outputLabel style="font-size: 10px; font-weight:bold;">
+                        Service user number
+                    </apex:outputLabel>
+                </div>
+                <div class="border float-left" style="width: 10%; height: 30px; font-size:24px; text-align:center; font-weight:bold;">#</div>
+                <div class="border float-left" style="width: 10%; height: 30px; font-size:24px; text-align:center; font-weight:bold;">#</div>
+                <div class="border float-left" style="width: 10%; height: 30px; font-size:24px; text-align:center; font-weight:bold;">#</div>
+                <div class="border float-left" style="width: 10%; height: 30px; font-size:24px; text-align:center; font-weight:bold;">#</div>
+                <div class="border float-left" style="width: 10%; height: 30px; font-size:24px; text-align:center; font-weight:bold;">#</div>
+                <div class="border float-left" style="width: 10%; height: 30px; font-size:24px; text-align:center; font-weight:bold;">#</div>
+                <div class="floatfix"/>
+            </div>  
+            <div class="item" style="margin-bottom:15px;">
+                <div class="border float-left" style="width: 100%; height:175px;">
+                    <div style="text-align:center;">
+                        <apex:outputLabel style="font-size: 10px;">
+                            FOR Human Appeal OFFICIAL USE ONLY<br/>
+                            This is not part of the instruction to your bank or building society. 
+                        </apex:outputLabel>
+                    </div>
+                </div>                
+                <div class="floatfix"/>
+            </div>
+            <div class="item" style="margin-bottom:15px;">
+                <div class="float-left" style="margin-bottom:10px;">
+                    <apex:outputLabel style="font-size: 10px; font-weight:bold;">
+                        Instruction to your bank or building society
+                    </apex:outputLabel>
+                    Please pay Human Appeal Direct Debits from the account detailed in this Instruction subject to the safeguards assured by the Direct Debit Guarantee. I understand that this Instruction may remain with Human Appeal and, if so, details will be passed electronically to my bank/building society. 
+                </div>              
+                <div class="floatfix"/>
+            </div>
+            <div class="item" style="margin-top: 15px;">                
+                <div class="border" style="height: 30px; padding-left: 2px; padding-right: 2px;">
+                    <apex:outputLabel style="font-size: 10px;">
+                        Signature(s)
+                    </apex:outputLabel>
+                    &nbsp;                            
+                </div>
+                <div class="border" style="height: 30px; padding-left: 2px; padding-right: 2px;">
+                    &nbsp;
+                </div>
+                <div class="border" style="height :30px;padding-left: 2px; padding-right: 2px;">
+                    <apex:outputLabel style="font-size: 10px;">
+                        Date
+                    </apex:outputLabel>
+                    &nbsp;                            
+                </div>
+            </div> 
+        </div>
+
+        <div class="floatfix"/>
+        
+        <div>
+            <div style="text-align:center; font-size:10px; padding-top: 5px;">
+                Banks and Building Societies may not accept Direct Debit Instructions for some types of accounts.
+            </div>
+        </div>
+    </div>    
+</apex:page>

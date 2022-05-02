@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Precluded_Gift_Aid_Value__c</fullName>
+    <externalId>false</externalId>
+    <label>Precluded Gift Aid Value</label>
+    <summarizedField>npe01__OppPayment__c.npe01__Payment_Amount__c</summarizedField>
+    <summaryFilterItems>
+        <field>npe01__OppPayment__c.npe01__Paid__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>npe01__OppPayment__c.Gift_Aid_Precluded__c</field>
+        <operation>equals</operation>
+        <value>Yes</value>
+    </summaryFilterItems>
+    <summaryForeignKey>npe01__OppPayment__c.npe01__Opportunity__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

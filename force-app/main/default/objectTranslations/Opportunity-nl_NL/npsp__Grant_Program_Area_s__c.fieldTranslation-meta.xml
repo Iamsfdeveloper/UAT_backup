@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Beschrijft de financieringsgebieden voor het fonds. Dit veld kan bijvoorbeeld gebruikt worden voor de naam van het programma waar het fonds bij hoort.</help>
+    <label></label>
+    <name>npsp__Grant_Program_Area_s__c</name>
+</CustomFieldTranslation>

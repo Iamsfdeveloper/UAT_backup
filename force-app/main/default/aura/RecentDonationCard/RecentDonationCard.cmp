@@ -1,0 +1,93 @@
+<aura:component>
+    <aura:attribute name="donationRec" type="Object" />
+
+    <lightning:card>        
+        <div class="recent-donation__inner bg-light">
+            <div class="recent-donation__top-to-left">
+                <div class="recent-donation__picture">
+                    <img src="http://humanappeal.currentlybrewing.com/img/recent-donations-slider/image-large-1x.png"
+                        alt="Image alt." />
+                </div>
+            </div>
+            <div class="recent-donation__bottom-to-right">
+                <div class="bg-light">
+                    <div class="recent-donation__main">
+                        <div class="recent-donation__heading">
+                            <a href="#" class="recent-donation__heading__text text-color--primary"
+                                title="Project Name: Mohammad Farooq Azami Humanitarian Relief Shelter Appeal."
+                                tabindex="0">
+                                <h1>{!v.donationRec.GAU_Name__c}
+                                </h1>
+                            </a>
+                        </div>
+                        <div class="recent-donation__data">
+                            <p class="recent-donation__data__text">
+                                <span>Location: </span><span class="is-serif-light">{!v.donationRec.Country__c}</span>
+                            </p>
+                            <p class="recent-donation__data__text">
+                                <span>Theme: </span><span class="is-serif-light">{!v.donationRec.npsp__General_Accounting_Unit__r.Programme_Category__c}</span>
+                             </p>
+                         <!--   <a href="#"
+                                class="recent-donation__data__text recent-donation__data__hyperlink text-colorprimary"
+                                title="Gaza, Pakistan and Syria Report link" tabindex="0">Gaza, Pakistan and Syria
+                                Report link</a>
+                            <p class="recent-donation__data__text">
+                                <span>Location: </span><span class="is-serif-light">Gaza, Pakistan
+                                    and Syria</span>
+                            </p> -->
+                            <p class="recent-donation__data__text">
+                                <span>Status: </span><span class="is-serif-light">{!v.donationRec.npsp__Opportunity__r.Gift_Aid_Eligible_Status__c}</span>
+                            </p>
+                        </div>
+                        <div class="share share--light">
+                            <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
+                                data-a2a-url="https://humanappeal.org.uk" data-a2a-title="Human Appeal"
+                                style="line-height: 32px;">
+                                <a class="a2a_dd a2a_counter"
+                                    href="https://www.addtoany.com/share#url=https%3A%2F%2Fhumanappeal.org.uk&amp;title=Human%20Appeal"
+                                    tabindex="0"><span class="a2a_svg a2a_s__default a2a_s_a2a"
+                                        style="background-color: rgb(1, 102, 255);">
+                                        <!--<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><g fill="#FFF"><path d="M14 7h4v18h-4z"></path><path d="M7 14h18v4H7z"></path></g></svg>-->
+                                    </span><span class="a2a_label a2a_localize"
+                                        data-a2a-localize="inner,Share">Share</span><span class="a2a_count"
+                                        style="line-height: 32px; height: 32px; width: 64px; font-size: 16px;"></span></a>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="recent-donation__footer">
+            <div class="recent-donation__top-to-right">
+                <!--<p class="text-color-primary"><span class="recent-donation__footer__text">My
+                        contribution: </span><strong>10% - £50.00</strong>
+                </p> -->
+            </div>
+            <div class="recent-donation__bottom-to-left">
+                <div class="recent-donation__progress">
+                   <!-- <div class="recent-donation__progress__left">
+                        <div class="progress progressresponsive">
+                            <div class="progress__inner">
+                                <span class="progress__text">
+                                    <span class="progress__value">50</span><span class="progress__unit">%</span>
+                                    <span class="visuallyhidden"> of target
+                                        reached.</span>
+                                </span>
+                                <div class="progress__indicator">
+                                    <div class="progress__indicator__inner" style="height: 50%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="recenet-donation__progress__right">
+                        <p class="recent-donation__progress__text text-color--primary">
+                            <strong><lightning:formattedNumber value="{!v.donationRec.npsp__Amount__c}" style="currency" currencyCode="{!v.donationRec.CurrencyIsoCode}" /></strong>
+                        </p>
+                      <!--  <p class="text-color-primary">Funded of £1,000 goal</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning:card>
+</aura:component>

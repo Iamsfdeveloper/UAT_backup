@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Do_Not_Contact_Reason__c</fullName>
+    <description>This provides a list of reasons a contact would request to not be contacted, it works with the Do Not Contact check box.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Add reason for contact requesting Do Not Contact.</inlineHelpText>
+    <label>Do Not Contact Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Supporter Request</fullName>
+                <default>false</default>
+                <label>Supporter Request</label>
+            </value>
+            <value>
+                <fullName>Data Service Gone Away</fullName>
+                <default>false</default>
+                <label>Data Service Gone Away</label>
+            </value>
+            <value>
+                <fullName>Moving Abroad</fullName>
+                <default>false</default>
+                <label>Moving Abroad</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

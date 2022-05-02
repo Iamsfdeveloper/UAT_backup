@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Layout</fullName>
+    <fields>Contact__c</fields>
+    <fields>Payment_Vendor__c</fields>
+    <fields>Total_Amount_Taken__c</fields>
+    <fields>Total_Amount_Refunded__c</fields>
+    <label>Layout</label>
+</CompactLayout>

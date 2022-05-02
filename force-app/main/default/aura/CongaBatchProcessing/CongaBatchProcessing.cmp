@@ -1,0 +1,108 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="CongaBatchProcessingController" access="global" >
+    <aura:attribute name="options" type="List" default="[
+                                                        {'label': 'Agencies', 'value': 'Agencies'},
+                                                        {'label': 'Bank Transfers', 'value': 'BankTransfers'},
+                                                        {'label': 'Bank Transfers(Organizations)', 'value': 'BankTransfersOrg'}
+                                                        ]"/>
+    <aura:attribute name="value" type="String" default="Agencies"/>
+    <aura:attribute name="hideButton" type="Boolean" default="false"/>
+    <aura:attribute name="spinner" type="boolean" default="false"/>
+    <aura:attribute name="resultData" type="Object"/>
+    <aura:attribute name="showResults" type="Boolean" default="false"/>
+    <aura:attribute name="showProcessErrorMessage" type="Boolean" default="false"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    <aura:attribute type="object[]" name="processList"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="General_ReceiptsWithout_Orphans_and_OTC" type="Integer" />
+    <aura:attribute name="General_Receipts_And_Orphan_Packs" type="Integer" />
+    <aura:attribute name="General_Receipts_and_Olive_Tree_Certs" type="Integer" />
+    <aura:attribute name="Payment_Receipts_Without_Orphans" type="Integer" />
+    <aura:attribute name="Payment_Receipt_Orphan_Packs" type="Integer" />
+     <aura:attribute name="Poetry_Receipts" type="Integer" />
+    
+    <div class="c-container">
+        <lightning:card>
+            <aura:set attribute="actions">
+            <lightning:button label="View All Attachments" onclick="{!c.navigateToOnDemandRecord}"/>
+        </aura:set>
+            <aura:if isTrue="{!v.spinner}">
+                <div aura:id="spinnerId" class="slds-spinner_container">
+                    <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                        <span class="slds-assistive-text">Loading...</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </aura:if>
+            <lightning:layout verticalAlign="stretch" multipleRows="true">
+                <lightning:layoutItem padding="around-small" size="4"> 
+                    Process Name
+                </lightning:layoutItem>    
+                <lightning:layoutItem padding="around-small" size="4">
+                    Unprocessed Record Count
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small" size="4">
+                    Action
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small" size="12"> 
+                </lightning:layoutItem>          
+                <lightning:layoutItem padding="around-small" size="4"> 
+                    General Receipts(Without Orphans and Olive Tree)
+                </lightning:layoutItem>    
+                <lightning:layoutItem padding="around-small" size="4">
+                    {!v.General_ReceiptsWithout_Orphans_and_OTC}
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small" size="4">
+                    <lightning:button aura:id="General_ReceiptsWithout_Orphans_and_OTC" variant="brand" label="Email Receipts" title="Brand action" onclick="{! c.exportDataURL }" disabled="{!v.hideButton}"/>
+                </lightning:layoutItem>       
+               <lightning:layoutItem padding="around-small" size="4"> 
+                    Poetry Receipts
+                </lightning:layoutItem>    
+                <lightning:layoutItem padding="around-small" size="4">
+                    {!v.Poetry_Receipts}
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small" size="4">
+                    <lightning:button aura:id="Poetry_Receipts" variant="brand" label="Email Receipts" title="Brand action" onclick="{! c.exportDataURL }" disabled="{!v.hideButton}"/>
+                </lightning:layoutItem> 
+                <lightning:layoutItem padding="around-small" size="4"> 
+                    General Receipts(With Olive Tree) + Olive Tree Certificates
+                </lightning:layoutItem>    
+                <lightning:layoutItem padding="around-small" size="4">
+                   {!v.General_Receipts_and_Olive_Tree_Certs}
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small" size="4">
+                    <lightning:button aura:id="General_Receipts_and_Olive_Tree_Certs" variant="brand" label="Email Receipts And Certificates" title="Brand action" onclick="{! c.exportDataURL }" disabled="{!v.hideButton}"/>
+                </lightning:layoutItem>  
+                <lightning:layoutItem padding="around-small" size="4"> 
+                    Payment Receipts (without Orphan packs)
+                </lightning:layoutItem>    
+                <lightning:layoutItem padding="around-small" size="4">
+                    {!v.Payment_Receipts_Without_Orphans}
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small" size="4">
+                    <lightning:button aura:id="Payment_Receipts_Without_Orphans" variant="brand" label="Email Receipts" title="Brand action" onclick="{! c.exportDataURL }" disabled="{!v.hideButton}"/>
+                </lightning:layoutItem>     
+                <lightning:layoutItem padding="around-small" size="4"> 
+                    Payment Receipts (with Orphan packs) + orphan packs
+                </lightning:layoutItem>    
+                <lightning:layoutItem padding="around-small" size="4">
+                    {!v.Payment_Receipt_Orphan_Packs}
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small" size="4">
+                    <lightning:button aura:id="Payment_Receipt_Orphan_Packs" variant="brand" label="Email Receipts And Packs" title="Brand action" onclick="{! c.exportDataURL }" disabled="{!v.hideButton}"/>
+                </lightning:layoutItem>                  
+            </lightning:layout>
+            <lightning:layoutItem padding="around-small" size="12">
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small" size="12">
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small" size="12">
+                <lightning:datatable data="{!v.processList}"
+                                     columns="{!v.mycolumns}"
+                                     keyField="id"
+                                     hideCheckboxColumn="true"/>      
+            </lightning:layoutItem>
+            
+        </lightning:card>
+    </div>	
+</aura:component>

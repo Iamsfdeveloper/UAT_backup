@@ -1,0 +1,32 @@
+<!--
+  @description       : 
+  @author            : Iamsfdeveloper
+  @group             : 
+  @last modified on  : 02-01-2022
+  @last modified by  : Iamsfdeveloper
+  Modifications Log 
+  Ver   Date         Author           Modification
+  1.0   03-30-2021   Iamsfdeveloper   Initial Version
+-->
+<template>
+ 
+    <lightning-card  title="Schedule Donations">
+      <div style="height: 300px;" class="slds-p-horizontal_medium">
+        <lightning-datatable
+                key-field="Payment_Reference__c"
+                data={recurringDonations}
+                show-row-number-column
+                hide-checkbox-column
+                row-number-offset={rowOffset}
+                oncellchange={handleCellChange}
+                resize-column-disabled	
+                onsave={handleSave}
+                columns={columns}>
+        </lightning-datatable>
+    </div>
+    <div slot="footer">
+    <lightning-badge label="Total Donation"></lightning-badge>
+      <lightning-formatted-number value={donationTotal} format-style="currency" currency-code={currencyCode}></lightning-formatted-number>
+    </div>
+      </lightning-card>
+</template>

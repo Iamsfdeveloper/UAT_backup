@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Orphan_Fathers_Death_Verification_Method__c</fullName>
+    <externalId>false</externalId>
+    <label>Fathers Death Verification Method</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Death Certificate</fullName>
+                <default>false</default>
+                <label>Death Certificate</label>
+            </value>
+            <value>
+                <fullName>Field Office</fullName>
+                <default>false</default>
+                <label>Field Office</label>
+            </value>
+            <value>
+                <fullName>Witness</fullName>
+                <default>false</default>
+                <label>Witness</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

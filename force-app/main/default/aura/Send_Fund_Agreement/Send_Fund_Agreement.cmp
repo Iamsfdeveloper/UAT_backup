@@ -1,0 +1,44 @@
+<aura:component controller="SendFundAgreementController" implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:attribute name="recordId" type="Id" />      
+    <aura:attribute name="spinner" type="boolean" default="FALSE"/>
+    <aura:attribute name="isInProgress" type="boolean" default="false" /> 
+    <aura:attribute name="isCompleted" type="boolean" default="false" /> 
+    <aura:attribute name="isCancelled" type="boolean" default="false" /> 
+    <aura:attribute name="isDraft" type="boolean" default="false" /> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <!--loading spinner start-->
+    <aura:if isTrue="{!v.spinner}">
+        <div aura:id="spinnerId" class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading...</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+    <!-- Loading spinner end-->  
+    <lightning:card iconName="standard:record_signature_task" title="Fund Agreements">
+        <aura:set attribute="actions">
+            <aura:if isTrue="{!v.isInProgress}">
+          <lightning:button onclick="{!c.getAgreementStatusCheck}"
+                              variant="neutral"
+                              label="Get Agreement Status"
+                              iconName="utility:send"/> 
+            </aura:if>
+            <aura:if isTrue="{!v.isDraft}">
+          <lightning:button onclick="{!c.sendAgreement}"
+                                  variant="neutral"
+                                  label="Send Fund Agreements for Signature"
+                                  iconName="utility:send"/>  
+            </aura:if>
+        </aura:set>
+        <p class="slds-p-horizontal_small">
+            <aura:if isTrue="{!v.isCompleted}">
+                <p><lightning:formattedText value="All the Agreements have been Signed , Please proceed for Project Creation" /></p> 
+            </aura:if>
+            <aura:if isTrue="{!v.isCancelled}">
+                <p><lightning:formattedText value="One or more Signatories have rejected to Sign the Agreements, Please clone the existing Concept to Send new agreements for Signature" /></p>
+            </aura:if>
+        </p>
+    </lightning:card> 
+</aura:component>

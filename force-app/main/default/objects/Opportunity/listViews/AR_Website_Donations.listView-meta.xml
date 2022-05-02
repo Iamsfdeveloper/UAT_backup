@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AR_Website_Donations</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Regional_Office_Code__c</field>
+        <operation>equals</operation>
+        <value>AR</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Paid</value>
+    </filters>
+    <label>AR Website Donations</label>
+    <sharedTo>
+        <role>Global_IT_Admin</role>
+        <roleAndSubordinates>CEO_AR</roleAndSubordinates>
+    </sharedTo>
+</ListView>

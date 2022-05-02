@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recurring_Donations_Pledged</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>GUID__c</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>Card_Payment_Details__c</columns>
+    <columns>npe03__Recurring_Donation__c</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>Source_Opportunity__c</columns>
+    <columns>Payment_Details__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Opportunity.Donation</value>
+    </filters>
+    <filters>
+        <field>Is_Recurring__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Pledged</value>
+    </filters>
+    <label>Recurring Donations - Pledged</label>
+</ListView>

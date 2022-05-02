@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Personnel_Cost_GBP__c</fullName>
+    <externalId>false</externalId>
+    <formula>Country_Director__c  +  Finance_Manager_Lead__c  +  Head_of_Programmes_Project_Manager__c  +  HR_Manager_Lead__c  +  Logistics_Manager__c  +  Remaining_Personnel_Cost__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Sum of Country Director,Finance Manager Lead,Head of Programmes Project Manager,HR Manager Lead,Logistics Manager and Remaining Personnel Cost</inlineHelpText>
+    <label>Personnel Cost GBP</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

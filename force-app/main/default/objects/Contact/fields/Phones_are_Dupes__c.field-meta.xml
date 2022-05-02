@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Phones_are_Dupes__c</fullName>
+    <externalId>false</externalId>
+    <formula>AND (Phones_are_different__c= False,
+OR (
+    AND (
+          !ISBLANK(Phone),
+          !ISBLANK(MobilePhone),
+          Phone= MobilePhone
+         ),
+
+    AND (
+          !ISBLANK(MobilePhone),
+          !ISBLANK(npe01__WorkPhone__c),
+          MobilePhone= npe01__WorkPhone__c
+         ),
+
+    AND (
+          !ISBLANK(npe01__WorkPhone__c),
+          !ISBLANK(HomePhone),
+          npe01__WorkPhone__c= HomePhone
+         ),
+
+    AND (
+          !ISBLANK(HomePhone),
+          !ISBLANK(Phone),
+          HomePhone= Phone
+         )
+
+   )
+  )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Phones are Dupes</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>
