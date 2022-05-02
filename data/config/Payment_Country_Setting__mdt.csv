@@ -1,0 +1,7 @@
+Id,DeveloperName,MasterLabel,Language,NamespacePrefix,Label,QualifiedApiName,APIKey__c,Cancel_Url__c,Failed_Url__c,SmarterPay_User_Name__c,Success_Url__c
+m0O0C0000008T2HUAU,US,US,en_US,null,US,US,testapikey,null,https://uat.humanappeal.org.uk/checkout/error,HAUUS,https://uat.humanappeal.org.uk/checkout/thank-you
+m0O4J000000CoivUAC,FR,FR,en_US,null,FR,FR,testapikey,null,https://humanappeal.fr/checkout/error,HAUFR,https://humanappeal.fr/checkout/merci
+m0O4J000000CoilUAC,UK,UK,en_US,null,UK,UK,testapikey,null,https://uat.humanappeal.org.uk/checkout/error,HUAPP,https://uat.humanappeal.org.uk/checkout/thank-you
+m0O4J000000Coj0UAC,ES,ES,en_US,null,ES,ES,testapikey,null,https://uat.humanappeal.es/finalizar-donacion/error,HAUES,https://uat.humanappeal.es/finalizar-donacion/gracias
+m0O4J000000Coj5UAC,AR,AR,en_US,null,AR,AR,testapikey,null,https://ar.humanappeal.org.uk/checkout/error,HUAPP,https://ar.humanappeal.org.uk/checkout/thank-you
+m0O4J000000CoiqUAC,IE,IE,en_US,null,IE,IE,testapikey,null,https://uat.humanappeal.ie/checkout/error,HAUIE,https://uat.humanappeal.ie/checkout/thank-you

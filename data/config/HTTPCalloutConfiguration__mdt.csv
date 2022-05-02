@@ -1,0 +1,46 @@
+Id,DeveloperName,MasterLabel,Language,NamespacePrefix,Label,QualifiedApiName,Body__c,CertificateName__c,Endpoint__c,HeaderParameters__c,IsCompressed__c,Method__c,Timeout__c,URLParameters__c,publishable_Key__c
+m0H4J000000HO1LUAW,UK,UK,en_US,null,UK,UK,"{
+""paymentGateway"":""Stripe"",
+""apiKey"":""testapikey"",
+""incomeUserName"":""HUAPP""
+}",null,https://test2.smarterpay.com/paymentgatewayapi/repeat,Content-Type:application/json,false,POST,120000,null,null
+m0H0C00000090jLUAQ,US_Test,US_Test,en_US,null,US_Test,US_Test,null,null,https://api.stripe.com,Authorization: Bearer sk_test_51JkA2uBcFrlxbWOnOkuuCg9iMOLvr6a7Cnxk1U7Sdt0FAz8SzZo9xjOatMYhvX93frVs37jUAwwFxWTyiDyUs1Yq00ymgJ63sI,false,POST,120000,null,pk_test_51JkA2uBcFrlxbWOnMU9C13Bd5jUve8a4OdtK9cLKugMoP83DX21U7yyV1KX1ytYB84yWVk8bAwKEE5bMChdmvGwn00Te7ms6E9
+m0H4J000000HO1QUAW,ES,ES,en_US,null,ES,ES,"{
+""paymentGateway"":""Stripe"",
+""apiKey"":""testapikey"",
+""incomeUserName"":""HAUES""
+}",null,https://test2.smarterpay.com/paymentgatewayapi/repeat,Content-Type:application/json,false,POST,120000,null,null
+m0H0C0000008odlUAA,FR_Test,FR_Test,en_US,null,FR_Test,FR_Test,null,null,https://api.stripe.com,"Authorization: Bearer sk_test_51I6DCWBqqDaI4pY6hcR5ynQoJlUYzHC77UwoT6XqUvzhJ9lTm1xAoHOmZMNRk3I3kkyDkGx1n4P5nrWqxoIUmXe000ycJo84u1
+}",false,POST,120000,null,pk_test_51I6DCWBqqDaI4pY6sj6hgLU2GPe0KIES5eLA9TViOyLPTEM0XYg6jPPZvqRU5AbG80LrU0DOvsaO6NDruHcCFDZ500Zkyl53CY
+m0H0C0000008odqUAA,AR_Test,AR_Test,en_US,null,AR_Test,AR_Test,null,null,https://api.stripe.com,"Authorization: Bearer sk_test_UQyM222Kf8v11yVxCWQOuZwH00mVD5eiIz
+}",false,POST,120000,null,pk_test_bIRxeGgX5Ftp6J7pjYyUzilc00VckhZj7z
+m0H4J000000HO1VUAW,FR,FR,en_US,null,FR,FR,"{
+""paymentGateway"":""Stripe"",
+""apiKey"":""testapikey"",
+""incomeUserName"":""HAUFR""
+}",null,https://test2.smarterpay.com/paymentgatewayapi/repeat,Content-Type:application/json,false,POST,120000,null,null
+m0H0C0000008nFOUAY,UK_Test,UK_Test,en_US,null,UK_Test,UK_Test,null,null,https://api.stripe.com,Authorization: Bearer sk_test_UQyM222Kf8v11yVxCWQOuZwH00mVD5eiIz,false,POST,120000,null,pk_test_bIRxeGgX5Ftp6J7pjYyUzilc00VckhZj7z
+m0H0C0000008nCEUAY,US,US,en_US,null,US,US,"{
+""paymentGateway"":""Stripe"",
+""apiKey"":""testapikey"",
+""incomeUserName"":""HUAPP""
+}",null,https://test2.smarterpay.com/paymentgatewayapi/repeat,Content-Type:application/json,false,POST,120000,null,null
+m0H0C0000008odgUAA,IE_Test,IE_Test,en_US,null,IE_Test,IE_Test,null,null,https://api.stripe.com,"Authorization: Bearer sk_test_51IYb7aHuBOHnmk5nRwKONVpsU4VZOnLvLuZaZDwcwfxaHp2vMcWrmAY5NRMroWOcKnaKPLd2R2ec7rFXcNiueMNC00j29mC5K8
+}",false,POST,120000,null,pk_test_51IYb7aHuBOHnmk5nfWoPZgjHJ4vwa0V9XUuirWHekEMINQuq797vfcyk29ISpzboN8GDKTGjDhJMbzbDQoVfqbUO00FHLYrP8S
+m0H4J000000HO1aUAG,IE,IE,en_US,null,IE,IE,"{
+""paymentGateway"":""Stripe"",
+""apiKey"":""testapikey"",
+""incomeUserName"":""HAUIE""
+}",null,https://test2.smarterpay.com/paymentgatewayapi/repeat,Content-Type:application/json,false,POST,120000,null,null
+m0H4J000000HO1fUAG,AR,AR,en_US,null,AR,AR,"{
+""paymentGateway"":""Stripe"",
+""apiKey"":""testapikey"",
+""incomeUserName"":""HUAPP""
+}",null,https://test2.smarterpay.com/paymentgatewayapi/repeat,Content-Type:application/json,false,POST,120000,null,null
+m0H0C00000093SdUAI,UK_OPPWA_TEST,UK_OPPWA_TEST,en_US,null,UK_OPPWA_TEST,UK_OPPWA_TEST,null,null,https://eu-test.oppwa.com,authorization:Bearer OGFjN2E0Y2E3ZWY3YzhiNzAxN2VmY2QyYjIyZTEzZTZ8NXRrZFRNeERQUA==,false,POST,120000,entityId:8ac7a4c77ef7c6d9017efcd2b36c1225,null
+m0H0C0000008nFNUAY,ES_Test,ES Test,en_US,null,ES Test,ES_Test,null,null,https://api.stripe.com,Authorization: Bearer sk_test_51IYYDeDuVMpkNyGZT16aXgWdEE1VtwE5T3C7LKOLsZEqSDi3WyLHvGtPezCJWYlKUY1E6vjczcgZiwSlEHNyPbuR008pNlOtXk,false,POST,120000,null,pk_test_51IYYDeDuVMpkNyGZG1G6MfOkB3Svui7qyAoa0c6IcHlF2niFSsg8GU76xOTX1z6xlFD4Vi8YsCCGSKec2Ya8k1PZ00YHqGkW7c
+m0H4J000000HMz7UAG,SPRepeatPayment,SPRepeatPayment,en_US,null,SPRepeatPayment,SPRepeatPayment,"{
+""paymentGateway"":""Stripe"",
+""apiKey"":""testapikey"",
+""incomeUserName"":""HUAPP""
+}",null,https://test2.smarterpay.com/paymentgatewayapi/repeat,Content-Type:application/json,false,POST,120000,null,null
